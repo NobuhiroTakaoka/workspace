@@ -31,5 +31,4 @@ foreach ($fruits as $fruit) {
     echo "\n";
 }
 
-
 ?>
