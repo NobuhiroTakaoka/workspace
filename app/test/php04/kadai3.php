@@ -1,7 +1,6 @@
 <?php
 
 function all_bai($arr){
-    $result = 0;
     $elem = count($arr);
     $result = $arr[0];
 

@@ -2,7 +2,7 @@
 //課題１
 $name = "Takaoka";
 
-if ($name = "Takaoka") {
+if ($name == "Takaoka") {
     echo "私は" . $name . "です";
 }
 

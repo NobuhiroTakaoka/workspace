@@ -1,6 +1,6 @@
 <?php
 // strip_tags：文字列に含まれるHTMLタグやPHPタグを取り除く
-$str = 'テスト<br><p>テスト</p><strong>テスト</strong>';
+$str = '<h2 class="blog-title"><a href="#">テスト</a></h2><br><h1 class="logo">テスト</h1><br>テスト<br><p>テスト</p><strong>テスト</strong>';
 $str = strip_tags($str, '<br><strong>');
 echo $str;
 
