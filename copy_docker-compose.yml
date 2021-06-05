@@ -21,7 +21,7 @@ services:
       MYSQL_DATABASE: common 
       MYSQL_USER: nobuhiro
       MYSQL_PASSWORD: nobuhiro
-      #MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
     ports:
       - "3306:3306"
     volumes:
