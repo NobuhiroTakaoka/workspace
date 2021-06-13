@@ -14,7 +14,21 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+    /**
+     * 指定されている場合、コントローラルートへ自動的に適用される名前空間
+     *
+     * さらに、URLジェネレータのルート名前空間としてセット
+     *
+     * @var string
+     */
     protected $namespace = 'App\Http\Controllers';
+    /**
+     * アプリケーションの"home"ルートのパス
+     *
+     * ログイン後にユーザーをリダイレクトするため、Laravel認証が使用する
+     *
+     * @var string
+     */
     public const HOME = '/home'; //追加
 
     /**
