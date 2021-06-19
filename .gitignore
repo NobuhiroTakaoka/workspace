@@ -1,4 +1,4 @@
 # backupファイルを除外
-/**/*.bak
+*.bak
 # copyファイルを除外
-/**/copy_*
+copy_*
