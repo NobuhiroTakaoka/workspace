@@ -1,0 +1,8 @@
+# ルートのbackupファイルを除外
+*.bak
+# ルートのcopyファイルを除外
+copy_*
+# app/配下のbackupファイルを除外
+/app/**/*.bak
+# app/配下のcopyファイルを除外
+/app/**/copy_*

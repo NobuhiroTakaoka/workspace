@@ -14,7 +14,3 @@ yarn-error.log
 .env
 .env.backup
 .phpunit.result.cache
-# backupファイルを除外
-*.bak
-# copyファイルを除外
-copy_*
