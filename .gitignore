@@ -2,3 +2,5 @@
 *.bak
 # copyファイルを除外
 copy_*
+# vendorディレクトリを除外
+/vendor
