@@ -144,7 +144,11 @@ return [
 
     'attributes' => [
         'title' => 'タイトル',
-        'body' => '本文'
+        'body' => '本文',
+        'name' => '氏名',  // Laravel15 課題5
+        'gender' => '性別',  // Laravel15 課題5
+        'hobby' => '趣味',  // Laravel15 課題5
+        'introduction' => '自己紹介欄'  // Laravel15 課題5
     ],
 
 ];
