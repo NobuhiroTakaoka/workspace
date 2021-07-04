@@ -29,10 +29,16 @@
                         <label class="col-md-2" for="gender">性別</label>
                         <div class="col-md-10">
                             <div class="radio-inline">
-                                <input type="radio" name="gender" value="{{ old('gender') }}">
+                                {{-- Laravel14 課題4 削除 --}}
+                                {{-- <input type="radio" name="gender" value="{{ old('gender') }}">
                                 <label for="man">男性</label>
                                 <input type="radio" name="gender" value="{{ old('gender') }}">
-                                <label for="woman">女性</label>
+                                <label for="woman">女性</label> --}}
+                                {{-- Laravel14 課題4 追加（Laravel CollectiveのFormファサード使用） --}}
+                                @foreach ($genders as $gender)
+                                    {{ Form::radio('gender', $gender, false, ['value'=>old('gender')]) }}
+                                    {{ Form::label($gender, $gender) }}
+                                @endforeach
                             </div>
                         </div>
                     </div>

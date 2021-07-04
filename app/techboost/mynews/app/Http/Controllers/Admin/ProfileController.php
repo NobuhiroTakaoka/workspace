@@ -8,10 +8,14 @@ use App\Models\Profile;  // 自動追記
 
 class ProfileController extends Controller
 {
+    public $genders = ['男性','女性'];  // Laravel14 課題4 追加
+
     // addアクション
     public function add()
     {
-        return view('admin.profile.create');
+        $genders = $this->genders;  // Laravel14 課題4 追加（メソッド外の連想配列$gendersをこのメソッド変数に格納）
+        
+        return view('admin.profile.create', ['genders' => $genders]);  // Laravel14 課題4 追加（プロフィール新規作成ページに渡す戻り値に連想配列$gendersを追加）
     }
 
     public function create(Request $request)

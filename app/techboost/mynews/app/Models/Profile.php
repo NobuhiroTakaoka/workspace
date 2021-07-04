@@ -15,4 +15,6 @@ class Profile extends Model
         'hobby' => 'required',
         'introduction' => 'required'
     );
+
+    protected $fillable = ['name', 'gender', 'hobby', 'introduction'];  // Laravel15 課題5 追加（$fillableプロパティのホワイトリストの設定にカラムを追加）
 }
