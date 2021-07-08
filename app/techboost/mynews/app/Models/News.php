@@ -13,4 +13,6 @@ class News extends Model
         'title' => 'required',
         'body' => 'required'
     );
+
+    protected $fillable = ['title', 'body'];  // 追加（$fillableプロパティのホワイトリストの設定にカラムを追加）
 }
