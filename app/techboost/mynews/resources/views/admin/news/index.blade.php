@@ -54,7 +54,7 @@
                                     {{-- <td>{{ str_limit($news->body, 250) }}</td> --}}
                                     {{-- Laravel6からの書き方 追加 --}}
                                     <td>{{ Str::limit($news->body, 250) }}</td>
-                                    {{-- 編集リンク 追記 --}}
+                                    {{-- 編集・削除リンク 追記 --}}
                                     <td>
                                         <div>
                                             <a href="{{ action('Admin\NewsController@edit', ['id' => $news->id]) }}">編集</a>
