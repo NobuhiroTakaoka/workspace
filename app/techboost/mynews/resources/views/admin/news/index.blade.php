@@ -39,6 +39,7 @@
                                 <th width="10%">ID</th>
                                 <th width="20%">タイトル</th>
                                 <th width="50%">本文</th>
+                                <th width="10%">操作</th>  {{-- 編集リンクの見出し 追記 --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -53,6 +54,15 @@
                                     {{-- <td>{{ str_limit($news->body, 250) }}</td> --}}
                                     {{-- Laravel6からの書き方 追加 --}}
                                     <td>{{ Str::limit($news->body, 250) }}</td>
+                                    {{-- 編集リンク 追記 --}}
+                                    <td>
+                                        <div>
+                                            <a href="{{ action('Admin\NewsController@edit', ['id' => $news->id]) }}">編集</a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ action('Admin\NewsController@delete', ['id' => $news->id]) }}">削除</a>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
