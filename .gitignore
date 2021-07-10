@@ -4,3 +4,5 @@
 copy_*
 # vendorディレクトリを除外
 /vendor/**
+
+.env

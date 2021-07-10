@@ -11,13 +11,11 @@ unzip \
 vim
 
 RUN apt-get update \
-    && apt-get install -y libpq-dev \
-    && docker-php-ext-install pdo_mysql pdo_pgsql mysqli 
+    && apt-get install -y libpq-dev libxml2-dev \
+    && docker-php-ext-install pdo_mysql pdo_pgsql mysqli simplexml
 
 # Xdebugのインストール
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 
 WORKDIR /var/www/html
-
-

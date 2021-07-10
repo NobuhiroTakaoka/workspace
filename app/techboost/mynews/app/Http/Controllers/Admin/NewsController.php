@@ -22,7 +22,7 @@ class NewsController extends Controller
         $news = new News;
         $form = $request->all();
 
-        // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する
+        // フォームから画像が送信されてきたら、$news->image_path に画像のパスを格納
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
             $news->image_path = basename($path);
@@ -74,12 +74,18 @@ class NewsController extends Controller
         $news = News::find($request->id);
         // 送信されてきたフォームデータを格納する
         $news_form = $request->all();
-        if ($request->remove == 'true') {
+        if ($request->remove == 'true') {  // フォームから「画像を削除」が送信されてきたら、$news->image_path の画像のパスにnullを格納
+            // $news_form['image_path'] = null;  // カリキュラムの誤り？？
+            $news->image_path = null;  // 追加（カリキュラムの修正）
+        } elseif ($request->file('image')) {  // フォームから画像が送信されてきたら、$news->image_path の画像のパスを上書きして格納
             $path = $request->file('image')->store('public/image');
-            $news_form['image_path'] = basename($path);
-        } else {
-            $news_form['image_path'] = $news->image_path;
+            // $news_form['image_path'] = basename($path);  // カリキュラムの誤り？？
+            $news->image_path = basename($path);  // 追加（カリキュラムの修正）
         }
+        // カリキュラムの誤り？？であるなら、以下の条件分岐は更新の有無をsaveメソッドで判断するため、必要なし
+        // } else {
+        //     $news_form['image_path'] = $news->image_path;
+        // }
         // フォームから送信されてきたimageを削除する
         unset($news_form['image']);
         // フォームから送信されてきたremoveを削除する

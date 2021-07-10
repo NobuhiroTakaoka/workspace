@@ -5,15 +5,29 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Listen for XDebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9000,
+        },
+        {
+            "name": "Launch currently open script",
+            "type": "php",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${fileDirname}",
+            "port": 9000
+        },
+        {  // Docker用のXdebug
             "name": "Listen for XDebug Remote",
             "type": "php",
             "request": "launch",
-            "port": 9003,
-            "hostname": "0.0.0.0",
-            "stopOnEntry": true,
+            "port": 9003,  // php.iniの xdebug.client_port に合わせる
+            // "hostname": "0.0.0.0",
+            // "stopOnEntry": true,
             "pathMappings": {
-                // "Dockerコンテナ内のプロジェクトパス": "ローカルのプロジェクトパス"
-                "/var/www/html/app/techboost/mynews/public": "${workspaceRoot}/app/techboost/mynews/public"
+                // "Dockerコンテナのマウント先パス": "ローカルのマウント元パス"
+                "/var/www/html": "${workspaceRoot}"
             }
         }
     ]
