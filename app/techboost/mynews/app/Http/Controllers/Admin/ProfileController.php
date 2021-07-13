@@ -37,13 +37,36 @@ class ProfileController extends Controller
         return redirect('admin/profile/create');
     }
 
-    public function edit()
+    public function edit(Request $request)  // Laravel17 課題1 変更（引数にRequestクラスの変数$requestを追加）
     {
-        return view('admin.profile.edit');
+        // Profile Modelからデータを取得する
+        $profile = Profile::find($request->id);
+        if (empty($profile)) {
+            abort(404);
+        }
+        $genders = $this->genders;  // Laravel17 課題1 追加（メソッド外の連想配列$gendersをこのメソッド変数に格納）
+
+        // return view('admin.profile.edit');
+        return view('admin.profile.edit', ['profile_form' => $profile], ['genders' => $genders]);  // Laravel17 課題1 変更（プロフィール編集画面ページに渡す戻り値を追加）
     }
 
-    public function update()
+    public function update(Request $request)  // Laravel17 課題1 変更（引数にRequestクラスの変数$requestを追加）
     {
-        return redirect('admin/profile/edit');
+        // Varidationを行う
+        $this->validate($request, Profile::$rules);
+        // Profile Modelからデータを取得する
+        $profile = Profile::find($request->id);
+        // 送信されてきたフォームデータを格納する
+        $profile_form = $request->all();
+
+        // フォームから送信されてきた_tokenを削除する
+        unset($profile_form['_token']);
+
+        // データベースに保存する
+        $profile->fill($profile_form);
+        $profile->save();
+        
+        // （仮）admin/profile/createにリダイレクトする
+        return redirect('admin/profile/create');
     }
 }
