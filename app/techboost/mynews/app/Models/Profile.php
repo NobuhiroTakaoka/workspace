@@ -17,4 +17,10 @@ class Profile extends Model
     );
 
     protected $fillable = ['name', 'gender', 'hobby', 'introduction'];  // Laravel15 課題5 追加（$fillableプロパティのホワイトリストの設定にカラムを追加）
+
+    // Profile Modelに関連付けを行う
+    public function histories()
+    {
+        return $this->hasMany('App\Models\ProfileHistory');
+    }
 }

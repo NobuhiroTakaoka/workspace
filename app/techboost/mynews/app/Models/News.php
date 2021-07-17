@@ -15,4 +15,10 @@ class News extends Model
     );
 
     protected $fillable = ['title', 'body'];  // 追加（$fillableプロパティのホワイトリストの設定にカラムを追加）
+
+    // News Modelに関連付けを行う
+    public function histories()
+    {
+        return $this->hasMany('App\Models\History');
+    }
 }

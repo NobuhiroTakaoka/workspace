@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;  // 自動追記
+use App\Models\ProfileHistory;  // 追記
+use Carbon\Carbon;  // 自動追記
 
 class ProfileController extends Controller
 {
@@ -65,6 +67,12 @@ class ProfileController extends Controller
         // データベースに保存する
         $profile->fill($profile_form);
         $profile->save();
+
+        // History Modelに編集履歴の登録を実装
+        $history = new ProfileHistory;
+        $history->profile_id = $profile->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
         
         // （仮）admin/profile/createにリダイレクトする
         return redirect('admin/profile/create');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\News;  // 追記
+use App\Models\History;  // 追記
+use Carbon\Carbon;  // 追記
 
 class NewsController extends Controller
 {
@@ -95,6 +97,12 @@ class NewsController extends Controller
 
         // 該当するデータを上書きして保存する（短縮形の書き方）
         $news->fill($news_form)->save();
+
+        // History Modelに編集履歴の登録を実装
+        $history = new History;
+        $history->news_id = $news->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
 
         return redirect('admin/news');
     }
