@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// 管理者用
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('news/create', 'Admin\NewsController@add');
     Route::post('news/create', 'Admin\NewsController@create');
@@ -36,3 +37,6 @@ Route::get('XXX', 'AAAController@bbb');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// 一般ユーザ用
+Route::get('/', 'NewsController@index');
