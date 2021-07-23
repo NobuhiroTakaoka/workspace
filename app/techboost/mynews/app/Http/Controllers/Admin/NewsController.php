@@ -49,8 +49,8 @@ class NewsController extends Controller
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
-            // 検索されたら検索結果を取得する
-            $posts = News::where('title', $cond_title)->get();
+            // 検索されたら検索結果を取得する →あいまい検索+SQLインジェクション対策の実装を追加
+            $posts = News::where('title', 'like', '%' .  addslashes($cond_title) . '%')->get();
         } else {
             // それ以外はすべてのニュースを取得する
             $posts = News::all();

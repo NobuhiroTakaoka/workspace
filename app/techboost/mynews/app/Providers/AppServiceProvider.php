@@ -16,6 +16,11 @@ class AppServiceProvider extends ServiceProvider
     {
         //ペジネーションデフォルト対応
         Paginator::useBootstrapThree();
+
+        // HTTP通信プロトコルをHTTPSに変換
+        if (\App::environment('production')) {
+            \URL::forceScheme('https');
+        }
     }
 
     /**

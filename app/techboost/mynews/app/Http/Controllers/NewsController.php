@@ -10,9 +10,10 @@ class NewsController extends Controller
     public function index(Request $request)
     {
         $cond_title = $request->cond_title;
-        // $cond_title が空白でない場合は、記事を検索して取得する
+        // $cond_title が空白でない場合は、記事を検索して取得する（※一般ユーザ用の一覧ページ未実装）
         if ($cond_title != '') {
-            $posts = News::where('title', $cond_title)->orderBy('updated_at', 'desc')->get();
+            // あいまい検索の実装を追加
+            $posts = News::where('title', 'like', '%' . $cond_title . '%')->orderBy('updated_at', 'desc')->get();
         } else {
             $posts = News::all()->sortByDesc('updated_at');
         }
