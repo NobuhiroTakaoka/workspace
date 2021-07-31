@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <p>投稿されたニュースの閲覧ページです</p>  // Heroku デプロイ kadai 
+        <p>投稿されたニュースの閲覧ページです</p>  {{-- Heroku デプロイ kadai  --}}
         <hr color="#c0c0c0">
         @if (!is_null($headline))
             <div class="row">
