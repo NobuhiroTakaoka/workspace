@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\News;  // 追記
 use App\Models\History;  // 追記
 use Carbon\Carbon;  // 追記
+use Illuminate\Support\Facades\Storage;  // 追記
 
 class NewsController extends Controller
 {
@@ -26,8 +27,10 @@ class NewsController extends Controller
 
         // フォームから画像が送信されてきたら、$news->image_path に画像のパスを格納
         if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/image');
-            $news->image_path = basename($path);
+            // $path = $request->file('image')->store('public/image');
+            $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');  // Storageファサードでの保存先をS3への変更
+            // $news->image_path = basename($path);
+            $news->image_path = Storage::disk('s3')->url($path);  // Storageファサードでの保存先をS3への変更
         } else {
             $news->image_path = null;
         }
@@ -78,11 +81,14 @@ class NewsController extends Controller
         $news_form = $request->all();
         if ($request->remove == 'true') {  // フォームから「画像を削除」が送信されてきたら、$news->image_path の画像のパスにnullを格納
             // $news_form['image_path'] = null;  // カリキュラムの誤り？？
+            Storage::disk('s3')->delete(basename($news->image_path));  // StorageファサードでのS3から画像ファイル削除
             $news->image_path = null;  // 追加（カリキュラムの修正）
         } elseif ($request->file('image')) {  // フォームから画像が送信されてきたら、$news->image_path の画像のパスを上書きして格納
-            $path = $request->file('image')->store('public/image');
+            // $path = $request->file('image')->store('public/image');
+            $path = Storage::disk('s3')->putFile('/', $news_form['image'], 'public');  // Storageファサードでの保存先をS3への変更
             // $news_form['image_path'] = basename($path);  // カリキュラムの誤り？？
-            $news->image_path = basename($path);  // 追加（カリキュラムの修正）
+            // $news->image_path = basename($path);  // 追加（カリキュラムの修正）
+            $news->image_path = Storage::disk('s3')->url($path);  // Storageファサードでの保存先をS3への変更
         }
         // カリキュラムの誤り？？であるなら、以下の条件分岐は更新の有無をsaveメソッドで判断するため、必要なし
         // } else {
