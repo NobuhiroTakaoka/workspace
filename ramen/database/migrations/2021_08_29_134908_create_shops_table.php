@@ -15,7 +15,7 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('shop_name');
             $table->string('shop_name_kana');
             $table->string('branch')->nullable();
@@ -45,7 +45,9 @@ class CreateShopsTable extends Migration
             $table->string('other')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
-            $table->timestamp('deleted_at')->default("9999-12-31 00:00:00");
+            $table->timestamp('deleted_at');
+            // 外部キーを設定
+            // $table->foreignId('user_id')->constrained('users');
         });
     }
 
