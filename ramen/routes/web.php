@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// ユーザ共通
+// Route::get('/', 'InfoController@index');
+Route::get('/', [InfoController::class, 'index']);  // Laravel8での書き方
