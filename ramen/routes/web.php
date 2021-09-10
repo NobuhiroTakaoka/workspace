@@ -20,4 +20,8 @@ Route::get('/', function () {
 
 // ユーザ共通
 // Route::get('/', 'InfoController@index');
-Route::get('/', [InfoController::class, 'index']);  // Laravel8での書き方
+Route::get('/', [InfoController::class, 'index']);  // Laravel8での書き方 認証済みユーザーでなくてもこのルートにアクセス可能にし、Viewで表示を制御したい
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
