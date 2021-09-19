@@ -1,13 +1,26 @@
+{{-- layouts/front.blade.phpを読み込む --}}
 @extends('layouts.front')
+
+
+{{-- front.blade.phpの@yield('title')に'トップ - ラーメンresearch'を埋め込む --}}
+@section('title', 'トップ - ラーメンresearch')
+
 
 @section('content')
     <div class="container">
-        <p>ラーメンResearchのトップページ</p>  {{-- テスト表示  --}}
-        <hr color="#c0c0c0">
-        <hr color="#c0c0c0">
-        <div class="row">
-            <div class="posts col-md-8 mx-auto mt-3">
+        <div class="form-group row">
+            <div class="col-md-2">
+                <input type="text" class="form-control" name="search" placeholder="キーワード">
+            </div>
+            <div class="col-md-2">
+                {{ csrf_field() }}
+                <input type="submit" class="btn btn-primary" value="検索">
             </div>
         </div>
+        <hr color="#c0c0c0">
+
+        <hr color="#c0c0c0">
+        
+
     </div>
 @endsection
