@@ -66,6 +66,21 @@
                         </div>
                     </form>
                 </div>
+
+                <div class="card-body">
+                    <form method="GET" action="{{ route('register') }}">
+                        @csrf
+                        
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                {{-- 新規ユーザ登録ボタンを追加 --}}
+                                <button type="submit" class="btn btn-success">
+                                    {{ __('messages.Register') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

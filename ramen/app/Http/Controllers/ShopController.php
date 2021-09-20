@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function add(Request $request)
+    public function refer(Request $request)
     {
         // shop/detail.blade.php ファイルを渡す
         return view('shop.detail');

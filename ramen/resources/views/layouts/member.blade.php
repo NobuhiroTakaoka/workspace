@@ -23,7 +23,7 @@
     {{-- Laravel標準で用意されているCSSを読み込む --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     {{-- CSSを読み込む --}}
-    <link href="{{ asset('css/front.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/member.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -43,41 +43,28 @@
                         <li><a class="nav-link" href="{{ url('/') }}">トップ</a></li>
                         <li><a class="nav-link" href="{{ route('search') }}">検索</a></li>
                         <li><a class="nav-link" href="{{ route('ranking') }}">ランキング</a></li>
-                        {{-- ログインしていなかったらログイン画面へのリンクタブを表示 --}}
-                        @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">ログイン</a></li>
-                        {{-- ログインしていたらマイページ画面へのリンクタブを表示 --}}
-                        @else
-                            <li><a class="nav-link" href="{{ url('/{user_id}') }}">マイページ</a></li>
-                        @endguest
+                        <li><a class="nav-link" href="{{ url('/{user_id}') }}">マイページ</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
-                        @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>

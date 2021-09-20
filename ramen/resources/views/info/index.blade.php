@@ -8,15 +8,17 @@
 
 @section('content')
     <div class="container">
-        <div class="form-group row">
-            <div class="col-md-2">
-                <input type="text" class="form-control" name="search" placeholder="キーワード">
+        <form action="{{ route('search') }}" method="GET">
+            <div class="form-group row">
+                <div class="col-md-2">
+                   <input type="text" class="form-control" name="keyword" placeholder="キーワード">
+                </div>
+                <div class="col-md-2">
+                    {{ csrf_field() }}
+                    <input type="submit" class="btn btn-primary" value="検索">
+                </div>
             </div>
-            <div class="col-md-2">
-                {{ csrf_field() }}
-                <input type="submit" class="btn btn-primary" value="検索">
-            </div>
-        </div>
+        </form>
         <hr color="#c0c0c0">
 
         <hr color="#c0c0c0">
