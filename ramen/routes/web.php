@@ -28,7 +28,7 @@ Route::get('/search', [InfoController::class, 'search'])->name('search');
 Route::get('/ranking', [InfoController::class, 'ranking'])->name('ranking');
 // Route::get('/entry', [ShopController::class, 'add']);
 // Route::get('/detail/{shop_id}/shop_edit', [ShopController::class, 'edit']);
-Route::get('/shop/detail/{shop_id}', [ShopController::class, 'index']);
+Route::get('/shop/detail/{shop_id}', [App\Http\Controllers\ShopController::class, 'index']);
 
 Auth::routes();
 

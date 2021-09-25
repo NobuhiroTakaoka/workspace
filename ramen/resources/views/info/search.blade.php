@@ -15,6 +15,7 @@
               <li class="breadcrumb-item active" aria-current="page">検索</li>
             </ol>
         </nav>
+        {{ $posts }}
         <hr color="#c0c0c0">
         <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">

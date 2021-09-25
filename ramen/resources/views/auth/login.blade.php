@@ -68,9 +68,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="GET" action="{{ route('register') }}">
-                        @csrf
-                        
+                    <form method="GET" action="{{ route('register') }}">                        
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 {{-- 新規ユーザ登録ボタンを追加 --}}
