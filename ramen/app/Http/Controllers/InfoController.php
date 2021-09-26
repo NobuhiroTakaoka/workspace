@@ -21,11 +21,11 @@ class InfoController extends Controller
             $posts = Shops::where('shop_name', 'like', '%' .  addslashes($keyword) . '%')->get();
         } else {
             // それ以外はすべてのお店を取得する
-            $posts = Shops::all();
+            $posts = Shops::get();
         }
 
         // info/search.blade.php ファイルを渡す
-        return view('info.search', ['posts' => $posts, 'cond_title' => $keyword]);        
+        return view('info.search', ['posts' => $posts, 'keyword' => $keyword]);        
     }
 
     public function ranking(Request $request)

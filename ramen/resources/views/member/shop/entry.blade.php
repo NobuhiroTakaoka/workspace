@@ -14,7 +14,7 @@
                 <div class="card-header">{{ __('messages.Shop_Entry') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url('/') }}">
+                    <form action="{{ url('/member/shop/entry') }}" method="POST">
                         @csrf
 
                         <div class="form-group row">
@@ -63,19 +63,9 @@
                             <label for="postcode" class="col-md-3 col-form-label text-md-right">{{ __('messages.Post_Code') }}</label>
 
                             <div class="col-md-2">
-                                <input id="address1" type="text" class="form-control" name="address1">
+                                <input id="address1" type="text" class="form-control" name="address1" maxlength="7">
                                 
                                 @error('address1')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <span>-</sapn>
-                            <div class="col-md-2">
-                                <input id="address2" type="text" class="form-control" name="address2">
-                                                                
-                                @error('address2')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -84,6 +74,18 @@
                         </div>
                         <div class="form-group row">
                             <label for="address" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address') }}</label>
+                            
+                            <div class="col-md-6">
+                                <input id="address2" type="text" class="form-control" name="address2">
+                                
+                                @error('address2')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message.address2 }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+
                         </div>
 
 

@@ -27,7 +27,8 @@
             // "stopOnEntry": true,
             "pathMappings": {
                 // "Dockerコンテナのマウント先パス": "ローカルのマウント元パス"
-                "/var/www/html": "${workspaceRoot}"
+                // "/var/www/html": "${workspaceRoot}"
+                "/var/www/html/ramen": "${workspaceRoot}/ramen"
             }
         }
     ]

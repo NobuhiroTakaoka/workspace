@@ -39,10 +39,10 @@ class CreateShopsTable extends Migration
             $table->string('twitter');
             $table->string('shop_type');
             $table->string('opening_date');
-            $table->string('menu');
-            $table->string('notes');
+            $table->text('menu');
+            $table->text('notes');
             $table->string('tags');
-            $table->string('other');
+            $table->text('other');
             $table->timestamps();
             $table->softDeletes();
             // 外部キーを設定
