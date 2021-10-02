@@ -72,21 +72,44 @@
                                 @enderror
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            <label for="address" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address') }}</label>
+                            <label for="address1" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address1') }}</label>
                             
                             <div class="col-md-6">
                                 <input id="address2" type="text" class="form-control" name="address2">
                                 
                                 @error('address2')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message.address2 }}</strong>
+                                        <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-
-
                         </div>
+                        <div class="form-group row">
+                            <label for="address3" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address2') }}</label>
+                            
+                            <div class="col-md-6">
+                                <input id="address3" type="text" class="form-control" name="address3">
+                                
+                                @error('address3')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+
+                        <div id="map" style="height:500px">  {{-- 追加 --}}
+                        </div>
+                        <script src="{{ asset('/js/map_result.js') }}"></script>  {{-- 追加 --}}
+                        <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyAM0gtL_z9CjX9mBp6IVcCm9EiG_XEoUsc&callback=initMap" async defer>
+                        </script>
+
+
+
 
 
                         <div class="form-group row mb-0">

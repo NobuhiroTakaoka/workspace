@@ -28,6 +28,7 @@
                         {{ $shop->address3 }}
                         {{ $shop->address4 }}
                     </div>
+                    <div class="map_lat">{{ $shop->map_lat }}</div>
                 </div>
             </div>
         @endforeach
