@@ -20,6 +20,8 @@ return [
     'Post_Code' => '〒',
     'Address1' => '住所１',
     'Address2' => '住所２',
+    'Address3' => '住所３',
+    // 'Address4' => '住所４',
     'Map' => '地図',
     'Phone_Number1' => '電話番号１',
     'Phone_Number2' => '電話番号２',
