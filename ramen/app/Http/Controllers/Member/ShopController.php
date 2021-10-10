@@ -72,8 +72,8 @@ class ShopController extends Controller
         // $shop->save();
         
         // member/shop/entryにリダイレクトする
-        // return redirect('member/shop/entry/check');
-        // お店登録ページに渡す戻り値に連想配列$shop_typesを追加
+        // return redirect('member/shop/entry');
+        // お店登録確認ページに渡す戻り値に連想配列$shopプロパティを追加
         return view('member.shop.entry.check', [
             'user_id' => $shop->user_id,
             'shop_name' => $shop->shop_name,
