@@ -233,6 +233,6 @@ return [
     ],
 
     // 環境変数を設定値に定義
-    'GOOGLE_API_KEY' => config('app.google_api_key'),  // 追加
+    // 'GOOGLE_API_KEY' => config('app.google_api_key'),  // 追加
 
 ];
