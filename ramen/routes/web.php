@@ -40,7 +40,7 @@ Route::group(['prefix' => 'member', 'middleware' => 'auth'], function () {
     Route::get('/{user_id}/review_manage', [UserController::class, 'manage']);
     Route::get('/{user_id}', [UserController::class, 'index'])->name('{user_id}');
     Route::get('/shop/entry', [ShopController::class, 'add']);
-    Route::get('/shop/entry/check', [ShopController::class, 'check'])->name('check');
+    Route::get('/shop/check', [ShopController::class, 'check'])->name('check');
     Route::get('/shop/detail/{shop_id}/shop_edit', [ShopController::class, 'edit']);
     Route::get('/shop/detail/{shop_id}/review_add', [ShopController::class, 'review_add']);
 });

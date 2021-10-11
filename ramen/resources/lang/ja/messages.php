@@ -41,4 +41,7 @@ return [
     'Notes' => '備考',
     'Tags' => 'タグ',
     'Next' => '次へ',
+    'Shop_Entry_Check' => '店舗登録確認',
+    'Entry' => '登録する',
+    'Fix' => '修正する',
 ];

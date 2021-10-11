@@ -14,7 +14,7 @@
                 <div class="card-header">{{ __('messages.Shop_Entry') }}</div>
 
                 <div class="card-body">
-                    <form action="{{ url('/member/shop/entry/check') }}" method="GET">
+                    <form action="{{ url('/member/shop/check') }}" method="GET">
                         @csrf
 
                         {{-- 店名フォーム --}}
