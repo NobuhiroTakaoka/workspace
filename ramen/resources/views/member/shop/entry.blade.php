@@ -14,7 +14,7 @@
                 <div class="card-header">{{ __('messages.Shop_Entry') }}</div>
 
                 <div class="card-body">
-                    <form action="{{ url('/member/shop/check') }}" method="GET">
+                    <form action="{{ url('/member/shop/check') }}" method="POST">
                         @csrf
 
                         {{-- 店名フォーム --}}
@@ -22,7 +22,7 @@
                             <label for="shop_name" class="col-md-3 col-form-label text-md-right">{{ __('messages.Shop_Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="shop_name" type="text" class="form-control @error('shop_name') is-invalid @enderror" name="shop_name" value="{{ old('shop_name') }}" autofocus>
+                                <input id="shop_name" type="text" class="form-control @error('shop_name') is-invalid @enderror" name="shop_name" required value="{{ old('shop_name') }}" autofocus>
 
                                 @error('shop_name')
                                     <span class="invalid-feedback" role="alert">

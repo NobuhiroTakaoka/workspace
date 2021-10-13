@@ -22,7 +22,7 @@
                             <label for="shop_name" class="col-md-3 col-form-label text-md-right">{{ __('messages.Shop_Name') }}</label>
 
                             <div class="col-md-6">
-                                <span>{{ $shop_name }}</span>
+                                <span>{{ $form["shop_name"] }}</span>
                             </div>
                         </div>
 
@@ -31,7 +31,7 @@
                             <label for="shop_name_kana" class="col-md-3 col-form-label text-md-right">{{ __('messages.Shop_Name_Kana') }}</label>
 
                             <div class="col-md-6">
-                                <span>{{ $shop_name_kana }}</span>
+                                <span>{{ $form["shop_name_kana"] }}</span>
                             </div>
                         </div>
 
@@ -40,7 +40,7 @@
                             <label for="branch" class="col-md-3 col-form-label text-md-right">{{ __('messages.Branch') }}</label>
 
                             <div class="col-md-6">
-                                <span>{{ $branch }}</span>
+                                <span>{{ $form["branch"] }}</span>
                             </div>
                         </div>
 
@@ -49,7 +49,7 @@
                             <label for="postcode" class="col-md-3 col-form-label text-md-right">{{ __('messages.Post_Code') }}</label>
 
                             <div class="col-md-2">
-                                <span>{{ $address1 }}</span>
+                                <span>{{ $form["address1"] }}</span>
                             </div>
                         </div>
 
@@ -58,7 +58,7 @@
                             <label for="address1" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address1') }}</label>
                             
                             <div class="col-md-6">
-                                <span>{{ $address2 }}</span>
+                                <span>{{ $form["address2"] }}</span>
                             </div>
                         </div>
 
@@ -67,7 +67,7 @@
                             <label for="address2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address2') }}</label>
                             
                             <div class="col-md-6">
-                                <span>{{ $address3}}</span>
+                                <span>{{ $form["address3"] }}</span>
                             </div>
                         </div>
 
@@ -76,7 +76,7 @@
                             <label for="address3" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address3') }}</label>
                             
                             <div class="col-md-6">
-                                <span>{{ $address4 }}</span>
+                                <span>{{ $form["address4"] }}</span>
                             </div>
                         </div>
 
@@ -126,7 +126,7 @@
                             <label for="phone_number1" class="col-md-3 col-form-label text-md-right">{{ __('messages.Phone_Number1') }}</label>
                             
                             <div class="col-md-3">
-                                <span>{{ $phone_number1 }}</span>
+                                <span>{{ $form["phone_number1"] }}</span>
                             </div>
                         </div>
 
@@ -135,7 +135,7 @@
                             <label for="phone_number2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Phone_Number2') }}</label>
                             
                             <div class="col-md-3">
-                                <span>{{ $phone_number2 }}</span>
+                                <span>{{ $form["phone_number2"] }}</span>
                             </div>
                         </div>
 
@@ -144,7 +144,7 @@
                             <label for="opening_hour1" class="col-md-3 col-form-label text-md-right">{{ __('messages.Opening_Hour1') }}</label>
                             
                             <div class="col-md-5">
-                                <span>{{ $opening_hour1 }}</span>
+                                <span>{{ $form["opening_hour1"] }}</span>
                             </div>
                         </div>
 
@@ -153,7 +153,7 @@
                             <label for="opening_hour2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Opening_Hour2') }}</label>
                             
                             <div class="col-md-5">
-                                <span>{{ $opening_hour2 }}</span>
+                                <span>{{ $form["opening_hour2"] }}</span>
                             </div>
                         </div>
 
@@ -162,7 +162,7 @@
                             <label for="holiday" class="col-md-3 col-form-label text-md-right">{{ __('messages.Holiday') }}</label>
                             
                             <div class="col-md-4">
-                                <span>{{ $holiday }}</span>
+                                <span>{{ $form["holiday"] }}</span>
                             </div>
                         </div>
 
@@ -171,7 +171,7 @@
                             <label for="seats" class="col-md-3 col-form-label text-md-right">{{ __('messages.Seats') }}</label>
                             
                             <div class="col-md-4">
-                                <span>{{ $seats }}</span>
+                                <span>{{ $form["seats"] }}</span>
                             </div>
                         </div>
 
@@ -180,7 +180,7 @@
                             <label for="access" class="col-md-3 col-form-label text-md-right">{{ __('messages.Access') }}</label>
                             
                             <div class="col-md-9">
-                                <span>{{ $access }}</span>
+                                <span>{{ $form["access"] }}</span>
                             </div>
                         </div>
 
@@ -189,7 +189,7 @@
                             <label for="parking" class="col-md-3 col-form-label text-md-right">{{ __('messages.Parking') }}</label>
                             
                             <div class="col-md-4">
-                                <span>{{ $parking }}</span>
+                                <span>{{ $form["parking"] }}</span>
                             </div>
                         </div>
 
@@ -198,7 +198,7 @@
                             <label for="official_site" class="col-md-3 col-form-label text-md-right">{{ __('messages.Official_Site') }}</label>
                             
                             <div class="col-md-5">
-                                <span>{{ $official_site }}</span>
+                                <span>{{ $form["official_site"] }}</span>
                             </div>
                         </div>
 
@@ -207,7 +207,7 @@
                             <label for="official_blog" class="col-md-3 col-form-label text-md-right">{{ __('messages.Official_Blog') }}</label>
                             
                             <div class="col-md-5">
-                                <span>{{ $official_blog }}</span>
+                                <span>{{ $form["official_blog"] }}</span>
                             </div>
                         </div>
 
@@ -216,7 +216,7 @@
                             <label for="facebook" class="col-md-3 col-form-label text-md-right">{{ __('messages.Facebook') }}</label>
                             
                             <div class="col-md-5">
-                                <span>{{ $facebook }}</span>
+                                <span>{{ $form["facebook"] }}</span>
                             </div>
                         </div>
 
@@ -225,7 +225,7 @@
                             <label for="twitter" class="col-md-3 col-form-label text-md-right">{{ __('messages.Twitter') }}</label>
                             
                             <div class="col-md-5">
-                                <span>{{ $twitter }}</span>
+                                <span>{{ $form["twitter"] }}</span>
                             </div>
                         </div>
 
@@ -234,7 +234,7 @@
                             <label for="shop_type" class="col-md-3 col-form-label text-md-right">{{ __('messages.Shop_Type') }}</label>
                             
                             <div class="col-md-9">
-                                <span>{{ $shop_type }}</span>
+                                <span>{{ $form["shop_type"] }}</span>
                             </div>
                         </div>
 
@@ -243,7 +243,7 @@
                             <label for="opening_date" class="col-md-3 col-form-label text-md-right">{{ __('messages.Opening_Date') }}</label>
                             
                             <div class="col-md-3">
-                                <span>{{ $opening_date }}</span>
+                                <span>{{ $form["opening_date"] }}</span>
                             </div>
                         </div>
 
@@ -252,7 +252,7 @@
                             <label for="menu" class="col-md-3 col-form-label text-md-right">{{ __('messages.Menu') }}</label>
                             
                             <div class="col-md-9">
-                                <span>{{ $menu }}</span>
+                                <span>{{ $form["menu"] }}</span>
                             </div>
                         </div>
 
@@ -261,7 +261,7 @@
                             <label for="notes" class="col-md-3 col-form-label text-md-right">{{ __('messages.Notes') }}</label>
                             
                             <div class="col-md-9">
-                                <span>{{ $notes }}</span>
+                                <span>{{ $form["notes"] }}</span>
                             </div>
                         </div>
 
@@ -270,7 +270,7 @@
                             <label for="tags" class="col-md-3 col-form-label text-md-right">{{ __('messages.Tags') }}</label>
                             
                             <div class="col-md-6">
-                                <span>{{ $tags }}</span>
+                                <span>{{ $form["tags"] }}</span>
                             </div>
                         </div>
 
@@ -286,11 +286,37 @@
                 </div>
 
                 <div class="card-body">                   
-                    <form action="{{ url('/member/shop/entry') }}" method="GET">
+                    <form action="{{ url('/member/shop/entry') }}" method="POST">
+                        @csrf
+
+                        <input id="shop_name" type="hidden" value="{{ $form["shop_name"] }}">
+                        <input id="shop_name_kana" type="hidden" value="{{ $form["shop_name_kana"] }}">
+                        <input id="branch" type="hidden" value="{{ $form["branch"] }}">
+                        <input id="address1" type="hidden" value="{{ $form["address1"] }}">
+                        <input id="address2" type="hidden" value="{{ $form["address2"] }}">
+                        <input id="address3" type="hidden" value="{{ $form["address3"] }}">
+                        <input id="address4" type="hidden" value="{{ $form["address4"] }}">
+                        <input id="phone_number1" type="hidden" value="{{ $form["phone_number1"] }}">
+                        <input id="phone_number2" type="hidden" value="{{ $form["phone_number2"] }}">
+                        <input id="opening_hour1" type="hidden" value="{{ $form["opening_hour1"] }}">
+                        <input id="opening_hour2" type="hidden" value="{{ $form["opening_hour2"] }}">
+                        <input id="holiday" type="hidden" value="{{ $form["holiday"] }}">
+                        <input id="seats" type="hidden" value="{{ $form["seats"] }}">
+                        <input id="access" type="hidden" value="{{ $form["access"] }}">
+                        <input id="parking" type="hidden" value="{{ $form["parking"] }}">
+                        <input id="official_site" type="hidden" value="{{ $form["official_site"] }}">
+                        <input id="official_blog" type="hidden" value="{{ $form["official_blog"] }}">
+                        <input id="facebook" type="hidden" value="{{ $form["facebook"] }}">
+                        <input id="twitter" type="hidden" value="{{ $form["twitter"] }}">
+                        <input id="opening_date" type="hidden" value="{{ $form["opening_date"] }}">
+                        <input id="menu" type="hidden" value="{{ $form["menu"] }}">
+                        <input id="notes" type="hidden" value="{{ $form["notes"] }}">
+                        <input id="tags" type="hidden" value="{{ $form["tags"] }}">
+
                         {{-- 修正ボタン --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-success" value="fix">
                                     {{ __('messages.Fix') }}
                                 </button>
                             </div>
