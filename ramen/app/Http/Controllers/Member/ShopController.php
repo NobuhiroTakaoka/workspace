@@ -39,7 +39,7 @@ class ShopController extends Controller
         $this->validate($request, Shops::$rules);
 
         $form = $request->all();
-    
+
         // セッションに設定する
         $request->session()->put("form_input", $form);
     
@@ -179,40 +179,70 @@ class ShopController extends Controller
         // 入力内容をフラッシュデータに保存してmember/shop/entryにリダイレクトする
         return redirect('member/shop/entry')->withInput($form);
 
-        $user_id = Auth::id();
-        $shop_name = $request->shop_name;
-        $shop_name_kana = $request->shop_name_kana;
-        $branch = $request->branch;
-        $address1 = $request->address1;
-        $address2 = $request->address2;
-        $address3 = $request->address3;
-        $address4 = $request->address4;
-        $map_lat = $request->map_lat;
-        $map_long = $request->map_long;
-        $phone_number1 = $request->phone_number1;
-        $phone_number2 = $request->phone_number2;
-        $opening_hour1 = $request->opening_hour1;
-        $opening_hour2 = $request->opening_hour2;
-        $holiday = $request->holiday;
-        $seats = $request->seats;
-        $access = $request->access;
-        $parking = $request->parking;
-        $official_site = $request->official_site;
-        $official_blog = $request->official_blog;
-        $facebook = $request->facebook;
-        $shop_type = $request->shop_type;
-        $twitter = $request->twitter;
-        $opening_date = $request->opening_date;
-        $menu = $request->menu;
-        $notes = $request->notes;
-        $tags = $request->tags;
-        $other = $request->other;
-
-
-
-
+        // $user_id = Auth::id();
+        // $shop_name = $request->shop_name;
+        // $shop_name_kana = $request->shop_name_kana;
+        // $branch = $request->branch;
+        // $address1 = $request->address1;
+        // $address2 = $request->address2;
+        // $address3 = $request->address3;
+        // $address4 = $request->address4;
+        // $map_lat = $request->map_lat;
+        // $map_long = $request->map_long;
+        // $phone_number1 = $request->phone_number1;
+        // $phone_number2 = $request->phone_number2;
+        // $opening_hour1 = $request->opening_hour1;
+        // $opening_hour2 = $request->opening_hour2;
+        // $holiday = $request->holiday;
+        // $seats = $request->seats;
+        // $access = $request->access;
+        // $parking = $request->parking;
+        // $official_site = $request->official_site;
+        // $official_blog = $request->official_blog;
+        // $facebook = $request->facebook;
+        // $shop_type = $request->shop_type;
+        // $twitter = $request->twitter;
+        // $opening_date = $request->opening_date;
+        // $menu = $request->menu;
+        // $notes = $request->notes;
+        // $tags = $request->tags;
+        // $other = $request->other;
 
         // 入力内容をフラッシュデータに保存してmember/shop/entryにリダイレクトする
         // return redirect('member/shop/entry')->withInput();
+    }
+    
+    public function create(Request $request)
+    {
+        var_dump($request->lat);
+
+        $shop = new Shops;
+
+        // $user_id = Auth::id();
+        $form = array('user_id' => Auth::id());
+
+        // セッションを取得する
+        $form += $request->session()->get("form_input");
+
+        $form += array('other' => '');
+
+        //セッションに値が無い時は登録フォームに戻る
+        if (!$form) {
+            // member/shop/entryにリダイレクトする
+            return redirect('member/shop/entry');
+        }
+
+        // $form = $request->all();
+
+        // フォームから送信されてきた_tokenを削除する
+        unset($form['_token']);
+
+
+        // データベースに保存する
+        $shop->fill($form);
+        $shop->save();
+
+        // searchにリダイレクトする
+        return redirect('search');
     }
 }

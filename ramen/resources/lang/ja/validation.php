@@ -161,6 +161,8 @@ return [
         'address2' => '住所１',
         'address3' => '住所２',
         'address4' => '住所３',
+        // 'map_lat' => '地図緯度',
+        // 'map_long' => '地図経度',
         'phone_number1' => '電話番号１',
         'phone_number2' => '電話番号２',
         'opening_hour1' => '営業時間１',

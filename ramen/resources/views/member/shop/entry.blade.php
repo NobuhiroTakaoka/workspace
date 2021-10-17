@@ -129,19 +129,48 @@
                             </div>
                         </div> --}}
 
+                        {{-- 地図の緯度フォーム（表示しない） --}}
+                        <div class="form-group row">
+                            {{-- <label for="lat" class="col-md-3 col-form-label text-md-right">{{ __('messages.Lat') }}</label> --}}
+                            
+                            <div class="col-md-6">
+                                {{-- <input id="lat" type="hidden" class="form-control @error('lat') is-invalid @enderror" name="lat" value="{{ old('lat') }}"> --}}
+                                <input id="map_lat" type="hidden" class="form-control" name="map_lat" value="{{ old('map_lat') }}">
+                         
+                                {{-- @error('lat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror --}}
+                            </div>
+                        </div>
+
+                        {{-- 地図の経度フォーム（表示しない） --}}
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input id="map_long" type="hidden" class="form-control" name="map_long" value="{{ old('map_long') }}">
+                            </div>
+                        </div>
+
                         <script>
                             function initMap() {
-                                var target = document.getElementById('map'); //マップを表示する要素を指定
-                                var address = '東京都新宿区西新宿2-8-1'; //住所を指定
+                                // var target = document.getElementById('map'); //マップを表示する要素を指定
+                                // var target = document.getElementById('map'); //マップを表示する要素を指定
+                                // var address = '東京都新宿区西新宿2-8-1'; //住所を指定
+                                var address = document.getElementById('address2').value; //住所１の入力内容を取得
                                 var geocoder = new google.maps.Geocoder();  
                             
                                 geocoder.geocode({ address: address }, function(results, status){
                                   
                                     if (status === 'OK' && results[0]){
-                            
+                                        
                                         console.log(results[0].geometry.location);
-                                        var latlng = results[0].geometry.location;
-                                
+                                        var latlng = results[0].geometry.location; //LatLngインスタンスを変数に格納
+                                        var lat = latlng.lat(); //メソッドで緯度を取得し、変数に格納
+                                        var long = latlng.lng(); // メソッドで経度を取得し、変数に格納
+                                        document.getElementById('map_lat').value = lat ;
+                                        document.getElementById('map_long').value = long ;
+                                        
                                         // var map = new google.maps.Map(target, {  
                                         //     center: results[0].geometry.location,
                                         //     zoom: 18
@@ -156,7 +185,7 @@
                                     }else{ 
                                         //住所が存在しない場合の処理
                                         alert('住所が正しくないか存在しません。');
-                                        target.style.display='none';
+                                        // target.style.display='none';
                                     }
                                 });
                             }
@@ -419,7 +448,7 @@
                         {{-- 次へボタン（確認画面へ） --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" onClick="initMap()">
                                     {{ __('messages.Next') }}
                                 </button>
                             </div>

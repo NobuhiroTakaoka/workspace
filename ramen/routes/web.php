@@ -42,6 +42,7 @@ Route::group(['prefix' => 'member', 'middleware' => 'auth'], function () {
     Route::get('/shop/entry', [ShopController::class, 'add']);
     Route::post('/shop/entry', [ShopController::class, 'fix']);
     Route::post('/shop/check', [ShopController::class, 'check'])->name('check');
+    Route::post('/shop/create', [ShopController::class, 'create'])->name('create');
     Route::get('/shop/detail/{shop_id}/shop_edit', [ShopController::class, 'edit']);
     Route::get('/shop/detail/{shop_id}/review_add', [ShopController::class, 'review_add']);
 });

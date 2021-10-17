@@ -21,6 +21,8 @@ class Shops extends Model
         'address2' => 'required',
         'address3' => 'required',
         'address4' => 'required',
+        'map_lat' => 'required',
+        'map_long' => 'required',
         'phone_number1' => 'required',
         'phone_number2' => 'required',
         'opening_hour1' => 'required',
