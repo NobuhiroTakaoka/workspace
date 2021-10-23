@@ -100,7 +100,7 @@
                         {{-- 地図の緯度（表示しない） --}}
                         <div class="form-group row">                            
                             <div class="col-md-6">
-                                <input id="map_lat" type="text" class="form-control" name="map_lat" required value="{{ $form["map_lat"] }}">
+                                <input id="map_lat" type="hidden" class="form-control" name="map_lat" required value="{{ $form["map_lat"] }}">
                             </div>
                         </div>
 

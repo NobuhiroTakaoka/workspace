@@ -169,25 +169,25 @@ class ShopController extends Controller
         $shop = new Shops;
 
         // セッションを取得する
-        $key = $this->key;
-        $form = $request->session()->get($key);
+        // $key = $this->key;
+        // $form = $request->session()->get($key);
 
         //セッションに値が無い時は登録フォームに戻る
-        if (!$form) {
+        // if (!$form) {
             // member/shop/entryにリダイレクトする
-            return redirect('member/shop/entry');
-        }
+        //     return redirect('member/shop/entry');
+        // }
 
-        // データベースへの登録準備
-        $data = array('user_id' => Auth::id());  // ユーザID
-        $data += $form;  // セッション情報
-        $data += array('other' => '');  // 備考のデフォルトは空
-
-        // $form = $request->all();
+        // 確認画面経由でフォームデータ取得
+        $form = $request->all();
 
         // フォームから送信されてきた_tokenを削除する
         unset($form['_token']);
 
+        // データベース登録用に配列を作成
+        $data = array('user_id' => Auth::id());  // ユーザID
+        $data += $form;  // フォームデータ
+        $data += array('other' => '');  // 備考のデフォルトは空
 
         // データベースに保存する
         // $shop->fill($form);
@@ -195,6 +195,7 @@ class ShopController extends Controller
         $shop->save();
 
         // セッションを破棄する
+        $key = $this->key;
         $form = $request->session()->forget($key);
 
         // searchにリダイレクトする
