@@ -14,7 +14,7 @@
                 <div class="card-header">{{ __('messages.Shop_Entry') }}</div>
 
                 <div class="card-body">
-                    <form action="{{ url('/member/shop/check') }}" method="POST">
+                    <form action="{{ url('/member/shop/check') }}" class="h-adr" method="GET">
                         @csrf
 
                         {{-- 店名フォーム --}}
@@ -23,6 +23,7 @@
 
                             <div class="col-md-6">
                                 <input id="shop_name" type="text" class="form-control @error('shop_name') is-invalid @enderror" name="shop_name" required value="{{ old('shop_name') }}" autofocus>
+                                {{-- <input id="shop_name" type="text" class="form-control @error('shop_name') is-invalid @enderror" name="shop_name" required value="{{ $form["shop_name"] }}" autofocus> --}}
 
                                 @error('shop_name')
                                     <span class="invalid-feedback" role="alert">
@@ -38,6 +39,7 @@
 
                             <div class="col-md-6">
                                 <input id="shop_name_kana" type="text" class="form-control @error('shop_name_kana') is-invalid @enderror" name="shop_name_kana" value="{{ old('shop_name_kana') }}">
+                                {{-- <input id="shop_name_kana" type="text" class="form-control @error('shop_name_kana') is-invalid @enderror" name="shop_name_kana" value="{{ $form["shop_name_kana"] }}"> --}}
 
                                 @error('shop_name_kana')
                                     <span class="invalid-feedback" role="alert">
@@ -53,6 +55,7 @@
 
                             <div class="col-md-6">
                                 <input id="branch" type="text" class="form-control @error('branch') is-invalid @enderror" name="branch" value="{{ old('branch') }}">
+                                {{-- <input id="branch" type="text" class="form-control @error('branch') is-invalid @enderror" name="branch" value="{{ $form["branch"] }}"> --}}
 
                                 @error('branch')
                                     <span class="invalid-feedback" role="alert">
@@ -63,13 +66,17 @@
                         </div>
 
                         {{-- 郵便番号フォーム --}}
+                        <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+                        <span class="p-country-name" style="display:none;">Japan</span>
                         <div class="form-group row">
                             <label for="postcode" class="col-md-3 col-form-label text-md-right">{{ __('messages.Post_Code') }}</label>
 
-                            <div class="col-md-2">
-                                <input id="address1" type="text" class="form-control @error('address1') is-invalid @enderror" name="address1" value="{{ old('address1') }}" maxlength="7">
-                                
-                                @error('address1')
+                            <div class="col-md-2 p-postal-code">
+                                <input id="postcode" type="text" class="form-control p-postal-code @error('postcode') is-invalid @enderror" name="postcode" value="{{ old('postcode') }}" maxlength="7">
+                                {{-- <input id="address1" type="text" class="form-control p-postal-code @error('address1') is-invalid @enderror" name="address1" value="{{ old('address1') }}" maxlength="7"> --}}
+                                {{-- <input id="address1" type="text" class="form-control @error('address1') is-invalid @enderror" name="address1" value="{{ $form["address1"] }}" maxlength="7"> --}}
+ 
+                                @error('postcode')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -82,9 +89,10 @@
                             <label for="address1" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address1') }}</label>
                             
                             <div class="col-md-6">
-                                <input id="address2" type="text" class="form-control @error('address2') is-invalid @enderror" name="address2" value="{{ old('address2') }}">
-                                
-                                @error('address2')
+                                <input id="address1" type="text" class="form-control p-region @error('address1') is-invalid @enderror" name="address1" value="{{ old('address1') }}">
+                                {{-- <input id="address2" type="text" class="form-control @error('address2') is-invalid @enderror" name="address2" value="{{ $form["address2"] }}"> --}}
+
+                                @error('address1')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -97,9 +105,10 @@
                             <label for="address2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address2') }}</label>
                             
                             <div class="col-md-6">
-                                <input id="address3" type="text" class="form-control @error('address3') is-invalid @enderror" name="address3" value="{{ old('address3') }}">
-                                
-                                @error('address3')
+                                <input id="address2" type="text" class="form-control p-locality @error('address2') is-invalid @enderror" name="address2" value="{{ old('address2') }}">
+                                {{-- <input id="address3" type="text" class="form-control @error('address3') is-invalid @enderror" name="address3" value="{{ $form["address3"] }}"> --}}
+  
+                                @error('address2')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -112,8 +121,24 @@
                             <label for="address3" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address3') }}</label>
                             
                             <div class="col-md-6">
-                                <input id="address4" type="text" class="form-control @error('address4') is-invalid @enderror" name="address4" value="{{ old('address4') }}">
-                                
+                                <input id="address3" type="text" class="form-control p-street-address @error('address3') is-invalid @enderror" name="address3" value="{{ old('address3') }}">
+                                {{-- <input id="address4" type="text" class="form-control @error('address4') is-invalid @enderror" name="address4" value="{{ $form["address4"] }}"> --}}
+
+                                @error('address3')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- 住所４フォーム --}}
+                        <div class="form-group row">
+                            <label for="address4" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address4') }}</label>
+                            
+                            <div class="col-md-6">
+                                <input id="address4" type="text" class="form-control p-extended-address @error('address4') is-invalid @enderror" name="address4" value="{{ old('address4') }}">
+
                                 @error('address4')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -136,7 +161,9 @@
                             <div class="col-md-6">
                                 {{-- <input id="lat" type="hidden" class="form-control @error('lat') is-invalid @enderror" name="lat" value="{{ old('lat') }}"> --}}
                                 <input id="map_lat" type="hidden" class="form-control" name="map_lat" value="{{ old('map_lat') }}">
-                         
+                                {{-- <input id="map_lat" type="text" class="form-control" name="map_lat" value="{{ $form["map_lat"] }}"> --}}
+                                {{-- <input id="map_lat" type="hidden" class="form-control" name="map_lat" value="{{ $form["map_lat"] }}"> --}}
+
                                 {{-- @error('lat')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -149,6 +176,7 @@
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <input id="map_long" type="hidden" class="form-control" name="map_long" value="{{ old('map_long') }}">
+                                {{-- <input id="map_long" type="hidden" class="form-control" name="map_long" value="{{ $form["map_long"] }}"> --}}
                             </div>
                         </div>
 
@@ -157,7 +185,12 @@
                                 // var target = document.getElementById('map'); //マップを表示する要素を指定
                                 // var target = document.getElementById('map'); //マップを表示する要素を指定
                                 // var address = '東京都新宿区西新宿2-8-1'; //住所を指定
-                                var address = document.getElementById('address2').value; //住所１の入力内容を取得
+                                var address1 = document.getElementById('address1').value; //住所１の入力内容を取得
+                                var address2 = document.getElementById('address2').value; //住所２の入力内容を取得
+                                var address3 = document.getElementById('address3').value; //住所３の入力内容を取得
+                                var address4 = document.getElementById('address4').value; //住所４の入力内容を取得
+                                var address = address1 + address2 + address3 + address4; //住所１～４を結合 
+
                                 var geocoder = new google.maps.Geocoder();  
                             
                                 geocoder.geocode({ address: address }, function(results, status){
@@ -182,9 +215,9 @@
                                         //     animation: google.maps.Animation.DROP
                                         // });
 
-                                    }else{ 
+                                    // }else{ 
                                         //住所が存在しない場合の処理
-                                        alert('住所が正しくないか存在しません。');
+                                        // alert('住所が正しくないか存在しません。');
                                         // target.style.display='none';
                                     }
                                 });
@@ -198,7 +231,8 @@
                             
                             <div class="col-md-3">
                                 <input id="phone_number1" type="text" class="form-control @error('phone_number1') is-invalid @enderror" name="phone_number1" value="{{ old('phone_number1') }}" maxlength="11">
-                                
+                                {{-- <input id="phone_number1" type="text" class="form-control @error('phone_number1') is-invalid @enderror" name="phone_number1" value="{{ $form["phone_number1"] }}" maxlength="11"> --}}
+                             
                                 @error('phone_number1')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -213,7 +247,8 @@
                             
                             <div class="col-md-3">
                                 <input id="phone_number2" type="text" class="form-control @error('phone_number2') is-invalid @enderror" name="phone_number2" value="{{ old('phone_number2') }}" maxlength="11">
-                                
+                                {{-- <input id="phone_number2" type="text" class="form-control @error('phone_number2') is-invalid @enderror" name="phone_number2" value="{{ $form["phone_number2"] }}" maxlength="11"> --}}
+                          
                                 @error('phone_number2')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -228,7 +263,8 @@
                             
                             <div class="col-md-5">
                                 <input id="opening_hour1" type="text" class="form-control @error('opening_hour1') is-invalid @enderror" name="opening_hour1" value="{{ old('opening_hour1') }}">
-                                
+                                {{-- <input id="opening_hour1" type="text" class="form-control @error('opening_hour1') is-invalid @enderror" name="opening_hour1" value="{{ $form["opening_hour1"] }}"> --}}
+                        
                                 @error('opening_hour1')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -243,7 +279,8 @@
                             
                             <div class="col-md-5">
                                 <input id="opening_hour2" type="text" class="form-control @error('opening_hour2') is-invalid @enderror" name="opening_hour2" value="{{ old('opening_hour2') }}">
-                                
+                                {{-- <input id="opening_hour2" type="text" class="form-control @error('opening_hour2') is-invalid @enderror" name="opening_hour2" value="{{ $form["opening_hour2"] }}"> --}}
+                        
                                 @error('opening_hour2')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -258,7 +295,8 @@
                             
                             <div class="col-md-4">
                                 <input id="holiday" type="text" class="form-control @error('holiday') is-invalid @enderror" name="holiday" value="{{ old('holiday') }}">
-                                
+                                {{-- <input id="holiday" type="text" class="form-control @error('holiday') is-invalid @enderror" name="holiday" value="{{ $form["holiday"] }}"> --}}
+                          
                                 @error('holiday')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -273,7 +311,8 @@
                             
                             <div class="col-md-4">
                                 <input id="seats" type="text" class="form-control @error('seats') is-invalid @enderror" name="seats" value="{{ old('seats') }}">
-                                
+                                {{-- <input id="seats" type="text" class="form-control @error('seats') is-invalid @enderror" name="seats" value="{{ $form["seats"] }}"> --}}
+                              
                                 @error('seats')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -288,6 +327,7 @@
                             
                             <div class="col-md-9">
                                 <input id="access" type="text" class="form-control @error('access') is-invalid @enderror" name="access" value="{{ old('access') }}">
+                                {{-- <input id="access" type="text" class="form-control @error('access') is-invalid @enderror" name="access" value="{{ $form["access"] }}"> --}}
                                 
                                 @error('access')
                                     <span class="invalid-feedback" role="alert">
@@ -303,7 +343,8 @@
                             
                             <div class="col-md-4">
                                 <input id="parking" type="text" class="form-control @error('parking') is-invalid @enderror" name="parking" value="{{ old('parking') }}">
-                                
+                                {{-- <input id="parking" type="text" class="form-control @error('parking') is-invalid @enderror" name="parking" value="{{ $form["parking"] }}"> --}}
+                             
                                 @error('parking')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -318,7 +359,8 @@
                             
                             <div class="col-md-5">
                                 <input id="official_site" type="text" class="form-control @error('official_site') is-invalid @enderror" name="official_site" value="{{ old('official_site') }}">
-                                
+                                {{-- <input id="official_site" type="text" class="form-control @error('official_site') is-invalid @enderror" name="official_site" value="{{ $form["official_site"] }}"> --}}
+                             
                                 @error('official_site')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -333,7 +375,8 @@
                             
                             <div class="col-md-5">
                                 <input id="official_blog" type="text" class="form-control @error('official_blog') is-invalid @enderror" name="official_blog" value="{{ old('official_blog') }}">
-                                
+                                {{-- <input id="official_blog" type="text" class="form-control @error('official_blog') is-invalid @enderror" name="official_blog" value="{{ $form["official_blog"] }}"> --}}
+                              
                                 @error('official_blog')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -348,7 +391,8 @@
                             
                             <div class="col-md-5">
                                 <input id="facebook" type="text" class="form-control @error('facebook') is-invalid @enderror" name="facebook" value="{{ old('facebook') }}">
-                                
+                                {{-- <input id="facebook" type="text" class="form-control @error('facebook') is-invalid @enderror" name="facebook" value="{{ $form["facebook"] }}"> --}}
+                               
                                 @error('facebook')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -363,7 +407,8 @@
                             
                             <div class="col-md-5">
                                 <input id="twitter" type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value="{{ old('twitter') }}">
-                                
+                                {{-- <input id="twitter" type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value="{{ $form["twitter"] }}"> --}}
+                              
                                 @error('twitter')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -380,6 +425,7 @@
                                 {{-- Laravel CollectiveのFormファサード使用 --}}
                                 @foreach ($shop_types as $shop_type)
                                     {{ Form::radio('shop_type', $shop_type, false, ['value'=>old('shop_type')]) }}
+                                    {{-- {{ Form::radio('shop_type', $shop_type, false, ['value'=>$form["shop_type"]]) }} --}}
                                     {{ Form::label($shop_type, $shop_type) }}
                                 @endforeach
                             </div>
@@ -391,7 +437,8 @@
                             
                             <div class="col-md-3">
                                 <input id="opening_date" type="text" class="form-control @error('opening_date') is-invalid @enderror" name="opening_date" value="{{ old('opening_date') }}">
-                                
+                                {{-- <input id="opening_date" type="text" class="form-control @error('opening_date') is-invalid @enderror" name="opening_date" value="{{ $form["opening_date"] }}"> --}}
+                              
                                 @error('opening_date')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -406,6 +453,7 @@
                             
                             <div class="col-md-9">
                                 <input id="menu" type="text" class="form-control @error('menu') is-invalid @enderror" name="menu" value="{{ old('menu') }}">
+                                {{-- <input id="menu" type="text" class="form-control @error('menu') is-invalid @enderror" name="menu" value="{{ $form["menu"] }}"> --}}
                                 
                                 @error('menu')
                                     <span class="invalid-feedback" role="alert">
@@ -421,7 +469,8 @@
                             
                             <div class="col-md-9">
                                 <input id="notes" type="text" class="form-control @error('notes') is-invalid @enderror" name="notes" value="{{ old('notes') }}">
-                                
+                                {{-- <input id="notes" type="text" class="form-control @error('notes') is-invalid @enderror" name="notes" value="{{ $form["notes"] }}"> --}}
+                           
                                 @error('notes')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -436,7 +485,8 @@
                             
                             <div class="col-md-6">
                                 <input id="tags" type="text" class="form-control @error('tags') is-invalid @enderror" name="tags" value="{{ old('tags') }}">
-                                
+                                {{-- <input id="tags" type="text" class="form-control @error('tags') is-invalid @enderror" name="tags" value="{{ $form["tags"] }}"> --}}
+                           
                                 @error('tags')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -448,7 +498,7 @@
                         {{-- 次へボタン（確認画面へ） --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary" onClick="initMap()">
+                                <button type="submit" class="btn btn-primary" onClick="initMap()" name="finput">
                                     {{ __('messages.Next') }}
                                 </button>
                             </div>

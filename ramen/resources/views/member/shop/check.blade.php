@@ -52,8 +52,8 @@
                             <label for="postcode" class="col-md-3 col-form-label text-md-right">{{ __('messages.Post_Code') }}</label>
 
                             <div class="col-md-2">
-                                <span>{{ $form["address1"] }}</span>
-                                <input id="address1" type="hidden" class="form-control" name="address1" required value="{{ $form["address1"] }}">
+                                <span>{{ $form["postcode"] }}</span>
+                                <input id="postcode" type="hidden" class="form-control" name="postcode" required value="{{ $form["postcode"] }}">
                             </div>
                         </div>
 
@@ -62,8 +62,8 @@
                             <label for="address1" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address1') }}</label>
                             
                             <div class="col-md-6">
-                                <span id="address2">{{ $form["address2"] }}</span>
-                                <input id="address2" type="hidden" class="form-control" name="address2" required value="{{ $form["address2"] }}">
+                                <span>{{ $form["address1"] }}</span>
+                                <input id="address1" type="hidden" class="form-control" name="address1" required value="{{ $form["address1"] }}">
                             </div>
                         </div>
 
@@ -72,14 +72,24 @@
                             <label for="address2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address2') }}</label>
                             
                             <div class="col-md-6">
-                                <span>{{ $form["address3"] }}</span>
-                                <input id="address3" type="hidden" class="form-control" name="address3" required value="{{ $form["address3"] }}">
+                                <span>{{ $form["address2"] }}</span>
+                                <input id="address2" type="hidden" class="form-control" name="address2" required value="{{ $form["address2"] }}">
                             </div>
                         </div>
 
                         {{-- 住所３ --}}
                         <div class="form-group row">
                             <label for="address3" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address3') }}</label>
+                            
+                            <div class="col-md-6">
+                                <span>{{ $form["address3"] }}</span>
+                                <input id="address3" type="hidden" class="form-control" name="address3" required value="{{ $form["address3"] }}">
+                            </div>
+                        </div>
+
+                        {{-- 住所４ --}}
+                        <div class="form-group row">
+                            <label for="address4" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address4') }}</label>
                             
                             <div class="col-md-6">
                                 <span>{{ $form["address4"] }}</span>
@@ -90,7 +100,7 @@
                         {{-- 地図の緯度（表示しない） --}}
                         <div class="form-group row">                            
                             <div class="col-md-6">
-                                <input id="map_lat" type="hidden" class="form-control" name="map_lat" required value="{{ $form["map_lat"] }}">
+                                <input id="map_lat" type="text" class="form-control" name="map_lat" required value="{{ $form["map_lat"] }}">
                             </div>
                         </div>
 
@@ -115,7 +125,11 @@
                             function initMap() {
                                 var target = document.getElementById('map'); //マップを表示する要素を指定
                                 // var address = '東京都新宿区西新宿2-8-1'; //住所を指定
-                                var address = document.getElementById('address2').innerHTML; //住所１の内容を取得
+                                var address1 = document.getElementById('address1').value; //住所１の内容を取得
+                                var address2 = document.getElementById('address2').value; //住所２の内容を取得
+                                var address3 = document.getElementById('address3').value; //住所３の内容を取得
+                                var address4 = document.getElementById('address4').value; //住所４の内容を取得
+                                var address = address1 + address2 + address3 + address4; //住所１～４を結合 
 
                                 var geocoder = new google.maps.Geocoder();
                             
@@ -320,7 +334,7 @@
                         {{-- 登録ボタン --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" name="entry">
                                     {{ __('messages.Entry') }}
                                 </button>
                             </div>
@@ -331,6 +345,8 @@
                 <div class="card-body">                   
                     <form action="{{ url('/member/shop/entry') }}" method="POST">
                         @csrf
+
+                        <input id="mode" type="hidden" class="form-control" name="mode" value="true">
 
                         {{-- <input id="shop_name" type="hidden" value="{{ $form["shop_name"] }}">
                         <input id="shop_name_kana" type="hidden" value="{{ $form["shop_name_kana"] }}">
@@ -359,7 +375,7 @@
                         {{-- 修正ボタン --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-success" value="fix">
+                                <button type="submit" class="btn btn-success">
                                     {{ __('messages.Fix') }}
                                 </button>
                             </div>

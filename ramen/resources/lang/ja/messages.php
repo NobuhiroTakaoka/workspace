@@ -21,7 +21,7 @@ return [
     'Address1' => '住所１',
     'Address2' => '住所２',
     'Address3' => '住所３',
-    // 'Address4' => '住所４',
+    'Address4' => '住所４',
     'Lat' => '緯度',
     'Long' => '経度',
     'Map' => '地図',
