@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;  // 追記
 
 class ShopController extends Controller
 {
-    public $shop_types = ['チェーン店','のれん分け','独自店','不明'];  // 追加
+    // public $shop_types = ['1' => 'チェーン店', '2' => 'のれん分け', '3' => '独自店', '4' => '不明'];  // 追加
+    public $shop_types = ['チェーン店', 'のれん分け', '独自店', '不明'];  // 追加
     public $key = __CLASS__ . '-entry';  //セッションのキーを設定
 
     public function add(Request $request)
@@ -26,24 +27,49 @@ class ShopController extends Controller
         // }
 
         $shop_types = $this->shop_types;  // 追加（メソッド外の連想配列$shop_typesをこのメソッド変数に格納）
+        
+        // 「修正する」ボタンが押された場合
+        if ($request->has('mode')) {
+            // セッションを取得する
+            $form = $request->session()->get($this->key);
+            // お店登録ページに渡す戻り値に連想配列$shop_types、$formを追加
+            return view('member.shop.entry', ['shop_types' => $shop_types, 'form' => $form]);
+        } 
+        // セッションを破棄する
+        $form = $request->session()->forget($this->key);
 
-        // $lat = $request->lat;
-        // $lng = $request->lng;
-        // // currentLocationで表示
-        // // return view('currentLocation', [
-        // return view('member/shop/entry', [
+        // フォームデータを初期化
+        $form["shop_name"] = "";
+        $form["shop_name_kana"] = "";
+        $form["branch"] = "";
+        $form["postcode"] = "";
+        $form["address1"] = "";
+        $form["address2"] = "";
+        $form["address3"] = "";
+        $form["address4"] = "";
+        $form["map_lat"] = "";
+        $form["map_long"] = "";
+        $form["phone_number1"] = "";
+        $form["phone_number2"] = "";
+        $form["opening_hour1"] = "";
+        $form["opening_hour2"] = "";
+        $form["holiday"] = "";
+        $form["seats"] = "";
+        $form["access"] = "";
+        $form["parking"] = "";
+        $form["official_site"] = "";
+        $form["official_blog"] = "";
+        $form["facebook"] = "";
+        $form["twitter"] = "";
+        $form["shop_type"] = "不明";
+        $form["opening_date"] = "";
+        $form["menu"] = "";
+        $form["notes"] = "";
+        $form["tags"] = "";
 
-        //     // 現在地緯度latをbladeへ渡す
-        //     'lat' => $lat,
-        //     // 現在地経度lngをbladeへ渡す
-        //     'lng' => $lng,
-        // ]);
-
-        // member/shop/entry.blade.php ファイルを渡す
-        // return view('member.shop.entry');
-        // お店登録ページに渡す戻り値に連想配列$shop_typesを追加
-        return view('member.shop.entry', ['shop_types' => $shop_types]);
-        // return view('member.shop.entry', ['shop_types' => $shop_types, 'form' => $form]);
+        // お店登録ページに渡す戻り値に連想配列$shop_types、$formを追加
+        // return view('member.shop.entry', ['shop_types' => $shop_types]);
+        return view('member.shop.entry', ['shop_types' => $shop_types, 'form' => $form]);
     }
 
     public function check(Request $request)
@@ -56,7 +82,38 @@ class ShopController extends Controller
 
         if (!($request->has("finput"))) {
             $shop_types = $this->shop_types;  // 追加（メソッド外の連想配列$shop_typesをこのメソッド変数に格納）
-            return view('member.shop.entry', ['shop_types' => $shop_types]);
+
+            // フォームデータを初期化
+            $form["shop_name"] = "";
+            $form["shop_name_kana"] = "";
+            $form["branch"] = "";
+            $form["postcode"] = "";
+            $form["address1"] = "";
+            $form["address2"] = "";
+            $form["address3"] = "";
+            $form["address4"] = "";
+            $form["map_lat"] = "";
+            $form["map_long"] = "";
+            $form["phone_number1"] = "";
+            $form["phone_number2"] = "";
+            $form["opening_hour1"] = "";
+            $form["opening_hour2"] = "";
+            $form["holiday"] = "";
+            $form["seats"] = "";
+            $form["access"] = "";
+            $form["parking"] = "";
+            $form["official_site"] = "";
+            $form["official_blog"] = "";
+            $form["facebook"] = "";
+            $form["twitter"] = "";
+            $form["shop_type"] = "不明";
+            $form["opening_date"] = "";
+            $form["menu"] = "";
+            $form["notes"] = "";
+            $form["tags"] = "";
+
+            // お店登録ページに渡す戻り値に連想配列$shop_types、$formを追加
+            return view('member.shop.entry', ['shop_types' => $shop_types, 'form' => $form]);
         }
         // Varidationを行う
         $this->validate($request, Shops::$rules);
@@ -150,13 +207,15 @@ class ShopController extends Controller
         if ($request->has('mode')) {
             // セッションを取得する
             $form = $request->session()->get($key);
+            // 入力内容をフラッシュデータに保存してmember/shop/entryにリダイレクトする
+            return redirect('member/shop/entry')->withInput($form);
         } else {
             // セッションを破棄する
             $form = $request->session()->forget($key);
         }
 
         // 入力内容をフラッシュデータに保存してmember/shop/entryにリダイレクトする
-        return redirect('member/shop/entry')->withInput($form);
+        // return redirect('member/shop/entry')->withInput($form);
 
 
         // セッションを取得する

@@ -12,6 +12,14 @@ return [
     'Register' => '新規ユーザ登録',
     'Name' => '名前',
     'Confirm Password' => 'パスワード確認',
+    // 店舗検索
+    'Shop_Search' => '店舗検索',
+
+
+
+
+
+
     // 店舗登録
     'Shop_Entry' => '店舗登録',
     'Shop_Name' => '店名',

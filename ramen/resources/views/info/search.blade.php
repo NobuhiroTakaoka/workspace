@@ -15,22 +15,70 @@
               <li class="breadcrumb-item active" aria-current="page">検索</li>
             </ol>
         </nav>
-        @foreach ($posts as $shop)
-            <div class="row">
-                <div class="posts col-md-8 mx-auto mt-3">
-                    <div class="shop_name">{{ $shop->shop_name }}</div>
-                    <div class="address">
-                        @if ($shop->address1)
-                            <span>〒</span>
-                        @endif
-                        {{ $shop->address1 }}
-                        {{ $shop->address2 }}
-                        {{ $shop->address3 }}
-                        {{ $shop->address4 }}
+
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">{{ __('messages.Shop_Search') }}</div>
+
+                    <div class="card-body">
+                        <form action="{{ url('/member/shop/check') }}" method="GET">
+                            @csrf
+
+
+
+                            @foreach ($posts as $shop)
+                            <div class="row">
+                                <div class="posts col-md-8 mx-auto mt-3">
+                                    <div class="shop_name">{{ $shop->shop_name }}</div>
+                                    <div class="branch">{{ $shop->branch }}</div>
+
+
+
+
+
+                                    <div class="address">
+                                        @if ($shop->address1)
+                                            <span>〒</span>
+                                        @endif
+                                        {{ $shop->address1 }}
+                                        {{ $shop->address2 }}
+                                        {{ $shop->address3 }}
+                                        {{ $shop->address4 }}
+                                    </div>
+                                    <div class="map_lat">{{ $shop->map_lat }}</div>
+                                </div>
+                            </div>
+                        @endforeach
+                
+
+                        
+                        </form>
                     </div>
-                    <div class="map_lat">{{ $shop->map_lat }}</div>
                 </div>
             </div>
-        @endforeach
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
 @endsection
