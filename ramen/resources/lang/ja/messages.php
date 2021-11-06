@@ -50,6 +50,7 @@ return [
     'Menu' => 'メニュー',
     'Notes' => '備考',
     'Tags' => 'タグ',
+    'Image_Name' => 'お店イメージ画像名',
     'Next' => '次へ',
     'Shop_Entry_Check' => '店舗登録確認',
     'Entry' => '登録する',

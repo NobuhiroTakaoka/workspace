@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPostcodeToShopsTable extends Migration
+class AddImagePathEtcToShopsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddPostcodeToShopsTable extends Migration
     public function up()
     {
         Schema::table('shops', function (Blueprint $table) {
-            $table->integer('postcode')->after('branch');
+            $table->bigInteger('user_id_update')->after('user_id');
+            $table->string('image_path')->nullable()->after('tags');
         });
     }
 
@@ -26,7 +27,8 @@ class AddPostcodeToShopsTable extends Migration
     public function down()
     {
         Schema::table('shops', function (Blueprint $table) {
-            $table->dropColumn('postcode');  //カラムの削除
+            $table->dropColumn('user_id_update');  //カラムの削除
+            $table->dropColumn('image_path');  //カラムの削除
         });
     }
 }

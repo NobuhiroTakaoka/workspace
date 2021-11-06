@@ -28,28 +28,28 @@
 
 
                             @foreach ($posts as $shop)
-                            <div class="row">
-                                <div class="posts col-md-8 mx-auto mt-3">
-                                    <div class="shop_name">{{ $shop->shop_name }}</div>
-                                    <div class="branch">{{ $shop->branch }}</div>
+                                <div class="row">
+                                    <div class="posts col-md-8 mx-auto mt-3">
+                                        <div class="shop_name">{{ $shop->shop_name }}
+                                            <span class="branch">{{ $shop->branch }}</span>
+                                        </div>
 
 
 
 
-
-                                    <div class="address">
-                                        @if ($shop->address1)
-                                            <span>〒</span>
-                                        @endif
-                                        {{ $shop->address1 }}
-                                        {{ $shop->address2 }}
-                                        {{ $shop->address3 }}
-                                        {{ $shop->address4 }}
+                                        <div class="address">
+                                            @if ($shop->address1)
+                                                <span>〒</span>
+                                            @endif
+                                            {{ $shop->address1 }}
+                                            {{ $shop->address2 }}
+                                            {{ $shop->address3 }}
+                                            {{ $shop->address4 }}
+                                        </div>
+                                        <div class="map_lat">{{ $shop->map_lat }}</div>
                                     </div>
-                                    <div class="map_lat">{{ $shop->map_lat }}</div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
                 
 
                         
