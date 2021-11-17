@@ -30,23 +30,27 @@
                             @foreach ($posts as $shop)
                                 <div class="row">
                                     <div class="posts col-md-8 mx-auto mt-3">
-                                        <div class="shop_name">{{ $shop->shop_name }}
-                                            <span class="branch">{{ $shop->branch }}</span>
-                                        </div>
-
-
-
-
-                                        <div class="address">
-                                            @if ($shop->address1)
-                                                <span>〒</span>
+                                        <div class="left-contents float-left mr-3">
+                                            @if ($shop->image_path)
+                                                <img class="img-thumbnail img-fluid" src="{{ asset('storage/image/' . $shop->image_path) }}">                                                    
+                                            @else
+                                                <img class="img-thumbnail img-fluid" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
                                             @endif
-                                            {{ $shop->address1 }}
-                                            {{ $shop->address2 }}
-                                            {{ $shop->address3 }}
-                                            {{ $shop->address4 }}
                                         </div>
-                                        <div class="map_lat">{{ $shop->map_lat }}</div>
+
+                                        <div class="right-contents">
+                                            <div>
+                                                <span class="shop_name">{{ $shop->shop_name }}</span>
+                                                <span class="branch">{{ $shop->branch }}</span>
+                                            </div>
+                                            <div>
+                                                {{-- <span class="postcode">〒{{ $shop->postcode }}</span> --}}
+                                                <span class="address1">{{ $shop->address1 }}</span>
+                                                <span class="address2">{{ $shop->address2 }}</span>
+                                                <span class="address3">{{ $shop->address3 }}</span>
+                                                <span class="address4">{{ $shop->address4 }}</span>
+                                            </div>
+                                        </div>    
                                     </div>
                                 </div>
                             @endforeach

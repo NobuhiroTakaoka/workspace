@@ -29,6 +29,9 @@ body {
   font-size: 0.8em;
 }
 
+.posts {
+  height: 20vh;
+}
 .posts .post .date {
   font-size: 0.6em;
   color: #999999;
@@ -42,4 +45,8 @@ body {
 }
 .posts .post .image img {
   width: 250px;
+}
+
+.left-contents {
+  width: 10vw;
 }

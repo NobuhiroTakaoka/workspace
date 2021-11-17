@@ -83,6 +83,7 @@
                                         </span>
                                     @enderror
                                 </div>
+                                <span>ハイフン（-）なし</span>
                             </div>
 
                             {{-- 住所１フォーム --}}
@@ -139,7 +140,7 @@
                                 
                                 <div class="col-md-6">
                                     {{-- <input id="address4" type="text" class="form-control p-extended-address @error('address4') is-invalid @enderror" name="address4" value="{{ old('address4') }}"> --}}
-                                    <input id="address4" type="text" class="form-control p-extended-address @error('address4') is-invalid @enderror" name="address4" value="{{ $form['address4'] }}">
+                                    <input id="address4" type="text" onblur="initMap()" class="form-control p-extended-address @error('address4') is-invalid @enderror" name="address4" value="{{ $form['address4'] }}">
 
                                     @error('address4')
                                         <span class="invalid-feedback" role="alert">
@@ -184,6 +185,7 @@
 
                             <script>
                                 function initMap() {
+                                    console.log('initMap');
                                     var address1 = document.getElementById('address1').value;  //住所１の入力内容を取得
                                     var address2 = document.getElementById('address2').value;  //住所２の入力内容を取得
                                     var address3 = document.getElementById('address3').value;  //住所３の入力内容を取得
@@ -238,6 +240,7 @@
                                         </span>
                                     @enderror
                                 </div>
+                                <span>ハイフン（-）なし</span>
                             </div>
 
                             {{-- 電話番号２フォーム --}}
@@ -254,6 +257,7 @@
                                         </span>
                                     @enderror
                                 </div>
+                                <span>ハイフン（-）なし</span>
                             </div>
 
                             {{-- 営業時間１フォーム --}}
@@ -546,7 +550,7 @@
                             {{-- 次へボタン（確認画面へ） --}}
                             <div class="form-group row">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" onSubmit="initMap()" name="finput" value="true">
+                                    <button type="submit" class="btn btn-primary" name="finput" value="true">
                                         {{ __('messages.Next') }}
                                     </button>
                                 </div>

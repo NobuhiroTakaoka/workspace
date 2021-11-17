@@ -74,7 +74,7 @@ class ShopController extends Controller
 
     public function check(Request $request)
     {
-        if (!($request->has('finput'))) {
+        if (!$request->has('finput')) {
             $shop_types = $this->shop_types;  // 追加（メソッド外の連想配列$shop_typesをこのメソッド変数に格納）
 
             // フォームデータを初期化
@@ -107,58 +107,66 @@ class ShopController extends Controller
         // $image_path = $request->only(['image_path']);
         $image_file = $request['image_file'];
 
-        if (!($request->has('image_name_mode'))) {
-            // イメージ画像名を取得
-            $image_name = $image_file->getClientOriginalName();
-            // $image_data = file_get_contents($image_file->getRealPath());
-            // $image_data = mb_convert_encoding($image_data, 'utf-8', 'sjis');
-            // イメージ画像を保存
-            $path = $request->file('image_file')->store('public/image');
-            // $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');  // Storageファサードでの保存先をS3への変更
-            // 保存したイメージ画像パスからファイル名を取得
-            $image_path = basename($path);
-            // $news->image_path = Storage::disk('s3')->url($path);  // Storageファサードでの保存先をS3への変更
+        // 選択済みの画像ファイルが存在しない場合
+        if (!$request->has('image_name_mode')) {
+            if (isset($image_file)) {
+                // 画像ファイル名を取得
+                $image_name = $image_file->getClientOriginalName();
+                // $image_data = file_get_contents($image_file->getRealPath());
+                // $image_data = mb_convert_encoding($image_data, 'utf-8', 'sjis');
+                // 画像ファイルを保存
+                $path = $request->file('image_file')->store('public/image');
+                // $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');  // Storageファサードでの保存先をS3への変更
+                // 保存した画像ファイルパスからファイル名を取得
+                $image_path = basename($path);
+                // $news->image_path = Storage::disk('s3')->url($path);  // Storageファサードでの保存先をS3への変更
 
-            // フォームのimage_name、image_pathを配列に追加
-            $form += array('image_name' => $image_name); 
-            $form += array('image_path' => $image_path);
+                // フォームのimage_name、image_pathの配列を上書き
+                $form['image_name'] = $image_name; 
+                $form['image_path'] = $image_path;
+            } else {
+                // フォーム配列のimage_name、image_pathを空にする
+                $form['image_name'] = ''; 
+                $form['image_path'] = '';    
+            }
 
         } else {
-            if ($request->image_name_mode !== '1') {
-                // イメージ画像が送信されてきた場合
-                    if ($request->image_name_mode === '2') {
-                        if (isset($image_file)) {
-                            // イメージ画像名を取得
-                            $image_name = $image_file->getClientOriginalName();
-                            // $image_data = file_get_contents($image_file->getRealPath());
-                            // $image_data = mb_convert_encoding($image_data, 'utf-8', 'sjis');
-                            // イメージ画像を保存
-                            $path = $request->file('image_file')->store('public/image');
-                            // $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');  // Storageファサードでの保存先をS3への変更
-                            // 保存したイメージ画像パスからファイル名を取得
-                            $image_path = basename($path);
-                            // $news->image_path = Storage::disk('s3')->url($path);  // Storageファサードでの保存先をS3への変更
-
-                            // フォーム配列のimage_name、image_pathに再取得したフォームデータを設定
-                            $form['image_name'] = $image_name; 
-                            $form['image_path'] = $image_path;    
-                        } else {
-                            // フォーム配列のimage_name、image_pathを空にする
-                            $form['image_name'] = ''; 
-                            $form['image_path'] = '';    
-                        }       
-                    }
-                    if ($request->image_name_mode === '3') {
-                        // フォーム配列のimage_name、image_pathに退避したセッションデータを設定
-                        $form['image_name'] = $ses_image_name; 
-                        $form['image_path'] = $ses_image_path;    
-                    }
-            } else {
+            // 画像ファイル削除が送信されてきた場合
+            if ($request->image_name_mode === '1') {
                 // フォーム配列のimage_name、image_pathを空にする
                 $form['image_name'] = ''; 
                 $form['image_path'] = '';    
                 // $image_name = '';
                 // $image_path = '';
+            }
+            // 画像ファイル変更が送信されてきた場合
+            if ($request->image_name_mode === '2') {
+                if (isset($image_file)) {
+                    // イメージ画像名を取得
+                    $image_name = $image_file->getClientOriginalName();
+                    // $image_data = file_get_contents($image_file->getRealPath());
+                    // $image_data = mb_convert_encoding($image_data, 'utf-8', 'sjis');
+                    // イメージ画像を保存
+                    $path = $request->file('image_file')->store('public/image');
+                    // $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');  // Storageファサードでの保存先をS3への変更
+                    // 保存したイメージ画像パスからファイル名を取得
+                    $image_path = basename($path);
+                    // $news->image_path = Storage::disk('s3')->url($path);  // Storageファサードでの保存先をS3への変更
+
+                    // フォーム配列のimage_name、image_pathに再取得したフォームデータを設定
+                    $form['image_name'] = $image_name; 
+                    $form['image_path'] = $image_path;    
+                } else {
+                    // フォーム配列のimage_name、image_pathを空にする
+                    $form['image_name'] = ''; 
+                    $form['image_path'] = '';    
+                }       
+            }
+            // 画像ファイル変更なしが送信されてきた場合
+            if ($request->image_name_mode === '3') {
+                // フォーム配列のimage_name、image_pathに退避したセッションデータを設定
+                $form['image_name'] = $ses_image_name; 
+                $form['image_path'] = $ses_image_path;    
             }
         }
 
@@ -318,10 +326,57 @@ class ShopController extends Controller
         // フォームから送信されてきたimage_pathを削除する
         // unset($form['image_path']);
 
+        // 登録データを初期化
+        $data = array_fill_keys($this->forms, '');
+        $data['shop_type'] = '不明';
+
         // データベース登録用に配列を作成
         $data = array('user_id' => Auth::id(), 'user_id_update' => Auth::id());  // ユーザID、ユーザID（更新者）
         $data += $form;  // フォームデータ
-        $data += array('other' => '');  // 備考のデフォルトは空
+
+        // 任意入力の項目がnullの場合は空文字を設定
+        if (!isset($data['branch'])) {
+            $data['branch'] = '';
+        }
+
+        if (!isset($data['phone_number2'])) {
+            $data['phone_number2'] = '';
+        }
+
+        if (!isset($data['opening_hour2'])) {
+            $data['opening_hour2'] = '';
+        }
+
+        if (!isset($data['official_site'])) {
+            $data['official_site'] = '';
+        }
+
+        if (!isset($data['official_blog'])) {
+            $data['official_blog'] = '';
+        }
+
+        if (!isset($data['facebook'])) {
+            $data['facebook'] = '';
+        }
+
+        if (!isset($data['twitter'])) {
+            $data['twitter'] = '';
+        }
+
+        if (!isset($data['opening_date'])) {
+            $data['opening_date'] = '';
+        }
+
+        if (!isset($data['notes'])) {
+            $data['notes'] = '';
+        }
+
+        if (!isset($data['tags'])) {
+            $data['tags'] = '';
+        }
+
+        $data['other'] = '';  // 備考のデフォルトは空
+        // $data += array('other' => '');  // 備考のデフォルトは空
 
         // データベースに保存する
         // $shop->fill($form);

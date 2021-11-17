@@ -1,58 +1,63 @@
 body {
-    color: #000;
+  color: #000;
+}
+
+.header {
+  .logo {
+      width: 120px;
+      height: 82px;
   }
-  
-  .header {
-    .logo {
-        width: 120px;
-        height: 82px;
+}
+
+.headline {
+  .caption {
+    position: relative;
+    width: 350px;
+    .image {
+      img {
+    width: 100%;
+      }
     }
-  }
-  
-  .headline {
-    .caption {
-      position: relative;
-      width: 350px;
-      .image {
-        img {
+    .title {
       width: 100%;
-        }
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      h1 {
+    color: #fff;
+    font-size: 1.2em;
       }
-      .title {
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.6);
-        h1 {
-      color: #fff;
+    }
+    .body {
+      font-size: 0.8em;
+    }
+  }
+}
+
+.posts {
+  height: 20vh;
+  .post {
+    .date {
+      font-size: 0.6em;
+      color: #999999;
+    }
+    .title {
       font-size: 1.2em;
-        }
-      }
-      .body {
-        font-size: 0.8em;
+      font-weight: bold;
+    }
+    .body {
+      font-size: 0.8em;
+    }
+    .image {
+      img {
+    width: 250px;
       }
     }
   }
-  
-  .posts {
-    .post {
-      .date {
-        font-size: 0.6em;
-        color: #999999;
-      }
-      .title {
-        font-size: 1.2em;
-        font-weight: bold;
-      }
-      .body {
-        font-size: 0.8em;
-      }
-      .image {
-        img {
-      width: 250px;
-        }
-      }
-    }
-  }
-  
+}
+
+.left-contents {
+  width: 10vw;
+  height: 10vh;
+}
