@@ -15,17 +15,21 @@ class InfoController extends Controller
 
     public function search(Request $request)
     {
+        $disp = $request->disp;
         $keyword = $request->keyword;
+
         if ($keyword != '') {
             // 検索されたら検索結果を取得する →あいまい検索+SQLインジェクション対策の実装を追加
-            $posts = Shops::where('shop_name', 'like', '%' .  addslashes($keyword) . '%')->get();
+            $posts = Shops::where('shop_name', 'like', '%' .  addslashes($keyword) . '%')->paginate($disp);
         } else {
             // それ以外はすべてのお店を取得する
-            $posts = Shops::get();
+            $posts = Shops::paginate($disp);
         }
 
+        // $posts->get();
+
         // info/search.blade.php ファイルを渡す
-        return view('info.search', ['posts' => $posts, 'keyword' => $keyword]);        
+        return view('info.search', ['posts' => $posts, 'keyword' => $keyword, 'disp' => $disp]);        
     }
 
     public function ranking(Request $request)

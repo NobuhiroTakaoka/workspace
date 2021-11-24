@@ -29,7 +29,12 @@ body {
   font-size: 0.8em;
 }
 
+.card-body {
+  background-color: #f73f11;
+}
+
 .posts {
+  background-color: #fff;
   height: 20vh;
 }
 .posts .post .date {
@@ -47,6 +52,9 @@ body {
   width: 250px;
 }
 
-.left-contents {
-  width: 10vw;
+.left-contents img {
+  width: 12vw;
+  height: 18vh;
+  -o-object-fit: contain;
+     object-fit: contain;
 }

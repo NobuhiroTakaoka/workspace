@@ -35,7 +35,12 @@ body {
   }
 }
 
+.card-body {
+  background-color: rgb(247, 63, 17);
+}
+
 .posts {
+  background-color: #fff;
   height: 20vh;
   .post {
     .date {
@@ -58,6 +63,9 @@ body {
 }
 
 .left-contents {
-  width: 10vw;
-  height: 10vh;
+  img {
+    width: 12vw;
+    height: 18vh;
+    object-fit: contain;
+  }
 }
