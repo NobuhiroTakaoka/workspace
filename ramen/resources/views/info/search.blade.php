@@ -25,7 +25,7 @@
                         <div>
                             該当件数: {{ $posts -> total() }}件
                         </div>
-                        <form class="mx-auto" action="{{ url('/search') }}" method="GET">
+                        <form class="mx-auto" action="{{ route('search') }}" method="GET">
                             @csrf
 
 
@@ -33,7 +33,7 @@
                             @foreach ($posts as $shop)
                                 <div class="row">
                                     <div class="posts col-md-8 mx-auto mt-2">
-                                        <a class="text-decoration-none text-dark" href="{{ url('/shop/detail/{$shop->id}')}}">
+                                        <a class="text-decoration-none text-dark" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}">
                                             <div class="left-contents float-left mr-3 mt-2">
                                                 @if ($shop->image_path)
                                                     <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}">                                                    
@@ -46,6 +46,7 @@
                                                 <div>
                                                     <span class="shop_name lead font-weight-bold">{{ $shop->shop_name }}</span>
                                                     <span class="branch lead font-weight-bold">{{ $shop->branch }}</span>
+                                                    
                                                 </div>
                                                 <div>
                                                     {{-- <span class="postcode">〒{{ $shop->postcode }}</span> --}}
@@ -73,11 +74,11 @@
                                     <option value="50">50</option>
                                     <option value="100">100</option>
                                 </select> --}}
-                                @if (isset($disp))
+                                {{-- @if (isset($disp)) --}}
                                     {{ Form::select('disp', ['10' => '10', '20' => '20', '50' => '50', '100' => '100'], $disp, ['class' => 'disp', 'id' => 'disp', 'onchange' => 'submit();']) }}                                    
-                                @else
+                                {{-- @else
                                     {{ Form::select('disp', ['10' => '10', '20' => '20', '50' => '50', '100' => '100'], '10', ['class' => 'disp', 'id' => 'disp', 'onchange' => 'submit();']) }}                                    
-                                @endif
+                                @endif --}}
                             </div>
 
 

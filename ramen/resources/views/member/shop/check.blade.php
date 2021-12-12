@@ -327,8 +327,15 @@
                                 <label for="tags" class="col-md-3 col-form-label text-md-right">{{ __('messages.Tags') }}</label>
                                 
                                 <div class="col-md-6 d-flex align-items-center">
-                                    <span>{{ $form["tags"] }}</span>
-                                    <input id="tags" type="hidden" class="form-control" name="tags" value="{{ $form["tags"] }}">
+                                    {{-- $form['tags']が存在する場合（タグが選択されている場合） --}}
+                                    @if (isset($form['tags']))
+                                        {{-- $form['tags']のタグIDを繰り返し取得 --}}
+                                        @foreach ($form['tags'] as $tag)
+                                            {{-- タグIDがキーの値を表示 --}}
+                                            <span>{{ $tags_category[$tag] }}</span>&nbsp;
+                                            <input id="tags" type="hidden" class="form-control" name="tags" value="{{ $tag }}">
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                             
@@ -338,7 +345,6 @@
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     <div>{{ $form["image_name"] }}</div>
-                                    {{-- <div>{{ $form["image_data"] }}</div> --}}
                                     <input id="image_name" type="hidden" class="form-control" name="image_name" value="{{ $form["image_name"] }}">
                                 </div>
                             </div>
@@ -360,30 +366,6 @@
                             @csrf
 
                             <input id="mode" type="hidden" class="form-control" name="mode" value="true">
-
-                            {{-- <input id="shop_name" type="hidden" value="{{ $form["shop_name"] }}">
-                            <input id="shop_name_kana" type="hidden" value="{{ $form["shop_name_kana"] }}">
-                            <input id="branch" type="hidden" value="{{ $form["branch"] }}">
-                            <input id="address1" type="hidden" value="{{ $form["address1"] }}">
-                            <input id="address2" type="hidden" value="{{ $form["address2"] }}">
-                            <input id="address3" type="hidden" value="{{ $form["address3"] }}">
-                            <input id="address4" type="hidden" value="{{ $form["address4"] }}">
-                            <input id="phone_number1" type="hidden" value="{{ $form["phone_number1"] }}">
-                            <input id="phone_number2" type="hidden" value="{{ $form["phone_number2"] }}">
-                            <input id="opening_hour1" type="hidden" value="{{ $form["opening_hour1"] }}">
-                            <input id="opening_hour2" type="hidden" value="{{ $form["opening_hour2"] }}">
-                            <input id="holiday" type="hidden" value="{{ $form["holiday"] }}">
-                            <input id="seats" type="hidden" value="{{ $form["seats"] }}">
-                            <input id="access" type="hidden" value="{{ $form["access"] }}">
-                            <input id="parking" type="hidden" value="{{ $form["parking"] }}">
-                            <input id="official_site" type="hidden" value="{{ $form["official_site"] }}">
-                            <input id="official_blog" type="hidden" value="{{ $form["official_blog"] }}">
-                            <input id="facebook" type="hidden" value="{{ $form["facebook"] }}">
-                            <input id="twitter" type="hidden" value="{{ $form["twitter"] }}">
-                            <input id="opening_date" type="hidden" value="{{ $form["opening_date"] }}">
-                            <input id="menu" type="hidden" value="{{ $form["menu"] }}">
-                            <input id="notes" type="hidden" value="{{ $form["notes"] }}">
-                            <input id="tags" type="hidden" value="{{ $form["tags"] }}"> --}}
 
                             {{-- 修正ボタン --}}
                             <div class="form-group row mb-0">

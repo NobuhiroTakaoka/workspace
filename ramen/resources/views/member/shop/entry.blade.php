@@ -74,7 +74,6 @@
 
                                 <div class="col-md-2 p-postal-code">
                                     {{-- <input id="postcode" type="text" class="form-control p-postal-code @error('postcode') is-invalid @enderror" name="postcode" value="{{ old('postcode') }}" maxlength="7"> --}}
-                                    {{-- <input id="address1" type="text" class="form-control p-postal-code @error('address1') is-invalid @enderror" name="address1" value="{{ old('address1') }}" maxlength="7"> --}}
                                     <input id="postcode" type="text" class="form-control p-postal-code @error('postcode') is-invalid @enderror" name="postcode" value="{{ $form['postcode'] }}" maxlength="7">
     
                                     @error('postcode')
@@ -158,20 +157,10 @@
                             </div> --}}
 
                             {{-- 地図の緯度フォーム（表示しない） --}}
-                            <div class="form-group row">
-                                {{-- <label for="lat" class="col-md-3 col-form-label text-md-right">{{ __('messages.Lat') }}</label> --}}
-                                
+                            <div class="form-group row">                                
                                 <div class="col-md-6">
-                                    {{-- <input id="lat" type="hidden" class="form-control @error('lat') is-invalid @enderror" name="lat" value="{{ old('lat') }}"> --}}
                                     {{-- <input id="map_lat" type="hidden" class="form-control" name="map_lat" value="{{ old('map_lat') }}"> --}}
-                                    {{-- <input id="map_lat" type="text" class="form-control" name="map_lat" value="{{ $form['map_lat'] }}"> --}}
                                     <input id="map_lat" type="hidden" class="form-control" name="map_lat" value="{{ $form['map_lat'] }}">
-
-                                    {{-- @error('lat')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror --}}
                                 </div>
                             </div>
 
@@ -429,7 +418,6 @@
                                     {{-- Laravel CollectiveのFormファサード使用 --}}
                                     @foreach ($shop_types as $shop_type)
                                         {{-- {{ Form::radio('shop_type', $shop_type, false, ['value'=>old('shop_type')]) }} --}}
-                                        {{-- @if ($key == $form["shop_type"]) --}}
                                         @if ($shop_type == $form["shop_type"])
                                             {{-- {{ Form::radio('shop_type', $shop_type, true, ['value'=>$form["shop_type"]]) }} --}} 
                                             {{-- {{ Form::radio('shop_type', $shop_type, true, ['id'=>'shop_type','class'=>'form-control @error('shop_type') is-invalid @enderror']) }} --}}
@@ -439,12 +427,6 @@
                                             {{-- {{ Form::radio('shop_type', $shop_type, false, ['id'=>'shop_type','class'=>'form-control @error('shop_type') is-invalid @enderror']) }} --}}
                                             {{ Form::radio('shop_type', $shop_type, false) }}
                                         @endif
-
-                                        {{-- @error('shop_type')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror --}}
 
                                         {{ Form::label($shop_type, $shop_type) }}
                                     @endforeach
@@ -511,15 +493,33 @@
                             <div class="form-group row">
                                 <label for="tags" class="col-md-3 col-form-label text-md-right">{{ __('messages.Tags') }}</label>
                                 
-                                <div class="col-md-6">
+                                <div class="col-md-9">
                                     {{-- <input id="tags" type="text" class="form-control @error('tags') is-invalid @enderror" name="tags" value="{{ old('tags') }}"> --}}
-                                    <input id="tags" type="text" class="form-control @error('tags') is-invalid @enderror" name="tags" value="{{ $form['tags'] }}">
+                                    {{-- <input id="tags" type="text" class="form-control @error('tags') is-invalid @enderror" name="tags" value="{{ $form['tags'] }}"> --}}
+
+                                    {{-- タグカテゴリを繰り返し取得 --}}
+                                    @foreach ($tags_category as $key => $tag_category)
+                                        {{-- $form['tags']が存在する場合（タグが選択されている場合） --}}
+                                        @if (isset($form['tags']))
+                                            {{-- $form['tags']が配列であり、$keyの値が入っている場合 --}}
+                                            {{-- @if (is_array($form['tags']) && in_array($key, $form['tags'], true)) --}}
+                                            @if (is_array($form['tags']) && in_array((String)$key, $form['tags'], true))
+                                                {{ Form::checkbox('tags[]', $key, true, ['id' => 'tags-' . $key]) }}
+                                            @else
+                                                {{ Form::checkbox('tags[]', $key, false, ['id' => 'tags-' . $key]) }}
+                                            @endif
+                                        @else
+                                            {{ Form::checkbox('tags[]', $key, false, ['id' => 'tags-' . $key]) }}
+                                        @endif
+
+                                        {{ Form::label('tags-' . $key, $tag_category) }}
+                                    @endforeach
                             
-                                    @error('tags')
+                                    {{-- @error('tags')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror
+                                    @enderror --}}
                                 </div>
                             </div>
 

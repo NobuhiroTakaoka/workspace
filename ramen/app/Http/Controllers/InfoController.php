@@ -15,7 +15,8 @@ class InfoController extends Controller
 
     public function search(Request $request)
     {
-        $disp = $request->disp;
+        // 最初のページアクセス時は表示件数がnullのため、「10」を設定
+        $disp = $request->disp ?? 10;
         $keyword = $request->keyword;
 
         if ($keyword != '') {
