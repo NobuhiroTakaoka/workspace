@@ -8,6 +8,7 @@ use App\Models\Shops;  // 追記
 use App\Models\ShopTags;  // 追記
 use Carbon\Carbon;  // 追記
 use Illuminate\Support\Facades\Auth;  // 追記
+use App\Commons\MasterCommons;  // 追記
 
 class ShopController extends Controller
 {
@@ -42,11 +43,22 @@ class ShopController extends Controller
         'notes',
         'tags',
         'image_name',
+        'image_path',
     ];
     
-    public $shop_types = [1 => 'チェーン店', 2 => 'のれん分け', 3 => '独自店', 4 => '不明'];  // お店のタイプリスト
-    public $tags_category = [1 => 'ラーメン', 2 => 'つけ麺', 3 => 'まぜそば', 4 => 'その他'];  // タグリスト
-    public $key = __CLASS__ . '-entry';  //セッションのキーを設定
+    // リストを初期化
+    private $shop_types = [];  // お店のタイプリスト
+    private $tags_category = [];  // タグリスト
+
+    // コンストラクタでMasterCommonsクラスより、リストの配列を定義
+    public function __construct()
+    {
+        $this->shop_types = MasterCommons::$shop_types;
+        $this->tags_category = MasterCommons::$tags_category;
+    }
+
+    public $key = __CLASS__ . '-entry';  //登録セッションのキーを設定
+    public $key2 = __CLASS__ . '-edit';  //更新セッションのキーを設定
 
     public function add(Request $request)
     {
@@ -78,10 +90,20 @@ class ShopController extends Controller
 
     public function check(Request $request)
     {
+        // $request->shop_idが存在する場合
+        if (isset($request->shop_id)) {
+            $shop_id = $request->shop_id;
+        }
+
+        // $request->image_pathが存在する場合
+        if (isset($request->image_path)) {
+            $image_path = $request->image_path;
+        }
+
         $shop_types = $this->shop_types;  // 追加（メソッド外の連想配列$shop_typesをこのメソッド変数に格納）
         $tags_category = $this->tags_category;  // 追加（メソッド外の連想配列$tags_categoryをこのメソッド変数に格納）
 
-        if (!$request->has('finput')) {
+        if (!$request->has('finput') && !$request->has('fedit')) {
             // フォームデータを初期化
             $form = array_fill_keys($this->forms, '');
             $form['shop_type'] = '不明';
@@ -90,19 +112,45 @@ class ShopController extends Controller
             return view('member.shop.entry', ['shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form]);
         }
 
-        // セッションを取得する
-        $key = $this->key;
-        $form = $request->session()->get($key);
+        // 登録の場合は$shop_idを初期化
+        if ($request->has('finput')) {
+            $shop_id = 0;
+        }
+
+        // セッションを取得する（更新の場合、登録の場合）
+        if ($request->has('fedit')) {
+            $key2 = $this->key2;
+            $form = $request->session()->get($key2);
+        } else {
+            $key = $this->key;
+            $form = $request->session()->get($key);
+        }
 
         // セッションが存在する場合
         if (isset($form)) {
             // セッションからimage_name、image_pathを変数に退避
             $ses_image_name = $form['image_name'];
             $ses_image_path = $form['image_path'];
+        } else {
+            // 更新の初回確認画面の場合
+            if (isset($image_path)) {
+                $ses_image_path = $image_path;
+            } else {
+                $ses_image_path = '';
+            }
+            $ses_image_name = '';
         }
 
-        // セッションを破棄する（image_name、image_pathを変数に退避後）
-        $form = $request->session()->forget($key);
+        // セッションを破棄する（image_name、image_pathを変数に退避後）（更新の場合、登録の場合）
+        if ($request->has('fedit')) {
+            $form = $request->session()->forget($key2);
+        } else {
+            $form = $request->session()->forget($key);
+        }
+
+        // フォームデータを初期化
+        // $form = array_fill_keys($this->forms, '');
+        // $form['shop_type'] = '不明';
 
         // フォームを再取得
         $form = $request->except(['image_file']);
@@ -170,15 +218,33 @@ class ShopController extends Controller
             }
         }
 
-        // セッションに設定する
-        $request->session()->put($key, $form);
+        // セッションに設定する（更新の場合、登録の場合）
+        if ($request->has('fedit')) {
+            $request->session()->put($key2, $form);
+        } else {
+            $request->session()->put($key, $form);
+        }
 
         // フォームから送信されてきた_tokenを削除する
         unset($form['_token']);
         // unset($form['image_path']);
 
+        if ($request->has('image_name_mode')) {
+            $chk_img_mode = $request->image_name_mode;
+        } else {
+            $chk_img_mode = '';
+        }
+
+        // 更新・登録のチェックモードを設定
+        if ($request->has('fedit')) {
+            $chk_mode = 'edit';
+        } else {
+            $chk_mode = 'input';
+        }
+
         // お店登録確認ページに渡す戻り値に連想配列$shopプロパティを追加
-        return view('member.shop.check', compact('form', 'tags_category'));
+        // return view('member.shop.check', compact('form', 'tags_category'));
+        return view('member.shop.check', ['form' => $form, 'tags_category' => $tags_category, 'chk_mode' => $chk_mode, 'shop_id' => $shop_id, 'chk_img_mode' => $chk_img_mode]);
     }
     
     public function create(Request $request)
@@ -248,9 +314,7 @@ class ShopController extends Controller
             $data['notes'] = '';
         }
 
-        // if (!isset($data['tags'])) {
-        $data['tags'] = '';
-        // }
+        $data['tags'] = '';  // shopsテーブルのタグは未使用のため空
 
         $data['other'] = '';  // 備考のデフォルトは空
 
@@ -283,5 +347,91 @@ class ShopController extends Controller
 
         // searchにリダイレクトする
         return redirect('search');
+    }
+
+    public function edit(Request $request, int $shop_id)
+    {
+        $shop_types = $this->shop_types;  // 追加（メソッド外の連想配列$shop_typesをこのメソッド変数に格納）
+        $tags_category = $this->tags_category;  // 追加（メソッド外の連想配列$tags_categoryをこのメソッド変数に格納）
+
+        // Shopsモデルクラスをインスタンス化
+        $shop = new Shops();
+
+        // $shop_idのshopsテーブルのレコードを取得
+        $shop_detail = $shop::select()->find($shop_id);
+
+        // $shop_idのshop_tagsテーブルのレコードを取得
+        $shop_tags = ShopTags::where('shop_id', $shop_id)->get();
+
+        // 「修正する」ボタンが押された場合
+        if ($request->has('reedit')) {
+
+            // フォームデータを初期化
+            $form = array_fill_keys($this->forms, '');
+            $form['shop_type'] = '不明';
+
+            // セッションを取得する
+            $form = $request->session()->get($this->key2);
+
+            // $shop_idのshop_tagsテーブルのレコードからimage_pathを$form配列に追加
+            // $form += ['image_path' => $shop_detail->image_path];
+
+            // セッションが存在する場合（更新後に修正するボタンを押した場合のエラーを回避）
+            if (isset($form)) {
+                // 任意入力の項目がnullの場合は空文字を設定
+                if (!isset($form['branch'])) {
+                    $form['branch'] = '';
+                }
+
+                if (!isset($form['phone_number2'])) {
+                    $form['phone_number2'] = '';
+                }
+
+                if (!isset($form['opening_hour2'])) {
+                    $form['opening_hour2'] = '';
+                }
+
+                if (!isset($form['official_site'])) {
+                    $form['official_site'] = '';
+                }
+
+                if (!isset($form['official_blog'])) {
+                    $form['official_blog'] = '';
+                }
+
+                if (!isset($form['facebook'])) {
+                    $form['facebook'] = '';
+                }
+
+                if (!isset($form['twitter'])) {
+                    $form['twitter'] = '';
+                }
+
+                if (!isset($form['opening_date'])) {
+                    $form['opening_date'] = '';
+                }
+
+                if (!isset($form['notes'])) {
+                    $form['notes'] = '';
+                }
+
+                $form['tags'] = '';  // shopsテーブルのタグは未使用
+
+                if (!isset($form['image_path'])) {
+                    $form['image_path'] = '';
+                }
+
+                if (!isset($form['other'])) {
+                    $form['other'] = '';
+                }
+                
+                return view('member.shop.edit', ['shop_tags' => $shop_tags, 'shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form, 'shop_id' => $shop_id]);
+            }
+        } 
+        // セッションを破棄する
+        $form = $request->session()->forget($this->key2);
+
+        // shop/detail.blade.php ファイルを渡す
+        return view('member.shop.edit', ['shop_detail' => $shop_detail, 'shop_tags' => $shop_tags, 'shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form, 'shop_id' => $shop_id]);
     }
 }

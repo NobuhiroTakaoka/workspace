@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ShopTags;  // 追記
 
 class Shops extends Model
 {
@@ -43,4 +44,10 @@ class Shops extends Model
         // 'tags' => 'required',
 
     );
+    
+    public function tags()
+    {
+        // hasMany（１対多）を定義し、外部キー（shop_id）、ローカルキー（id）にオーバーライド
+        return $this->hasMany(ShopTags::class, 'shop_id', 'id');
+    }
 }

@@ -15,19 +15,48 @@ return [
     'Name' => '名前',
     'Confirm Password' => 'パスワード確認',
 
-    // 店舗検索
-    'Shop_Search' => '店舗検索',
+    // タイトル
+    'Title' => 'ラーメンResearch',
 
-    // 店舗登録
-    'Shop_Entry' => '店舗登録　　（*）は入力必須',
+    // お店検索
+    'Shop_Search' => 'お店検索',
+
+    // お店一覧
+    'Shop_Enter' => 'ラーメン店を登録する',
+
+    // お店詳細
+    'Shop_detail' => 'お店詳細',
+    'Keyword' => 'キーワード',
+    'Review_Entry' => 'レビューを投稿する',
+    'Review_Browse' => 'レビューを見る',
+    'Shop_Name_D' => '店名',
+    'Address' => '所在地',
+    'Phone_Number' => '電話番号',
+    'Opening_Hour' => '営業時間',
+    'Holiday_D' => '定休日',
+    'Seats_D' => '座席数',
+    'Access_D' => 'アクセス',
+    'Parking_D' => '駐車場',
+    'Shop_Type_D' => 'お店のタイプ',
+    'Menu_D' => 'メニュー',
+
+    // お店編集
+    'Shop_Edit' => 'お店編集',
+
+    // お店登録・更新
+    'Shop_Entry' => 'お店登録　　（*）は入力必須',
     'Shop_Name' => '店名 *',
     'Shop_Name_Kana' => '店名（ふりがな） *',
     'Branch' => '支店名',
     'Post_Code' => '〒 *',
     'Address1' => '住所１ *',
+    'Prefecture' => '都道府県',
     'Address2' => '住所２ *',
+    'Municipalities' => '市区町村',
     'Address3' => '住所３ *',
+    'After_Address1' => '以降の住所１',
     'Address4' => '住所４ *',
+    'After_Address2' => '以降の住所２',
     'Lat' => '緯度',
     'Long' => '経度',
     'Map' => '地図',
@@ -52,5 +81,6 @@ return [
     'Next' => '次へ',
     'Shop_Entry_Check' => '店舗登録確認',
     'Entry' => '登録する',
+    'Edit' => '更新する',
     'Fix' => '修正する',
 ];

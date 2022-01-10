@@ -344,38 +344,69 @@
                                 <label for="image_name" class="col-md-3 col-form-label text-md-right">{{ __('messages.Image_Name') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
-                                    <div>{{ $form["image_name"] }}</div>
-                                    <input id="image_name" type="hidden" class="form-control" name="image_name" value="{{ $form["image_name"] }}">
+                                    {{-- 更新の場合 --}}
+                                    @if ($chk_mode === 'edit')
+                                        {{-- 元の画像から変更なしの場合 --}}
+                                        @if ($chk_img_mode === '3')
+                                            <img class="img-thumbnail" src="{{ asset('storage/image/' . $form['image_path']) }}">                                                    
+                                        @else
+                                            <div>{{ $form["image_name"] }}</div>
+                                            <input id="image_name" type="hidden" class="form-control" name="image_name" value="{{ $form["image_name"] }}">
+                                        @endif
+                                    @else
+                                        <div>{{ $form["image_name"] }}</div>
+                                        <input id="image_name" type="hidden" class="form-control" name="image_name" value="{{ $form["image_name"] }}">
+                                    @endif
                                 </div>
                             </div>
 
-                            {{-- 登録ボタン --}}
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-primary" name="entry">
+                                    @if ($chk_mode === 'edit')
+                                        {{-- 更新ボタン --}}
+                                        <button type="submit" class="btn btn-primary" name="edit">
+                                        {{ __('messages.Edit') }}
+                                        </button>
+                                    @else
+                                        {{-- 登録ボタン --}}
+                                        <button type="submit" class="btn btn-primary" name="entry">
                                         {{ __('messages.Entry') }}
-                                    </button>
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </form>
                     </div>
 
-                    <div class="card-body">                   
-                        <form action="{{ url('/member/shop/entry') }}" method="GET">
-                            @csrf
-
-                            <input id="mode" type="hidden" class="form-control" name="mode" value="true">
-
-                            {{-- 修正ボタン --}}
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-success">
-                                        {{ __('messages.Fix') }}
-                                    </button>
+                    <div class="card-body">
+                        @if ($chk_mode === 'edit')
+                            <form action="{{ route('shop.edit', ['shop_id' => $shop_id]) }}?" method="GET">
+                                @csrf
+                                <input id="reedit" type="hidden" class="form-control" name="reedit" value="true">
+                                {{-- 修正ボタン --}}
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-8 offset-md-4">
+                                        <button type="submit" class="btn btn-success">
+                                            {{ __('messages.Fix') }}
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        @else
+                            <form action="{{ route('shop.entry') }}" method="GET">
+                                @csrf
+                                <input id="mode" type="hidden" class="form-control" name="mode" value="true">
+                                {{-- 修正ボタン --}}
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-8 offset-md-4">
+                                        <button type="submit" class="btn btn-success">
+                                            {{ __('messages.Fix') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
