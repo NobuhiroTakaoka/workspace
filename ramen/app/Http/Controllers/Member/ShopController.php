@@ -12,7 +12,7 @@ use App\Commons\MasterCommons;  // 追記
 
 class ShopController extends Controller
 {
-    // フォームデータの配列を定義
+    // お店登録フォームデータの配列を定義
     public $forms = 
     [  
         'shop_name',
@@ -45,6 +45,18 @@ class ShopController extends Controller
         'image_name',
         'image_path',
     ];
+
+    // レビュー投稿フォームデータの配列を定義
+    public $forms2 = 
+    [  
+        'menu_title',
+        'category',
+        'soup', 
+        'points', 
+        'image_name',
+        'image_path',
+        'comment',
+    ];
     
     // リストを初期化
     private $shop_types = [];  // お店のタイプリスト
@@ -59,6 +71,7 @@ class ShopController extends Controller
 
     public $key = __CLASS__ . '-entry';  //登録セッションのキーを設定
     public $key2 = __CLASS__ . '-edit';  //更新セッションのキーを設定
+    public $key3 = __CLASS__ . '-rev_post';  //レビュー登録セッションのキーを設定
 
     public function add(Request $request)
     {
@@ -264,7 +277,7 @@ class ShopController extends Controller
 
         // セッション情報からtokenを削除する
         unset($form['_token']);
-        // セッション情報からtokenを削除する
+        // セッション情報からfinputを削除する
         unset($form['finput']);
         // セッション情報からimage_nameを削除する
         unset($form['image_name']);
@@ -433,5 +446,115 @@ class ShopController extends Controller
 
         // shop/detail.blade.php ファイルを渡す
         return view('member.shop.edit', ['shop_detail' => $shop_detail, 'shop_tags' => $shop_tags, 'shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form, 'shop_id' => $shop_id]);
+    }
+
+    public function update(Request $request)
+    {
+        // セッションを取得する
+        $key2 = $this->key2;
+        $form = $request->session()->get($key2);
+
+        // セッションに値が無い時は登録フォームに戻る
+        if (!$form) {
+            // member/shop/entryにリダイレクトする
+            return redirect('member/shop/entry');
+        }
+
+        // Shopsモデルクラスをインスタンス化
+        $shop = new Shops;
+
+        // セッション情報からtokenを削除する
+        unset($form['_token']);
+        // セッション情報からimage_nameを削除する
+        unset($form['image_name']);
+
+        // 更新データを初期化
+        $data = array_fill_keys($this->forms, '');
+        $data['shop_type'] = '不明';
+
+        // データベース更新用に配列を作成
+        $data = array('user_id_update' => Auth::id());  // ユーザID（更新者）
+        $data += $form;  // フォームデータ
+        $shop_id = $data['shop_id'];
+        unset($data['shop_id']);
+
+        // 任意入力の項目がnullの場合は空文字を設定
+        if (!isset($data['branch'])) {
+            $data['branch'] = '';
+        }
+
+        if (!isset($data['phone_number2'])) {
+            $data['phone_number2'] = '';
+        }
+
+        if (!isset($data['opening_hour2'])) {
+            $data['opening_hour2'] = '';
+        }
+
+        if (!isset($data['official_site'])) {
+            $data['official_site'] = '';
+        }
+
+        if (!isset($data['official_blog'])) {
+            $data['official_blog'] = '';
+        }
+
+        if (!isset($data['facebook'])) {
+            $data['facebook'] = '';
+        }
+
+        if (!isset($data['twitter'])) {
+            $data['twitter'] = '';
+        }
+
+        if (!isset($data['opening_date'])) {
+            $data['opening_date'] = '';
+        }
+
+        if (!isset($data['notes'])) {
+            $data['notes'] = '';
+        }
+
+        $data['tags'] = '';  // shopsテーブルのタグは未使用のため空
+
+        // $shop_id = $request->shop_id;
+
+        // $shop_idのshopsテーブルのレコードを取得し、$shop_idに設定しなおす
+        $shop_id_rec = $shop::select()->find((Integer)$shop_id);
+
+        // データベースに保存する
+        $shop_id_rec->fill($data);
+        $shop_id_rec->save();
+
+        // $form['tags']が配列の場合（タグが選択されている場合は配列でリクエストを受け取っているため）
+        if (is_array($form['tags'])) {
+            // タグID格納配列（$inserts）にtag_id分のレコードをshop_idと併せて一括登録用配列（$inserts）に格納する
+            $updates = [];
+            foreach ($form['tags'] as $tag) {
+                $updates[] = [
+                    'shop_id' => $shop_id,
+                    'tag_id' => (Integer)$tag,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ];
+            }
+            // $updatesに値が格納されている場合
+            if (count($updates) > 0) {
+                $shop_tag = new ShopTags;
+
+                // ShopTagsテーブルに登録されている該当shop_idのレコードを一度削除する
+                $shop_tag->where('shop_id', (Integer)$shop_id)->delete();
+
+                // ShopTagsテーブルに該当shop_idの編集後のtag_idを登録する。
+                $shop_tag->insert($updates);
+            }
+        }
+
+        // セッションを破棄する
+        $key2 = $this->key2;
+        $form = $request->session()->forget($key2);
+
+        // searchにリダイレクトする
+        return redirect('search');
     }
 }

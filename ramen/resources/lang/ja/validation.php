@@ -181,6 +181,12 @@ return [
         'menu' => 'メニュー',
         'notes' => '備考',
         'tags' => 'タグ',
+
+        'menu_title' => 'メニュー（タイトル）',
+        'category' => 'カテゴリ',
+        'soup' => 'スープ',
+        'points' => '点数',
+        'comment' => 'コメント',
     ],
 
 ];

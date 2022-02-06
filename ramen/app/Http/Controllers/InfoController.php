@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shops;  // 追記
 use App\Commons\MasterCommons;
+use App\Models\Reviews;
 
 class InfoController extends Controller
 {
@@ -21,8 +22,13 @@ class InfoController extends Controller
 
     public function index(Request $request)
     {
+        // 最初のページアクセス時は表示件数がnullのため、「10」を設定
+        $disp = $request->disp ?? 10;
+        
+        $reviews = Reviews::paginate($disp);
+
         // info/index.blade.php ファイルを渡す
-        return view('info.index');
+        return view('info.index', ['reviews' => $reviews, 'disp' => $disp]);
     }
 
     public function search(Request $request)

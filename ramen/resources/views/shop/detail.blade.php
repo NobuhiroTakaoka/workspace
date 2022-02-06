@@ -12,6 +12,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.Title') }}</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('search') }}">{{ __('messages.Shop_Search') }}</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ __('messages.Shop_detail') }}</li>
             </ol>
         </nav>
@@ -284,23 +285,27 @@
                     {{ csrf_field() }}
                     {{-- <input id="shop_id" type="hidden" class="form-control" name="shop_id" value="{{ $shop_id }}"> --}}
                     <button type="submit" class="btn btn-secondary" name="shop_edit">
-                        {{ __('messages.Shop_Edit') }}
+                        {{ __('messages.Shop_modify') }}
                     </button>
                 </div>
             </form>
-            <form action="{{ route('shop.review_add', ['shop_id' => $shop_id]) }}?" method="GET">
+            <form action="{{ route('review_post', ['shop_id' => $shop_id]) }}?" method="GET">
                 <div class="float-left m-3">
                     {{ csrf_field() }}
-                    <button type="submit" class="btn btn-success" name="review_entry">
-                        {{ __('messages.Review_Entry') }}
+                    <input id="shop_name" type="hidden" class="form-control" name="shop_name" value="{{ $shop_detail->shop_name }}">
+                    <input id="branch" type="hidden" class="form-control" name="branch" value="{{ $shop_detail->branch }}">
+                    <button type="submit" class="btn btn-success" name="review_post">
+                        {{ __('messages.Review_Post') }}
                     </button>
                 </div>
             </form>
             <form action="{{ route('shop.review_refer', ['shop_id' => $shop_id]) }}?" method="GET">
                 <div class="float-left m-3">
                     {{ csrf_field() }}
-                    <button type="submit" class="btn btn-primary" name="review_browse">
-                        {{ __('messages.Review_Browse') }}
+                    <input id="shop_name" type="hidden" class="form-control" name="shop_name" value="{{ $shop_detail->shop_name }}">
+                    <input id="branch" type="hidden" class="form-control" name="branch" value="{{ $shop_detail->branch }}">
+                    <button type="submit" class="btn btn-primary" name="review_refer">
+                        {{ __('messages.Review_Refer') }}
                     </button>
                 </div>
             </form>

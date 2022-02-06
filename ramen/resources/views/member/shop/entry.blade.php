@@ -9,7 +9,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-9">
+            <div class="col">
                 <div class="card">
                     <div class="card-header">{{ __('messages.Shop_Entry') }}</div>
 
@@ -314,13 +314,16 @@
                             </div>
 
                             {{-- アクセスフォーム --}}
-                            <div class="form-group row">
+                            <div class="form-group row d-flex align-items-center">
                                 <label for="access" class="col-md-3 col-form-label text-md-right">{{ __('messages.Access') }}</label>
                                 
                                 <div class="col-md-9">
                                     {{-- <input id="access" type="text" class="form-control @error('access') is-invalid @enderror" name="access" value="{{ old('access') }}"> --}}
                                     {{-- <input id="access" type="textarea" class="form-control @error('access') is-invalid @enderror" name="access" value="{{ $form['access'] }}"> --}}
-                                    {{ Form::textarea('access', $form["access"], ['class' => 'form-control', 'id' => 'access']) }}
+                                    {{ Form::textarea('access', $form["access"],
+                                        $errors->has('access') ? ['id' => 'access', 'class' => 'form-control is-invalid']
+                                                               : ['id' => 'access', 'class' => 'form-control']
+                                    ) }}
                                     
                                     @error('access')
                                         <span class="invalid-feedback" role="alert">
@@ -418,7 +421,7 @@
                                     {{-- Laravel CollectiveのFormファサード使用 --}}
                                     @foreach ($shop_types as $shop_type)
                                         {{-- {{ Form::radio('shop_type', $shop_type, false, ['value'=>old('shop_type')]) }} --}}
-                                        @if ($shop_type == $form["shop_type"])
+                                        @if ($shop_type == $form['shop_type'])
                                             {{-- {{ Form::radio('shop_type', $shop_type, true, ['value'=>$form["shop_type"]]) }} --}} 
                                             {{-- {{ Form::radio('shop_type', $shop_type, true, ['id'=>'shop_type','class'=>'form-control @error('shop_type') is-invalid @enderror']) }} --}}
                                             {{ Form::radio('shop_type', $shop_type, true) }}
@@ -456,13 +459,16 @@
                             </div>
 
                             {{-- メニューフォーム --}}
-                            <div class="form-group row">
+                            <div class="form-group row d-flex align-items-center">
                                 <label for="menu" class="col-md-3 col-form-label text-md-right">{{ __('messages.Menu') }}</label>
                                 
                                 <div class="col-md-9">
                                     {{-- <input id="menu" type="text" class="form-control @error('menu') is-invalid @enderror" name="menu" value="{{ old('menu') }}"> --}}
                                     {{-- <input id="menu" type="text" class="form-control @error('menu') is-invalid @enderror" name="menu" value="{{ $form['menu'] }}"> --}}
-                                    {{ Form::textarea('menu', $form['menu'], ['class' => 'form-control', 'id' => 'menu']) }}
+                                    {{ Form::textarea('menu', $form['menu'],
+                                    $errors->has('menu') ? ['id' => 'menu', 'class' => 'form-control is-invalid']
+                                                         : ['id' => 'menu', 'class' => 'form-control']
+                                    ) }}
 
                                     @error('menu')
                                         <span class="invalid-feedback" role="alert">
@@ -473,13 +479,14 @@
                             </div>
 
                             {{-- 備考フォーム --}}
-                            <div class="form-group row">
+                            <div class="form-group row d-flex align-items-center">
                                 <label for="notes" class="col-md-3 col-form-label text-md-right">{{ __('messages.Notes') }}</label>
                                 
                                 <div class="col-md-9">
                                     {{-- <input id="notes" type="text" class="form-control @error('notes') is-invalid @enderror" name="notes" value="{{ old('notes') }}"> --}}
                                     {{-- <input id="notes" type="text" class="form-control @error('notes') is-invalid @enderror" name="notes" value="{{ $form['notes'] }}"> --}}
-                                    {{ Form::textarea('notes', $form['notes'], ['class' => 'form-control', 'id' => 'notes']) }}
+                                    {{ Form::textarea('notes', $form['notes'], ['id' => 'notes', 'class' => 'form-control']
+                                    ) }}
 
                                     @error('notes')
                                         <span class="invalid-feedback" role="alert">
@@ -524,10 +531,10 @@
                             </div>
 
                             {{-- お店イメージフォーム --}}
-                            <div class="form-group row">
+                            <div class="form-group row d-flex align-items-center">
                                 <label for="image_file" class="col-md-3 col-form-label text-md-right">{{ __('messages.Image_Name') }}</label>
 
-                                <div class="col-md-9">
+                                <div class="col-md-4">
                                     <input id="image_file" type="file" class="form-control-file" name="image_file" value="{{ old('image_file') }}">
 
                                     @if ($form['image_name'] !== '')

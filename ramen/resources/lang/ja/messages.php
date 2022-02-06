@@ -21,14 +21,18 @@ return [
     // お店検索
     'Shop_Search' => 'お店検索',
 
+    // トップページ
+    'Latest_Review' => '最新レビュー',
+
     // お店一覧
     'Shop_Enter' => 'ラーメン店を登録する',
 
     // お店詳細
     'Shop_detail' => 'お店詳細',
     'Keyword' => 'キーワード',
-    'Review_Entry' => 'レビューを投稿する',
-    'Review_Browse' => 'レビューを見る',
+    'Shop_modify' => 'お店情報を編集する',
+    'Review_Post' => 'レビューを投稿する',
+    'Review_Refer' => 'レビューを見る',
     'Shop_Name_D' => '店名',
     'Address' => '所在地',
     'Phone_Number' => '電話番号',
@@ -41,10 +45,10 @@ return [
     'Menu_D' => 'メニュー',
 
     // お店編集
-    'Shop_Edit' => 'お店編集',
+    'Shop_Edit' => 'お店情報を編集　（*）は入力必須',
 
     // お店登録・更新
-    'Shop_Entry' => 'お店登録　　（*）は入力必須',
+    'Shop_Entry' => 'お店登録　（*）は入力必須',
     'Shop_Name' => '店名 *',
     'Shop_Name_Kana' => '店名（ふりがな） *',
     'Branch' => '支店名',
@@ -83,4 +87,15 @@ return [
     'Entry' => '登録する',
     'Edit' => '更新する',
     'Fix' => '修正する',
+
+    // レビュー投稿
+    'Review_Post' => 'レビュー投稿',
+    'Review_Post_Cd' => 'レビュー投稿　（*）は入力必須',
+    'Menu_Title' => 'メニュー（タイトル） *',
+    'Category' => 'カテゴリ *',
+    'Soups' => 'スープ *',
+    'Points' => '点数 *',
+    'Menu_Image' => 'メニュー画像',
+    'Comment' => 'コメント *',
+    'Post' => '投稿する',
 ];

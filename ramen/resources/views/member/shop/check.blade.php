@@ -14,7 +14,12 @@
                     <div class="card-header">{{ __('messages.Shop_Entry_Check') }}</div>
 
                     <div class="card-body">
+                    {{-- 更新の場合 --}}
+                    @if ($chk_mode === 'edit')
+                        <form action="{{ url('/member/shop/update') }}" method="POST" enctype="multipart/form-data">
+                    @else
                         <form action="{{ url('/member/shop/create') }}" method="POST" enctype="multipart/form-data">
+                    @endif
                             @csrf
 
                             {{-- 店名 --}}
@@ -365,7 +370,8 @@
                                     {{ csrf_field() }}
                                     @if ($chk_mode === 'edit')
                                         {{-- 更新ボタン --}}
-                                        <button type="submit" class="btn btn-primary" name="edit">
+                                        <input id="update" type="hidden" class="form-control" name="update" value="{{ $shop_id }}">
+                                        <button type="submit" class="btn btn-danger" name="edit">
                                         {{ __('messages.Edit') }}
                                         </button>
                                     @else
@@ -380,33 +386,24 @@
                     </div>
 
                     <div class="card-body">
-                        @if ($chk_mode === 'edit')
-                            <form action="{{ route('shop.edit', ['shop_id' => $shop_id]) }}?" method="GET">
-                                @csrf
-                                <input id="reedit" type="hidden" class="form-control" name="reedit" value="true">
-                                {{-- 修正ボタン --}}
-                                <div class="form-group row mb-0">
-                                    <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-success">
-                                            {{ __('messages.Fix') }}
-                                        </button>
-                                    </div>
+                    @if ($chk_mode === 'edit')
+                        <form action="{{ route('shop.edit', ['shop_id' => $shop_id]) }}?" method="GET">
+                            @csrf
+                            <input id="reedit" type="hidden" class="form-control" name="reedit" value="true">
+                    @else
+                        <form action="{{ route('shop.entry') }}" method="GET">
+                            @csrf
+                            <input id="mode" type="hidden" class="form-control" name="mode" value="true">
+                    @endif
+                            {{-- 修正ボタン --}}
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-4">
+                                    <button type="submit" class="btn btn-success">
+                                        {{ __('messages.Fix') }}
+                                    </button>
                                 </div>
-                            </form>
-                        @else
-                            <form action="{{ route('shop.entry') }}" method="GET">
-                                @csrf
-                                <input id="mode" type="hidden" class="form-control" name="mode" value="true">
-                                {{-- 修正ボタン --}}
-                                <div class="form-group row mb-0">
-                                    <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-success">
-                                            {{ __('messages.Fix') }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        @endif
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

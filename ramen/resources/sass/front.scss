@@ -37,6 +37,9 @@ body {
 
 .card-body {
   background-color: rgb(247, 63, 17);
+  .latest_review {
+    color: #fff;
+  }
 }
 
 .meet {
@@ -66,10 +69,33 @@ body {
   }
 }
 
+.reviews {
+  background-color: #fff;
+  height: 20vh;
+  .review {
+    .date {
+      font-size: 0.6em;
+      color: #999999;
+    }
+    .title {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .body {
+      font-size: 0.8em;
+    }
+    .image {
+      img {
+    width: 250px;
+      }
+    }
+  }
+}
+
 .left-contents {
   img {
     width: 12vw;
-    height: 18vh;
+    height: 17vh;
     object-fit: contain;
   }
 }

@@ -32,6 +32,9 @@ body {
 .card-body {
   background-color: #f73f11;
 }
+.card-body .latest_review {
+  color: #fff;
+}
 
 .meet {
   color: #fff;
@@ -56,9 +59,28 @@ body {
   width: 250px;
 }
 
+.reviews {
+  background-color: #fff;
+  height: 20vh;
+}
+.reviews .review .date {
+  font-size: 0.6em;
+  color: #999999;
+}
+.reviews .review .title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.reviews .review .body {
+  font-size: 0.8em;
+}
+.reviews .review .image img {
+  width: 250px;
+}
+
 .left-contents img {
   width: 12vw;
-  height: 18vh;
+  height: 17vh;
   -o-object-fit: contain;
      object-fit: contain;
 }

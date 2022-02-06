@@ -8,7 +8,6 @@
 
 @section('content')
     <div class="container">
-        <hr color="#c0c0c0">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.Title') }}</a></li>
@@ -23,7 +22,9 @@
                         {{ Form::open(['url' => '/search', 'method' => 'get']) }}
                         <div class="d-flex flex-row">
                             {{-- {{ Form::text('keyword', $form['keyword']) }} --}}
-                            <div>{{ Form::text('keyword', $keyword, ['placeholder' => __('messages.Keyword')]) }}</div>
+                            <div>{{ Form::text('keyword', $keyword, ['class' => 'form-control', 'placeholder' => __('messages.Keyword')]) }}</div>
+                        </div>
+                        <div class="col-md-9">
                             <div>
                                 @foreach ($tags_category as $key => $tag_category)
                                     {{ Form::checkbox('tags[]', $key, in_array((String)$key, $params['tags'], true), ['id' => 'tags-' . $key]) }}
@@ -54,7 +55,7 @@
                                             <a class="text-decoration-none text-dark" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}?">
                                                 <div class="left-contents float-left mr-3 mt-2">
                                                     @if ($shop->image_path)
-                                                        <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}">                                                    
+                                                        <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}">
                                                     @else
                                                         <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
                                                     @endif

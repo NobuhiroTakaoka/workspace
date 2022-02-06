@@ -44,3 +44,7 @@ body {
 .posts .post .image img {
   width: 250px;
 }
+
+.review_post {
+  margin-right: 30px;
+}
