@@ -28,7 +28,7 @@ return [
     'Shop_Enter' => 'ラーメン店を登録する',
 
     // お店詳細
-    'Shop_detail' => 'お店詳細',
+    'Shop_Detail' => 'お店詳細',
     'Keyword' => 'キーワード',
     'Shop_modify' => 'お店情報を編集する',
     'Review_Post' => 'レビューを投稿する',
@@ -98,4 +98,10 @@ return [
     'Menu_Image' => 'メニュー画像',
     'Comment' => 'コメント *',
     'Post' => '投稿する',
+
+    // レビューリスト
+    'Review_List' => 'レビューリスト',
+
+    // レビュー詳細
+    'Review_Detail' => 'レビュー詳細',
 ];

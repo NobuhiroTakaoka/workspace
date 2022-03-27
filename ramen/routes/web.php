@@ -24,13 +24,15 @@ use App\Http\Controllers\Member\ReviewController;
 // ユーザ共通
 // Route::get('/', 'InfoController@index');
 // Laravel8での書き方 認証済みユーザーでなくてもこのルートにアクセス可能にし、Viewで表示を制御したい
-Route::get('/', [InfoController::class, 'index']);
+Route::get('/', [InfoController::class, 'index'])->name('index');
 Route::get('/search', [InfoController::class, 'search'])->name('search');
+Route::get('/search/prefecture', [InfoController::class, 'searchPref'])->name('search_pref');
 Route::get('/ranking', [InfoController::class, 'ranking'])->name('ranking');
 // Route::get('/entry', [ShopController::class, 'add']);
 // Route::get('/detail/{shop_id}/shop_edit', [ShopController::class, 'edit']);
 Route::get('/shop/detail/{shop_id}', [App\Http\Controllers\ShopController::class, 'refer'])->name('shop.detail');
-Route::get('/shop/detail/{shop_id}/review', [App\Http\Controllers\ShopController::class, 'reviewRefer'])->name('shop.review_refer');
+Route::get('/shop/detail/{shop_id}/review', [App\Http\Controllers\ShopController::class, 'reviewList'])->name('shop.review_list');
+Route::get('/shop/detail/{shop_id}/{review_id}/review/detail', [App\Http\Controllers\ShopController::class, 'reviewRefer'])->name('shop.review_detail');
 
 Auth::routes();
 

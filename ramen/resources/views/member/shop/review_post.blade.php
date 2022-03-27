@@ -19,13 +19,21 @@
         <div class="card">
             <div class="card-header">
                 <span class="review_post">{{ __('messages.Review_Post_Cd') }}</span>
-                <span class="lead font-weight-bold">{{ $shop_name }}</span>&nbsp
-                <span class="lead font-weight-bold">{{ $branch }}</span>
+                @if (isset($form['shop_name']))
+                    <span class="lead font-weight-bold">{{ $form['shop_name'] }}</span>&nbsp
+                    <span class="lead font-weight-bold">{{ $form['branch'] }}</span>
+                @else
+                    <span class="lead font-weight-bold">{{ $shop_name }}</span>&nbsp
+                    <span class="lead font-weight-bold">{{ $branch }}</span>
+                @endif
             </div>
 
             <div class="card-body">
                 <form action="{{ route('review_check', ['shop_id' => $shop_id]) }}?" class="h-adr" method="POST" enctype="multipart/form-data">
                     @csrf
+
+                    <input id="shop_name" type="hidden" class="form-control" name="shop_name" value="{{ $form['shop_name'] }}">
+                    <input id="branch" type="hidden" class="form-control" name="branch" value="{{ $form['branch'] }}">
 
                     {{-- メニュー（タイトル） --}}
                     <div class="form-group row">

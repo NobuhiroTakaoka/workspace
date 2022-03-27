@@ -47,6 +47,7 @@ class ReviewController extends Controller
 
         // フォームデータを初期化
         $form = array_fill_keys($this->forms, '');
+        $form += array('shop_name' => $shop_name, 'branch' => $branch);
 
         // レビュー投稿ページに渡す
         return view('member.shop.review_post', ['form' => $form, 'shop_id' => $shop_id, 'shop_name' => $shop_name, 'branch' => $branch]);

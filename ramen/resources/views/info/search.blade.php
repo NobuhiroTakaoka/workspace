@@ -15,28 +15,47 @@
             </ol>
         </nav>
 
-        <div class="row justify-content-center">
+        <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">{{ __('messages.Shop_Search') }}
                         {{ Form::open(['url' => '/search', 'method' => 'get']) }}
                         <div class="d-flex flex-row">
-                            {{-- {{ Form::text('keyword', $form['keyword']) }} --}}
-                            <div>{{ Form::text('keyword', $keyword, ['class' => 'form-control', 'placeholder' => __('messages.Keyword')]) }}</div>
-                        </div>
-                        <div class="col-md-9">
+                            <div class="col-md-3">
+                                {{-- キーワード検索フォーム --}}
+                                {{ Form::text('keyword', $keyword, ['class' => 'form-control', 'placeholder' => __('messages.Keyword')]) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{-- 都道府県のプルダウンメニュー --}}
+                                {{ Form::select('preflist', App\Models\Prefectures::prefList(), $pref_id, ['placeholder' => '▼都道府県', 'class' => 'form-control preflist', 'id' => 'preflist']) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{-- 市区町村のプルダウンメニュー --}}
+                                <select name="city" id="city" class="form-control">
+                                    @if ($city != '')
+                                        <option value="{{ $city }}">{{ $city }}</option>
+                                    @else
+                                        <option value="">全域</option>
+                                    @endif
+                                </select>
+                            </div>
                             <div>
                                 @foreach ($tags_category as $key => $tag_category)
                                     {{ Form::checkbox('tags[]', $key, in_array((String)$key, $params['tags'], true), ['id' => 'tags-' . $key]) }}
                                     {{ Form::label('tags-' . $key, $tag_category) }}
                                 @endforeach
                             </div>
-                            <div>{{ Form::submit(__('messages.Shop_Search'), ['class' => 'btn btn-primary']) }}</div>
+                        </div>
+                        <div>
+                            {{ Form::submit(__('messages.Shop_Search'), ['class' => 'btn btn-primary']) }}
                         </div>
                         {{ Form::close() }}
+                        
                         {{ Form::open(['url' => '/member/shop/entry', 'method' => 'get']) }}
                         <div class="float-right">
-                            <div>{{ Form::submit(__('messages.Shop_Enter'), ['class' => 'btn btn-success']) }}</div>
+                            <div>
+                                {{ Form::submit(__('messages.Shop_Enter'), ['class' => 'btn btn-success']) }}
+                            </div>
                         </div>
                         {{ Form::close() }}
                     </div>
@@ -83,13 +102,22 @@
                             <div class="d-flex align-items-center justify-content-center mt-3">
                                 {{-- ペジネーション結果の表示 --}}
                                 {{-- {{ $shops->links() }} --}}
-                                {{ $shops -> appends(['disp' => $disp]) -> links() }}
+                                {{ $shops -> appends(['disp' => $disp, 'keyword' => $keyword, 'preflist' => $pref_id, 'city' => $city, 'tags' => $params['tags']]) -> links() }}
                             </div>
 
                             <div class="meet">
                                 表示件数：
                                 {{ Form::open(['url' => '/search', 'method' => 'get']) }}
-                                    {{ Form::select('disp', ['10' => '10', '20' => '20', '50' => '50', '100' => '100'], $disp, ['class' => 'disp', 'id' => 'disp', 'onchange' => 'submit();']) }} 
+                                    {{ Form::select('disp', ['10' => '10', '20' => '20', '50' => '50', '100' => '100'], $disp, ['class' => 'disp', 'id' => 'disp', 'onchange' => 'submit();']) }}
+                                    {{ Form::hidden('keyword', $keyword) }}
+                                    {{ Form::hidden('preflist', $pref_id) }}
+                                    {{ Form::hidden('city', $city, ['id' => 'city_id']) }}
+                                    @foreach ($tags_category as $key => $tag_category)
+                                        @if (in_array((String)$key, $params['tags'], true))
+                                            {{ Form::hidden('tags[]', $key, ['id' => 'tags-' . $key]) }}
+                                        @endif
+                                    @endforeach
+                                    {{-- {{ Form::hidden('tags[]', $key, ['id' => 'tags-' . $key]) }} --}}
                                 {{ Form::close() }}
                             </div>
                         </form>
@@ -98,4 +126,21 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 @endsection

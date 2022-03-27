@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
@@ -36,60 +36,60 @@
                             @foreach ($reviews as $review)
                                 <div class="row">
                                     <div class="reviews col-md-8 mx-auto mt-2">
-                                        <form action="{{ route('shop.review_refer', ['shop_id' => $review->shop_id, 'user_id' => $review->user_id]) }}" method="GET">
-                                            <a class="text-decoration-none text-dark" href="{{ route('shop.review_refer', ['shop_id' => $review->shop_id, 'user_id' => $review->user_id]) }}?">
-                                                <div class="left-contents float-left mr-3 mt-2">
-                                                    @if ($review->image_path)
-                                                        <img class="img-thumbnail" src="{{ asset('storage/image/' . $review->image_path) }}">
+                                        <div class="left-contents float-left mr-3 mt-2">
+                                            @if ($review->image_path)
+                                                <img class="img-thumbnail" src="{{ asset('storage/image/' . $review->image_path) }}">
+                                            @else
+                                                <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
+                                            @endif
+                                        </div>
+                                        <div class="right-contents mt-2">
+                                            <div>
+                                                <span class="points lead font-weight-bold">{{ $review->points }}点</span>
+                                                <span class="menu_title lead font-weight-bold">{{ $review->menu_title }}</span>
+                                            </div>
+                                            <div>
+                                                <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $review->shop_id]) }}?">
+                                                    {{-- <span class="postcode">〒{{ $shop->postcode }}</span> --}}
+                                                    <span class="shop_name font-weight-bold">{{ $review->shop_name }}</span>
+                                                    <span class="branch font-weight-bold">{{ $review->branch }}</span>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <span class="comment">
+                                                    @if (mb_strlen($review->comment) > 180)
+                                                        {{ Str::limit($review->comment, 180, '…')}}
+                                                        <a class="text-decoration-none" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}?">
+                                                            続きを見る
+                                                        </a>
                                                     @else
-                                                        <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
+                                                        {{ $review->comment }}
                                                     @endif
-                                                </div>
-
-                                                <div class="right-contents mt-2">
-                                                    <div>
-                                                        <span class="points lead font-weight-bold">{{ $review->points }}点</span>
-                                                        <span class="menu_title lead font-weight-bold">{{ $review->menu_title }}</span>
-                                                        
-                                                    </div>
-                                                    <div>
-                                                        {{-- <span class="postcode">〒{{ $shop->postcode }}</span> --}}
-                                                        <span class="category">{{ $review->category }}</span>
-                                                        <span class="soup">{{ $review->soup }}</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </form>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="bottom-contents d-flex align-items-end justify-content-end">
+                                            <div>
+                                                <span class="updated_at">{{ $review->updated_at->format('Y/m/d H:i:s') }}&nbsp 投稿</span>&nbsp&nbsp
+                                                <span class="text-right">投稿者 &nbsp{{ $review->name }}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
                             <div class="d-flex align-items-center justify-content-center mt-3">
                                 {{-- ペジネーション結果の表示 --}}
-                                {{-- {{ $shops->links() }} --}}
                                 {{ $reviews -> appends(['disp' => $disp]) -> links() }}
                             </div>
 
                             <div class="meet">
                                 表示件数：
-                                {{ Form::open(['url' => '/search', 'method' => 'get']) }}
+                                {{ Form::open(['url' => route('index'), 'method' => 'get']) }}
                                     {{ Form::select('disp', ['10' => '10', '20' => '20', '50' => '50', '100' => '100'], $disp, ['class' => 'disp', 'id' => 'disp', 'onchange' => 'submit();']) }} 
                                 {{ Form::close() }}
                             </div>
                         </form>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
             </div>
         </div>

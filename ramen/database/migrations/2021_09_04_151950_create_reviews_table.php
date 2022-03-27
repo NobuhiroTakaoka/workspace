@@ -22,7 +22,7 @@ class CreateReviewsTable extends Migration
             $table->string('soup');
             $table->integer('points');
             $table->string('image_path');
-            $table->string('comment');
+            $table->text('comment');
             $table->timestamps();
             $table->softDeletes();
             // 外部キーを設定

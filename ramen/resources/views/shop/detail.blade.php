@@ -2,7 +2,7 @@
 @extends('layouts.front')
 
 
-{{-- front.blade.phpの@yield('title')に'トップ - ラーメンresearch'を埋め込む --}}
+{{-- front.blade.phpの@yield('title')に'検索 - ラーメンresearch'を埋め込む --}}
 @section('title', '検索 - ラーメンresearch')
 
 
@@ -13,7 +13,7 @@
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.Title') }}</a></li>
               <li class="breadcrumb-item"><a href="{{ route('search') }}">{{ __('messages.Shop_Search') }}</a></li>
-              <li class="breadcrumb-item active" aria-current="page">{{ __('messages.Shop_detail') }}</li>
+              <li class="breadcrumb-item active" aria-current="page">{{ __('messages.Shop_Detail') }}</li>
             </ol>
         </nav>
 
@@ -299,7 +299,7 @@
                     </button>
                 </div>
             </form>
-            <form action="{{ route('shop.review_refer', ['shop_id' => $shop_id]) }}?" method="GET">
+            <form action="{{ route('shop.review_list', ['shop_id' => $shop_id]) }}?" method="GET">
                 <div class="float-left m-3">
                     {{ csrf_field() }}
                     <input id="shop_name" type="hidden" class="form-control" name="shop_name" value="{{ $shop_detail->shop_name }}">

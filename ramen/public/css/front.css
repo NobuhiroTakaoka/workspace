@@ -61,7 +61,6 @@ body {
 
 .reviews {
   background-color: #fff;
-  height: 20vh;
 }
 .reviews .review .date {
   font-size: 0.6em;
@@ -83,4 +82,8 @@ body {
   height: 17vh;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.bottom-contents {
+  height: 10vh;
 }

@@ -23,8 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // return view('home');
+        return view('home');
         // 変更  info/index.blade.php ファイルを渡す
-        return view('info.index');
+        // return view('info.index');
     }
 }

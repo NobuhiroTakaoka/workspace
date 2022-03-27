@@ -99,6 +99,8 @@
                         <form action="{{ route('review_post', ['shop_id' => $shop_id]) }}?" method="GET">
                             @csrf
                             <input id="mode" type="hidden" class="form-control" name="mode" value="true">
+                            <input id="shop_name" type="hidden" class="form-control" name="shop_name" value="{{ $form['shop_name'] }}">
+                            <input id="branch" type="hidden" class="form-control" name="branch" value="{{ $form['branch'] }}">
                             {{-- 修正ボタン --}}
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
