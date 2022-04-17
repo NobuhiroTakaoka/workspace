@@ -13,7 +13,7 @@
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.Title') }}</a></li>
               <li class="breadcrumb-item"><a href="{{ route('shop.detail', ['shop_id' => $review_detail[0]->shop_id]) }}">{{ $review_detail[0]->shop_name . ' ' . $review_detail[0]->branch }}</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('shop.review_list', ['shop_id' => $review_detail[0]->shop_id, 'shop_name' => $review_detail[0]->shop_name]) }}">{{ __('messages.Review_List') }}</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('shop.review_list', ['shop_id' => $review_detail[0]->shop_id, 'shop_name' => $review_detail[0]->shop_name, 'branch' => $review_detail[0]->branch]) }}">{{ __('messages.Review_List') }}</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ __('messages.Review_Detail') }}</li>
             </ol>
         </nav>
@@ -21,7 +21,8 @@
         <div class="row justify-content-center">
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">{{ __('messages.Review_Detail') }}&nbsp&nbsp&nbsp&nbsp
+                    <div class="card-header">
+                        <span class="head-title">{{ __('messages.Review_Detail') }}</span>
                         {{ $review_detail[0]->shop_name }}
                         {{ $review_detail[0]->branch }}
                     </div>
@@ -42,15 +43,21 @@
                                     <span class="menu_title lead font-weight-bold">{{ $review_detail[0]->menu_title }}</span>
                                 </div>
                                 <div>
+                                    <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $review_detail[0]->shop_id]) }}?">
+                                        <span class="shop_name font-weight-bold">{{ $review_detail[0]->shop_name }}</span>
+                                        <span class="branch font-weight-bold">{{ $review_detail[0]->branch }}</span>
+                                    </a>
+                                </div>
+                                <div>
                                     <span class="comment">
-                                        {{ $review_detail[0]->comment }}
+                                        {!! nl2br(e($review_detail[0]->comment)) !!}
                                     </span>
                                 </div>
                             </div>
 
                             <div class="bottom-contents d-flex align-items-end justify-content-end">
                                 <div>
-                                    <span class="updated_at">{{ $review_detail[0]->updated_at->format('Y/m/d H:i:s') }}&nbsp 投稿</span>&nbsp&nbsp
+                                    <span class="updated">{{ $review_detail[0]->updated_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp
                                     <span class="text-right">投稿者 &nbsp{{ $review_detail[0]->name }}</span>
                                 </div>
                             </div>

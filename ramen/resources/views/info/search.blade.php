@@ -39,11 +39,31 @@
                                     @endif
                                 </select>
                             </div>
-                            <div>
-                                @foreach ($tags_category as $key => $tag_category)
+                        </div>
+                        <div class="d-flex flex-row">
+                            <div class="favorite font-weight-bold col-md-2">
+                                こだわり
+                            </div>
+                            <div class="col-md-10 row">
+                            @foreach ($tags_category as $key => $tag_category)
+                                <div style="white-space: nowrap;" class="ml-2">
                                     {{ Form::checkbox('tags[]', $key, in_array((String)$key, $params['tags'], true), ['id' => 'tags-' . $key]) }}
                                     {{ Form::label('tags-' . $key, $tag_category) }}
-                                @endforeach
+                                </div>
+                            @endforeach
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <div class="shop_types font-weight-bold col-md-3">
+                                ラーメン店のタイプ
+                            </div>
+                            <div class="col-md-9 row">
+                            @foreach ($shop_types as $key => $shop_type)
+                                <div style="white-space: nowrap;" class="ml-2">
+                                    {{ Form::checkbox('types[]', $key, in_array((String)$key, $params['types'], true), ['id' => 'types-' . $key]) }}
+                                    {{ Form::label('types-' . $shop_type, $shop_type) }}
+                                </div>
+                            @endforeach
                             </div>
                         </div>
                         <div>
@@ -64,83 +84,70 @@
                         <div class="meet">
                             該当件数: {{ $shops -> total() }}件
                         </div>
-                        <form class="mx-auto" action="{{ route('search') }}" method="GET">
-                            @csrf
+                        @csrf
 
-                            @foreach ($shops as $shop)
-                                <div class="row">
-                                    <div class="shops col-md-8 mx-auto mt-2">
-                                        <form action="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" method="GET">
-                                            <a class="text-decoration-none text-dark" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}?">
-                                                <div class="left-contents float-left mr-3 mt-2">
-                                                    @if ($shop->image_path)
-                                                        <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}">
-                                                    @else
-                                                        <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
-                                                    @endif
-                                                </div>
-
-                                                <div class="right-contents mt-2">
-                                                    <div>
-                                                        <span class="shop_name lead font-weight-bold">{{ $shop->shop_name }}</span>
-                                                        <span class="branch lead font-weight-bold">{{ $shop->branch }}</span>
-                                                        
-                                                    </div>
-                                                    <div>
-                                                        {{-- <span class="postcode">〒{{ $shop->postcode }}</span> --}}
-                                                        <span class="address1">{{ $shop->address1 }}</span>
-                                                        <span class="address2">{{ $shop->address2 }}</span>
-                                                        <span class="address3">{{ $shop->address3 }}</span>
-                                                        <span class="address4">{{ $shop->address4 }}</span>
-                                                    </div>
+                        @foreach ($shops as $shop)
+                            <div class="row">
+                                <div class="shops col-md-8 mx-auto mt-2">
+                                    <form action="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" method="GET">
+                                        <a class="text-decoration-none text-dark" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}?">
+                                            <div class="left-contents float-left mr-3 mt-2">
+                                                @if ($shop->image_path)
+                                                    <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}">
+                                                @else
+                                                    <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
+                                                @endif
+                                            </div>
+                                        </a>
+                                        <div class="right-contents mt-2">
+                                            <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}?">
+                                                <div>
+                                                    <span class="shop_name lead font-weight-bold">{{ $shop->shop_name }}</span>
+                                                    <span class="branch lead font-weight-bold">{{ $shop->branch }}</span>
                                                 </div>
                                             </a>
-                                        </form>
-                                    </div>
+                                            <div>
+                                                <span class="address1">{{ $shop->address1 }}</span>
+                                                <span class="address2">{{ $shop->address2 }}</span>
+                                                <span class="address3">{{ $shop->address3 }}</span>
+                                                <span class="address4">{{ $shop->address4 }}</span>
+                                            </div>
+                                            <div>
+                                                <span class="points lead font-weight-bold">{{ $shop->avg_points }}点</span>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                            @endforeach
-                            <div class="d-flex align-items-center justify-content-center mt-3">
-                                {{-- ペジネーション結果の表示 --}}
-                                {{-- {{ $shops->links() }} --}}
-                                {{ $shops -> appends(['disp' => $disp, 'keyword' => $keyword, 'preflist' => $pref_id, 'city' => $city, 'tags' => $params['tags']]) -> links() }}
                             </div>
+                        @endforeach
+                        <div class="d-flex align-items-center justify-content-center mt-3">
+                            {{-- ペジネーション結果の表示 --}}
+                            {{-- {{ $shops->links() }} --}}
+                            {{ $shops -> appends(['disp' => $disp, 'keyword' => $keyword, 'preflist' => $pref_id, 'city' => $city, 'tags' => $params['tags'], 'types' => $params['types']]) -> links() }}
+                        </div>
 
-                            <div class="meet">
-                                表示件数：
-                                {{ Form::open(['url' => '/search', 'method' => 'get']) }}
-                                    {{ Form::select('disp', ['10' => '10', '20' => '20', '50' => '50', '100' => '100'], $disp, ['class' => 'disp', 'id' => 'disp', 'onchange' => 'submit();']) }}
-                                    {{ Form::hidden('keyword', $keyword) }}
-                                    {{ Form::hidden('preflist', $pref_id) }}
-                                    {{ Form::hidden('city', $city, ['id' => 'city_id']) }}
-                                    @foreach ($tags_category as $key => $tag_category)
-                                        @if (in_array((String)$key, $params['tags'], true))
-                                            {{ Form::hidden('tags[]', $key, ['id' => 'tags-' . $key]) }}
-                                        @endif
-                                    @endforeach
-                                    {{-- {{ Form::hidden('tags[]', $key, ['id' => 'tags-' . $key]) }} --}}
-                                {{ Form::close() }}
-                            </div>
-                        </form>
+                        <div class="meet">
+                            表示件数：
+                            {{ Form::open(['url' => '/search', 'method' => 'get']) }}
+                                {{ Form::select('disp', ['10' => '10', '20' => '20', '50' => '50', '100' => '100'], $disp, ['class' => 'disp', 'id' => 'disp', 'onchange' => 'submit();']) }}
+                                {{ Form::hidden('keyword', $keyword) }}
+                                {{ Form::hidden('preflist', $pref_id) }}
+                                {{ Form::hidden('city', $city, ['id' => 'city_id']) }}
+                                @foreach ($tags_category as $key => $tag_category)
+                                    @if (in_array((String)$key, $params['tags'], true))
+                                        {{ Form::hidden('tags[]', $key, ['id' => 'tags-' . $key]) }}
+                                    @endif
+                                @endforeach
+                                @foreach ($shop_types as $key => $shop_type)
+                                    @if (in_array((String)$key, $params['types'], true))
+                                        {{ Form::hidden('types[]', $key, ['id' => 'types-' . $key]) }}
+                                    @endif
+                                @endforeach
+                            {{ Form::close() }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 @endsection

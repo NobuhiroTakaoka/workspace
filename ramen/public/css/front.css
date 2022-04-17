@@ -77,6 +77,10 @@ body {
   width: 250px;
 }
 
+.head-title {
+  margin-right: 1em;
+}
+
 .left-contents img {
   width: 12vw;
   height: 17vh;

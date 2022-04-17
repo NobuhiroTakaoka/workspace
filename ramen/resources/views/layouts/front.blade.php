@@ -95,7 +95,7 @@
         {{-- フッター --}}
         <div class="row">
             <footer class="mx-auto">
-                <p class="text-muted">copyright © ラーメンRsearch</p>
+                <p class="text-muted">copyright © ラーメンResearch</p>
             </footer>
         </div>
     </div>

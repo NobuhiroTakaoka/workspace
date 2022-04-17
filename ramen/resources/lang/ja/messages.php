@@ -20,6 +20,11 @@ return [
 
     // お店検索
     'Shop_Search' => 'お店検索',
+    'Keyword' => 'キーワード',
+
+    // ランキング
+    'Ranking' => 'ランキング',
+    'Ranking_Disp' => 'ランキング表示',
 
     // トップページ
     'Latest_Review' => '最新レビュー',
@@ -29,7 +34,6 @@ return [
 
     // お店詳細
     'Shop_Detail' => 'お店詳細',
-    'Keyword' => 'キーワード',
     'Shop_modify' => 'お店情報を編集する',
     'Review_Post' => 'レビューを投稿する',
     'Review_Refer' => 'レビューを見る',
