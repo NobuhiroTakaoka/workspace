@@ -19,32 +19,37 @@
         </nav>
 
         <div class="row justify-content-center">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <span class="head-title">{{ __('messages.Review_Detail') }}</span>
-                        {{ $review_detail[0]->shop_name }}
-                        {{ $review_detail[0]->branch }}
+                        <span class="font-weight-bold">
+                            {{ $review_detail[0]->shop_name }}
+                            {{ $review_detail[0]->branch }}
+                        </span>
                     </div>
 
                     <div class="card-body">
-                        <div class="reviews col-md-10 mx-auto mt-2">
-                            <div class="left-contents float-left mr-3 mt-2">
-                                @if ($review_detail[0]->image_path)
-                                    <img class="img-thumbnail" src="{{ asset('storage/image/' . $review_detail[0]->image_path) }}">
-                                @else
-                                    <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
-                                @endif
-                            </div>
-
-                            <div class="right-contents mt-2">
+                        <div class="reviews col-md-10 mx-auto pt-2">
+                            <div class="top-contents mt-2">
                                 <div>
-                                    <span class="points lead font-weight-bold">{{ $review_detail[0]->points }}点</span>
+                                    <span class="points lead font-weight-bold pr-2">{{ $review_detail[0]->points }}点</span>
                                     <span class="menu_title lead font-weight-bold">{{ $review_detail[0]->menu_title }}</span>
                                 </div>
+                            </div>
+                            <div class="left-contents d-flex align-items-start float-left pr-3 mt-2">
+                                <div>
+                                    @if ($review_detail[0]->image_path)
+                                        <img class="img-thumbnail" src="{{ asset('storage/image/' . $review_detail[0]->image_path) }}">
+                                    @else
+                                        <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="right-contents clearfix pr-3 mt-2">
                                 <div>
                                     <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $review_detail[0]->shop_id]) }}?">
-                                        <span class="shop_name font-weight-bold">{{ $review_detail[0]->shop_name }}</span>
+                                        <span class="shop_name font-weight-bold pr-2">{{ $review_detail[0]->shop_name }}</span>
                                         <span class="branch font-weight-bold">{{ $review_detail[0]->branch }}</span>
                                     </a>
                                 </div>
@@ -54,13 +59,30 @@
                                     </span>
                                 </div>
                             </div>
-
-                            <div class="bottom-contents d-flex align-items-end justify-content-end">
+                        </div>
+                        <div class="bottom-contents col-md-10 mx-auto d-flex align-items-end justify-content-end">
+                            <div>
                                 <div>
                                     <span class="updated">{{ $review_detail[0]->updated_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp
                                     <span class="text-right">投稿者 &nbsp{{ $review_detail[0]->name }}</span>
                                 </div>
                             </div>
+
+                            @if ($review_detail[0]->user_id == $user_id)
+                            <div class="ml-4">
+                                <div class="pb-2">
+                                    <form action="{{ route('review_edit', ['shop_id' => $review_detail[0]->shop_id, 'review_id' => $review_detail[0]->id]) }}" method="GET">
+                                        {{ Form::submit(__('messages.Review_Edit'), ['class' => 'btn btn-primary']) }}
+                                    </form>
+                                </div>
+                                <div class="pb-2">                                  
+                                    <form action="{{ route('review_delete', ['shop_id' => $review_detail[0]->shop_id, 'review_id' => $review_detail[0]->id]) }}" method="POST">
+                                        {{ Form::submit(__('messages.Review_Delete'), ['class' => 'btn btn-secondary']) }}
+                                    </form>
+                                </div>
+                            </div>
+                            @endif
+
                         </div>
                     </div>
                 </div>

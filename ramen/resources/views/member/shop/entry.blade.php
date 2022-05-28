@@ -9,7 +9,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">{{ __('messages.Shop_Entry') }}</div>
 
@@ -397,7 +397,7 @@
                                 </div>
                             </div>
 
-                            {{-- Twitter IDフォーム --}}
+                            {{-- Twitterフォーム --}}
                             <div class="form-group row">
                                 <label for="twitter" class="col-md-3 col-form-label text-md-right">{{ __('messages.Twitter') }}</label>
                                 
@@ -420,18 +420,20 @@
                                 <div class="col-md-9">
                                     {{-- Laravel CollectiveのFormファサード使用 --}}
                                     @foreach ($shop_types as $shop_type)
-                                        {{-- {{ Form::radio('shop_type', $shop_type, false, ['value'=>old('shop_type')]) }} --}}
-                                        @if ($shop_type == $form['shop_type'])
-                                            {{-- {{ Form::radio('shop_type', $shop_type, true, ['value'=>$form["shop_type"]]) }} --}} 
-                                            {{-- {{ Form::radio('shop_type', $shop_type, true, ['id'=>'shop_type','class'=>'form-control @error('shop_type') is-invalid @enderror']) }} --}}
-                                            {{ Form::radio('shop_type', $shop_type, true) }}
-                                        @else
-                                            {{-- {{ Form::radio('shop_type', $shop_type, false, ['value'=>$form["shop_type"]]) }} --}}
-                                            {{-- {{ Form::radio('shop_type', $shop_type, false, ['id'=>'shop_type','class'=>'form-control @error('shop_type') is-invalid @enderror']) }} --}}
-                                            {{ Form::radio('shop_type', $shop_type, false) }}
-                                        @endif
+                                        <span style="white-space: nowrap;" class="mr-2">
+                                            {{-- {{ Form::radio('shop_type', $shop_type, false, ['value'=>old('shop_type')]) }} --}}
+                                            @if ($shop_type == $form['shop_type'])
+                                                {{-- {{ Form::radio('shop_type', $shop_type, true, ['value'=>$form["shop_type"]]) }} --}} 
+                                                {{-- {{ Form::radio('shop_type', $shop_type, true, ['id'=>'shop_type','class'=>'form-control @error('shop_type') is-invalid @enderror']) }} --}}
+                                                {{ Form::radio('shop_type', $shop_type, true) }}
+                                            @else
+                                                {{-- {{ Form::radio('shop_type', $shop_type, false, ['value'=>$form["shop_type"]]) }} --}}
+                                                {{-- {{ Form::radio('shop_type', $shop_type, false, ['id'=>'shop_type','class'=>'form-control @error('shop_type') is-invalid @enderror']) }} --}}
+                                                {{ Form::radio('shop_type', $shop_type, false) }}
+                                            @endif
 
-                                        {{ Form::label($shop_type, $shop_type) }}
+                                            {{ Form::label($shop_type, $shop_type) }}
+                                        </span>
                                     @endforeach
 
                                     {{-- @error('shop_type')
@@ -506,20 +508,22 @@
 
                                     {{-- タグカテゴリを繰り返し取得 --}}
                                     @foreach ($tags_category as $key => $tag_category)
-                                        {{-- $form['tags']が存在する場合（タグが選択されている場合） --}}
-                                        @if (isset($form['tags']))
-                                            {{-- $form['tags']が配列であり、$keyの値が入っている場合 --}}
-                                            {{-- @if (is_array($form['tags']) && in_array($key, $form['tags'], true)) --}}
-                                            @if (is_array($form['tags']) && in_array((String)$key, $form['tags'], true))
-                                                {{ Form::checkbox('tags[]', $key, true, ['id' => 'tags-' . $key]) }}
+                                        <span style="white-space: nowrap;" class="mr-2">
+                                            {{-- $form['tags']が存在する場合（タグが選択されている場合） --}}
+                                            @if (isset($form['tags']))
+                                                {{-- $form['tags']が配列であり、$keyの値が入っている場合 --}}
+                                                {{-- @if (is_array($form['tags']) && in_array($key, $form['tags'], true)) --}}
+                                                @if (is_array($form['tags']) && in_array((String)$key, $form['tags'], true))
+                                                    {{ Form::checkbox('tags[]', $key, true, ['id' => 'tags-' . $key]) }}
+                                                @else
+                                                    {{ Form::checkbox('tags[]', $key, false, ['id' => 'tags-' . $key]) }}
+                                                @endif
                                             @else
                                                 {{ Form::checkbox('tags[]', $key, false, ['id' => 'tags-' . $key]) }}
                                             @endif
-                                        @else
-                                            {{ Form::checkbox('tags[]', $key, false, ['id' => 'tags-' . $key]) }}
-                                        @endif
 
-                                        {{ Form::label('tags-' . $key, $tag_category) }}
+                                            {{ Form::label('tags-' . $key, $tag_category) }}
+                                        </span>
                                     @endforeach
                             
                                     {{-- @error('tags')

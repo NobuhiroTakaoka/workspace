@@ -50,4 +50,10 @@ class Shops extends Model
         // hasMany（１対多）を定義し、外部キー（shop_id）、ローカルキー（id）にオーバーライド
         return $this->hasMany(ShopTags::class, 'shop_id', 'id');
     }
+
+    public function reviews()
+    {
+        // hasMany（１対多）を定義し、外部キー（shop_id）、ローカルキー（id）にオーバーライド
+        return $this->hasMany(Reviews::class, 'shop_id', 'id');
+    }
 }

@@ -46,7 +46,7 @@
                         <li><a class="nav-link" href="{{ url('/') }}">トップ</a></li>
                         <li><a class="nav-link" href="{{ route('search') }}">検索</a></li>
                         <li><a class="nav-link" href="{{ route('ranking') }}">ランキング</a></li>
-                        <li><a class="nav-link" href="{{ url('/{user_id}') }}">マイページ</a></li>
+                        <li><a class="nav-link" href="{{ route('mypage') }}">マイページ</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

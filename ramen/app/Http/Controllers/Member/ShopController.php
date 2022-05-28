@@ -526,8 +526,8 @@ class ShopController extends Controller
         $shop_id_rec->fill($data);
         $shop_id_rec->save();
 
-        // $form['tags']が配列の場合（タグが選択されている場合は配列でリクエストを受け取っているため）
-        if (is_array($form['tags'])) {
+        // $form['tags']が存在し、配列の場合（タグが選択されている場合は配列でリクエストを受け取っているため）
+        if (isset($form['tags']) && is_array($form['tags'])) {
             // タグID格納配列（$inserts）にtag_id分のレコードをshop_idと併せて一括登録用配列（$inserts）に格納する
             $updates = [];
             foreach ($form['tags'] as $tag) {

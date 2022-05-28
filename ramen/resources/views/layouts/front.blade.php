@@ -23,6 +23,7 @@
     <!-- Styles -->
     {{-- Laravel標準で用意されているCSSを読み込む --}}
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    {{-- <link href="{{ mix('css/bootstrap-reboot.css') }}" rel="stylesheet"> --}}
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     {{-- CSSを読み込む --}}
     {{-- <link href="{{ asset('css/front.css') }}" rel="stylesheet"> --}}
@@ -51,7 +52,7 @@
                             <li><a class="nav-link" href="{{ route('login') }}">ログイン</a></li>
                         {{-- ログインしていたらマイページ画面へのリンクタブを表示 --}}
                         @else
-                            <li><a class="nav-link" href="{{ url('/{user_id}') }}">マイページ</a></li>
+                            <li><a class="nav-link" href="{{ route('mypage') }}" method="GET">マイページ</a></li>
                         @endguest
                     </ul>
 

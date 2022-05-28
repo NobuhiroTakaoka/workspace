@@ -1,3 +1,4 @@
+{{-- layouts/member.blade.phpを読み込む --}}
 @extends('layouts.member')
 
 
@@ -11,7 +12,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.Title') }}</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('shop.detail', ['shop_id' => $shop_id]) }}">{{ __('messages.Shop_detail') }}</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('shop.detail', ['shop_id' => $shop_id]) }}">{{ __('messages.Shop_Detail') }}</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ __('messages.Review_Post') }}</li>
             </ol>
         </nav>
@@ -39,8 +40,9 @@
                     <div class="form-group row">
                         <label for="menu_title" class="col-md-3 col-form-label text-md-right">{{ __('messages.Menu_Title') }}</label>
 
-                        <div class="col-md-6">
-                            <input id="menu_title" type="text" class="form-control @error('menu_title') is-invalid @enderror" name="menu_title" value="{{ $form['menu_title'] }}" autofocus>
+                        <div class="col-md-5">
+                            <input id="menu_title" type="text" class="form-control @error('menu_title') is-invalid @enderror" name="menu_title" value="{{ $form['menu_title'] }}" maxlength="30" autofocus>
+                            <span>30文字以内</span>
 
                             @error('menu_title')
                                 <span class="invalid-feedback" role="alert">
@@ -209,6 +211,7 @@
                                 3 => '3点',
                                 2 => '2点',
                                 1 => '1点',
+                                0 => '0点',
                                 ],
                                 $form['points'],
                                 $errors->has('points') ? ['placeholder' => '選択してください', 'id' => 'points', 'class' => 'form-control is-invalid']

@@ -20,6 +20,9 @@ class MasterCommons
         10 => 'その他スープ',
     ];
 
+    // 性別リスト
+    public static $genders = [1 => '男性', 2 => '女性', 3 => '非公開'];
+
     // public static $ramen_category = [
     //     1 => 'ラーメン',
     //     2 => 'つけ麺',

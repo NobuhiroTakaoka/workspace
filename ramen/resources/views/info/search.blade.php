@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('messages.Shop_Search') }}
+                    <div class="card-header">{{ __('messages.Shop_Filter') }}
                         {{ Form::open(['url' => '/search', 'method' => 'get']) }}
                         <div class="d-flex flex-row">
                             <div class="col-md-3">
@@ -89,34 +89,39 @@
                         @foreach ($shops as $shop)
                             <div class="row">
                                 <div class="shops col-md-8 mx-auto mt-2">
-                                    <form action="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" method="GET">
+                                    {{-- <form action="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" method="GET"> --}}
+                                    <div class="left-contents d-flex align-items-start float-left pr-3 mt-2 mb-2">
                                         <a class="text-decoration-none text-dark" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}?">
-                                            <div class="left-contents float-left mr-3 mt-2">
-                                                @if ($shop->image_path)
-                                                    <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}">
-                                                @else
-                                                    <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
-                                                @endif
-                                            </div>
+                                            @if ($shop->image_path)
+                                                <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}">
+                                            @else
+                                                <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
+                                            @endif
                                         </a>
-                                        <div class="right-contents mt-2">
+                                    </div>
+
+                                    <div class="right-contents clearfix mt-2">
+                                        <div>
                                             <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}?">
-                                                <div>
-                                                    <span class="shop_name lead font-weight-bold">{{ $shop->shop_name }}</span>
-                                                    <span class="branch lead font-weight-bold">{{ $shop->branch }}</span>
-                                                </div>
+                                                <span class="shop_name lead font-weight-bold">{{ $shop->shop_name }}</span>
+                                                <span class="branch lead font-weight-bold">{{ $shop->branch }}</span>
                                             </a>
-                                            <div>
-                                                <span class="address1">{{ $shop->address1 }}</span>
-                                                <span class="address2">{{ $shop->address2 }}</span>
-                                                <span class="address3">{{ $shop->address3 }}</span>
-                                                <span class="address4">{{ $shop->address4 }}</span>
-                                            </div>
-                                            <div>
-                                                <span class="points lead font-weight-bold">{{ $shop->avg_points }}点</span>
-                                            </div>
                                         </div>
-                                    </form>
+                                        <div>
+                                            <span class="address1">{{ $shop->address1 }}</span>
+                                            <span class="address2">{{ $shop->address2 }}</span>
+                                            <span class="address3">{{ $shop->address3 }}</span>
+                                            <span class="address4">{{ $shop->address4 }}</span>
+                                        </div>
+                                        <div>
+                                            @if ($shop->avg_points)
+                                                <span class="points lead font-weight-bold">{{ $shop->avg_points }}点</span>
+                                            @else
+                                                <span class="points lead font-weight-bold">-------点</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    {{-- </form> --}}
                                 </div>
                             </div>
                         @endforeach

@@ -7,7 +7,7 @@ use App\Models\Shops;  // 追記
 use App\Commons\MasterCommons;
 use App\Models\Reviews;
 use App\Models\Prefectures;  // 追記
-// use Illuminate\Support\Facades\DB;  // 追記
+// use Illuminate\Support\Facades\Auth;  // 追記
 
 class InfoController extends Controller
 {
@@ -20,6 +20,7 @@ class InfoController extends Controller
     {
         $this->shop_types = MasterCommons::$shop_types;
         $this->tags_category = MasterCommons::$tags_category;
+        // $this->user_id = Auth::id();
     }
 
     public function index(Request $request)
@@ -35,6 +36,9 @@ class InfoController extends Controller
             ->limit(10)
             ->get();
             // ->paginate($disp);
+
+        // ログイン中のユーザIDを取得
+        // $user_id = Auth::id();
 
         // info/index.blade.php ファイルを渡す
         return view('info.index', ['reviews' => $reviews]);
@@ -86,8 +90,10 @@ class InfoController extends Controller
 
         $types_flag = is_array($types_item) && count($types_item) > 0;
 
-        $shops = Shops::select('shops.*', Reviews::raw('avg(reviews.points) as avg_points'))
-        ->join('reviews', 'shops.id', '=', 'reviews.shop_id')
+        $rownum = 0;
+
+        $shops = Shops::select('shops.*', Reviews::raw('avg(reviews.points) as avg_points', 'count(*) as count'))
+        ->leftjoin('reviews', 'shops.id', '=', 'reviews.shop_id')
         ->when($tags_flag, function($query) use ($tags) {
             return $query->whereHas('tags', function($query2) use ($tags) {
                 return $query2->whereIn('tag_id', $tags);
@@ -118,6 +124,9 @@ class InfoController extends Controller
             'tags' => is_array($request->tags) ? $request->tags : [],
             'types' => is_array($request->types) ? $request->types : [],
         ];
+
+        // ログイン中のユーザIDを取得
+        // $user_id = Auth::id();
 
         return view('info.search', [
             'shops' => $shops,
@@ -171,7 +180,7 @@ class InfoController extends Controller
         $types_flag = is_array($types_item) && count($types_item) > 0;
 
         $shops = Shops::select('shops.*', Reviews::raw('avg(reviews.points) as avg_points'))
-        ->join('reviews', 'shops.id', '=', 'reviews.shop_id')
+        ->leftjoin('reviews', 'shops.id', '=', 'reviews.shop_id')
         ->when($pref_name != '', function($query5) use ($pref_name) {
             return $query5->where('address1', addslashes($pref_name));
         })
@@ -189,9 +198,9 @@ class InfoController extends Controller
             'types' => is_array($request->types) ? $request->types : [],
         ];
 
-        // ランキングカウンター
-        $counter = 1;
-
+        //表示するページの先頭の順位のカウンターを設定
+        $counter = $shops->firstItem();
+        
         // info/ranking.blade.php ファイルを渡す
         return view('info.ranking', [
             'shops' => $shops,

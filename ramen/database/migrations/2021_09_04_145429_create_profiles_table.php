@@ -15,6 +15,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('nickname');
             $table->string('gender');
             $table->string('birth_year');
@@ -24,7 +25,7 @@ class CreateProfilesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             // 外部キーを設定
-            $table->foreign('id')->references('id')->on('users')->onUpdate('CASCADE');
+            // $table->foreign('id')->references('id')->on('users')->onUpdate('CASCADE');
         });
     }
 

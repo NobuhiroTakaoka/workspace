@@ -285,7 +285,7 @@
                     {{ csrf_field() }}
                     {{-- <input id="shop_id" type="hidden" class="form-control" name="shop_id" value="{{ $shop_id }}"> --}}
                     <button type="submit" class="btn btn-secondary" name="shop_edit">
-                        {{ __('messages.Shop_modify') }}
+                        {{ __('messages.Shop_Modify') }}
                     </button>
                 </div>
             </form>

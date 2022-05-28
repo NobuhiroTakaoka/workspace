@@ -46,8 +46,16 @@
                             @foreach ($review_list as $review)
                                 <div class="row">
                                     <div class="reviews col-md-8 mx-auto mt-2">
-                                        <form action="{{ route('shop.review_list', ['shop_id' => $review->shop_id, 'user_id' => $review->user_id]) }}" method="GET">
-                                            <div class="left-contents float-left mr-3 mt-2">
+                                        {{-- <form action="{{ route('shop.review_list', ['shop_id' => $review->shop_id, 'user_id' => $review->user_id]) }}" method="GET"> --}}
+                                        <div class="top-contents mt-2">
+                                            <a class="text-decoration-none text-secondary" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}?">
+                                                <span class="points lead font-weight-bold pr-2">{{ $review->points }}点</span>
+                                                <span class="menu_title lead font-weight-bold">{{ $review->menu_title }}</span>
+                                            </a>
+                                        </div>
+
+                                        <div class="left-contents d-flex align-items-start float-left pr-3 mt-2">
+                                            <div>
                                                 <a class="review-img" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}?">
                                                     @if ($review->image_path)
                                                         <img class="img-thumbnail" src="{{ asset('storage/image/' . $review->image_path) }}">
@@ -56,42 +64,35 @@
                                                     @endif
                                                 </a>
                                             </div>
-
-                                            <div class="right-contents mt-2">
-                                                <div>
-                                                    <a class="text-decoration-none text-secondary" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}?">
-                                                        <span class="points lead font-weight-bold">{{ $review->points }}点</span>
-                                                        <span class="menu_title lead font-weight-bold">{{ $review->menu_title }}</span>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $review->shop_id]) }}?">
-                                                        {{-- <span class="postcode">〒{{ $shop->postcode }}</span> --}}
-                                                        <span class="shop_name font-weight-bold">{{ $shop_name }}</span>
-                                                        <span class="branch font-weight-bold">{{ $branch }}</span>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <span class="comment">
-                                                        @if (mb_strlen($review->comment) > 200)
-                                                            {!! nl2br(e(Str::limit($review->comment, 100, '…'))) !!}
-                                                            <a class="text-decoration-none" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}?">
-                                                                続きを見る
-                                                            </a>
-                                                        @else
-                                                            {!! nl2br(e($review->comment)) !!}
-                                                        @endif
-                                                    </span>
-                                                </div>
+                                        </div>
+                                        <div class="right-contents clearfix pr-3 mt-2">
+                                            <div>
+                                                <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $review->shop_id]) }}?">
+                                                    {{-- <span class="postcode">〒{{ $shop->postcode }}</span> --}}
+                                                    <span class="shop_name font-weight-bold pr-2">{{ $shop_name }}</span>
+                                                    <span class="branch font-weight-bold">{{ $branch }}</span>
+                                                </a>
                                             </div>
-
-                                            <div class="bottom-contents d-flex align-items-end justify-content-end">
-                                                <div>
-                                                    <span class="updated">{{ $review->updated_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp
-                                                    <span class="text-right">投稿者 &nbsp{{ $review->name }}</span>
-                                                </div>
+                                            <div>
+                                                <span class="comment">
+                                                    @if (mb_strlen($review->comment) > 40)
+                                                        {!! nl2br(e(Str::limit($review->comment, 30, '…'))) !!}
+                                                        <a class="text-decoration-none" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}?">
+                                                            続きを見る
+                                                        </a>
+                                                    @else
+                                                        {!! nl2br(e($review->comment)) !!}
+                                                    @endif
+                                                </span>
                                             </div>
-                                        </form>
+                                        </div>
+                                        {{-- </form> --}}
+                                    </div>
+                                    <div class="bottom-contents col-md-8 mx-auto d-flex align-items-end justify-content-end">
+                                        <div>
+                                            <span class="updated">{{ $review->updated_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp
+                                            <span class="text-right">投稿者 &nbsp{{ $review->name }}</span>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach

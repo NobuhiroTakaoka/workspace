@@ -26,8 +26,8 @@ class CreateReviewsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             // 外部キーを設定
-            $table->foreign('shop_id')->references('id')->on('shops')->onUpdate('CASCADE');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE');
+            // $table->foreign('shop_id')->references('id')->on('shops')->onUpdate('CASCADE');
+            // $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE');
         });
     }
 

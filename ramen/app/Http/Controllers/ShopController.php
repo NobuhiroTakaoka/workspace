@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Shops;  // 追加
 use App\Models\ShopTags;  // 追加
 use Illuminate\Http\Request;
-use App\Commons\MasterCommons;
-use App\Models\Reviews;
+use App\Commons\MasterCommons;  // 追記
+use App\Models\Reviews;  // 追記
+use Illuminate\Support\Facades\Auth;  // 追記
 
 class ShopController extends Controller
 {
@@ -69,10 +70,13 @@ class ShopController extends Controller
         $review_detail = Reviews::select('reviews.*', 'shops.shop_name', 'shops.branch', 'users.name')->where('reviews.id', $review_id)
             ->join('shops', 'reviews.shop_id', '=', 'shops.id')
             ->join('users', 'reviews.user_id', '=', 'users.id')
-            ->orderByDesc('reviews.updated_at')
+            // ->orderByDesc('reviews.updated_at')
             ->get();
 
+        // ログイン中のユーザIDを取得
+        $user_id = Auth::id();
+
         // shop/review.blade.php ファイルを渡す
-        return view('shop.review_detail', ['review_detail' => $review_detail, 'shop_id' => $shop_id]);
+        return view('shop.review_detail', ['review_detail' => $review_detail, 'shop_id' => $shop_id, 'user_id' => $user_id]);
     }
 }

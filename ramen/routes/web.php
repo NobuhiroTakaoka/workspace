@@ -40,20 +40,25 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // ログインユーザ
 Route::group(['prefix' => 'member', 'middleware' => 'auth'], function () {
-    Route::get('/{user_id}/profile/edit', [UserController::class, 'edit']);
-    Route::get('/{user_id}/review/manage', [UserController::class, 'manage']);
-    Route::get('/{user_id}', [UserController::class, 'index'])->name('{user_id}');
+    Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
+    Route::post('/mypage/profile/public', [UserController::class, 'profilePublic'])->name('profile_public');
+    Route::get('/mypage/profile/edit', [UserController::class, 'profileEdit'])->name('profile_edit');
+    // Route::post('/mypage/profile/check', [UserController::class, 'profileCheck'])->name('profile_check');
+    Route::post('/mypage/profile/save', [UserController::class, 'profileSave'])->name('profile_save');
+    // Route::get('/{user_id}/review/manage', [UserController::class, 'manage']);
     Route::get('/shop/entry', [ShopController::class, 'add'])->name('shop.entry');
     // Route::post('/shop/entry', [ShopController::class, 'fix']);
     // Route::post('/shop/fix', [ShopController::class, 'fix']);
-    Route::post('/shop/check', [ShopController::class, 'check'])->name('check');
     Route::post('/shop/create', [ShopController::class, 'create'])->name('create');
+    Route::post('/shop/check', [ShopController::class, 'check'])->name('check');
     Route::get('/shop/detail/{shop_id}/edit', [ShopController::class, 'edit'])->name('shop.edit');
     Route::post('/shop/update', [ShopController::class, 'update'])->name('update');
     // Route::post('/shop/detail/confirm/{shop_id}', [ShopController::class, 'confirm'])->name('shop.confirm');
     // Route::get('/shop/detail/{shop_id}/review/post', [ShopController::class, 'reviewPost'])->name('shop.review_post');
     Route::get('/shop/detail/{shop_id}/review/post', [ReviewController::class, 'reviewPost'])->name('review_post');
+    Route::get('/shop/detail/{shop_id}/{review_id}/review/edit', [ReviewController::class, 'reviewEdit'])->name('review_edit');
     // Route::post('/shop/detail/{shop_id}/review/check', [ShopController::class, 'reviewCheck'])->name('shop.review_check');
-    Route::post('/shop/detail/{shop_id}/review/check', [ReviewController::class, 'reviewCheck'])->name('review_check');
     Route::post('/shop/detail/{shop_id}/review/create', [ReviewController::class, 'reviewCreate'])->name('review_create');
+    Route::post('/shop/detail/{shop_id}/review/check', [ReviewController::class, 'reviewCheck'])->name('review_check');
+    Route::post('/shop/detail/{shop_id}/{review_id}/review/delete', [ReviewController::class, 'reviewDelete'])->name('review_delete');
 });

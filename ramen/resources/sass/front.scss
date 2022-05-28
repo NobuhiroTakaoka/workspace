@@ -48,7 +48,7 @@ body {
 
 .shops {
   background-color: #fff;
-  height: 20vh;
+  // height: 20vh;
   .shop {
     .date {
       font-size: 0.6em;
@@ -71,7 +71,31 @@ body {
 
 .reviews {
   background-color: #fff;
+  // height: 25vh;
   .review {
+    .date {
+      font-size: 0.6em;
+      color: #999999;
+    }
+    .title {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .body {
+      font-size: 0.8em;
+    }
+    .image {
+      img {
+        width: 250px;
+      }
+    }
+  }
+}
+
+.ranks {
+  background-color: #fff;
+  // height: 20vh;
+  .shop {
     .date {
       font-size: 0.6em;
       color: #999999;
@@ -97,12 +121,13 @@ body {
 
 .left-contents {
   img {
-    width: 12vw;
-    height: 17vh;
-    object-fit: contain;
+    width: 10vw;
+    // height: 17vh;
+    // object-fit: contain;
   }
 }
 
 .bottom-contents {
-  height: 10vh;
+  background-color: #fff;
+  // height: 6vh;
 }

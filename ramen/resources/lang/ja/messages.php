@@ -20,11 +20,35 @@ return [
 
     // お店検索
     'Shop_Search' => 'お店検索',
+    'Shop_Filter' => '絞り込み条件',
     'Keyword' => 'キーワード',
 
     // ランキング
     'Ranking' => 'ランキング',
+    'Ranking_Filter' => 'ランキング条件',
     'Ranking_Disp' => 'ランキング表示',
+
+    // マイページ
+    'Mypage' => 'マイページ',
+    'Menu_Title_Table' => 'メニュー（タイトル）',
+    'Shop_Name_Table' => '店名',
+    'Points_Table' => '点数',
+    'Posted_At' => '投稿日時',
+    'Updated_At' => '編集日時',
+    'Top' => 'トップ',
+    'Public_Profile' => '公開プロフィール',
+    'Profile_Edit' => 'プロフィール編集',
+    'MyReview_Search' => 'マイレビュー検索',
+
+    // マイページ - プロフィール編集
+    'Mypage_Profile_Edit' => 'マイページ  - プロフィール編集',
+    'Nickname' => 'ニックネーム',
+    'Gender' => '性別',
+    'Birth_Year' => '誕生年',
+    'Base' => '出身地',
+    'Profile_Image' => 'プロフィール画像',
+    'Introduction' => '自己紹介',
+    'Profile_Save' => '保存する',
 
     // トップページ
     'Latest_Review' => '最新レビュー',
@@ -34,7 +58,7 @@ return [
 
     // お店詳細
     'Shop_Detail' => 'お店詳細',
-    'Shop_modify' => 'お店情報を編集する',
+    'Shop_Modify' => 'お店情報を編集する',
     'Review_Post' => 'レビューを投稿する',
     'Review_Refer' => 'レビューを見る',
     'Shop_Name_D' => '店名',
@@ -79,7 +103,7 @@ return [
     'Official_Site' => '公式サイト',
     'Official_Blog' => '公式ブログ',
     'Facebook' => 'Facebookページ',
-    'Twitter' => 'Twitter ID',
+    'Twitter' => 'Twitter',
     'Shop_Type' => 'お店のタイプ *',
     'Opening_Date' => '開店日',
     'Menu' => 'メニュー *',
@@ -108,4 +132,6 @@ return [
 
     // レビュー詳細
     'Review_Detail' => 'レビュー詳細',
+    'Review_Edit' => '編集',
+    'Review_Delete' => '削除',
 ];
