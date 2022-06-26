@@ -15,6 +15,6 @@ class ShopSeeder extends Seeder
     public function run()
     {
         // 店舗レコードを登録
-        Shops::factory()->count(1)->create();  // 追記
+        Shops::factory()->count(10)->create();  // 追記
     }
 }

@@ -72,6 +72,11 @@ class ShopController extends Controller
             ->join('users', 'reviews.user_id', '=', 'users.id')
             // ->orderByDesc('reviews.updated_at')
             ->get();
+        
+        // レコードを取得できなかった場合はエラーページ（404）を表示
+        if (empty($review_detail[0])) {
+            abort(404);
+        }
 
         // ログイン中のユーザIDを取得
         $user_id = Auth::id();

@@ -14,7 +14,7 @@
                     <div class="card-header">
                         <form action="{{ route('search') }}" method="GET">
                             <div class="form-group row">
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <input type="text" class="form-control" name="keyword" placeholder="{{ __('messages.Keyword') }}">
                                 </div>
                                 <div class="col-md-2">
@@ -35,9 +35,9 @@
 
                             @foreach ($reviews as $review)
                                 <div class="row">
-                                    <div class="reviews col-md-8 mx-auto mt-2">
+                                    <div class="reviews col-md-10 mx-auto mt-2">
                                         <div class="top-contents mt-2">
-                                            <a class="text-decoration-none text-secondary" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}?">
+                                            <a class="text-decoration-none text-success" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}?">
                                                 <span class="points lead font-weight-bold pr-2">{{ $review->points }}点</span>
                                                 <span class="menu_title lead font-weight-bold">{{ $review->menu_title }}</span>
                                             </a>
@@ -64,8 +64,8 @@
                                             </div>
                                             <div>
                                                 <span class="comment">
-                                                    @if (mb_strlen($review->comment) > 40)
-                                                        {!! nl2br(e(Str::limit($review->comment, 30, '…'))) !!}
+                                                    @if (mb_strlen($review->comment) > 120)
+                                                        {!! nl2br(e(Str::limit($review->comment, 100, '…'))) !!}
                                                         <a class="text-decoration-none" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}?">
                                                             続きを見る
                                                         </a>
@@ -77,10 +77,13 @@
                                         </div>
                                         {{-- </div> --}}
                                     </div>
-                                    <div class="bottom-contents col-md-8 mx-auto d-flex align-items-end justify-content-end">
+                                    <div class="bottom-contents col-md-10 mx-auto d-flex align-items-end justify-content-end">
                                         <div>
-                                            <span class="updated">{{ $review->updated_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp
-                                            <span class="text-right">投稿者 &nbsp{{ $review->name }}</span>
+                                            <span class="created">{{ $review->created_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp
+                                            <span class="updated">{{ $review->updated_at->format('Y/m/d H:i') }}&nbsp 更新</span>&nbsp&nbsp
+                                            <a class="text-decoration-none" href="{{ route('profile_refer', ['user_id' => $review->user_id]) }}?">
+                                                <span class="text-right">投稿者 &nbsp{{ $review->name }}</span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

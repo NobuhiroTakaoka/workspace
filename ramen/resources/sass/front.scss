@@ -115,6 +115,29 @@ body {
   }
 }
 
+.users {
+  background-color: #fff;
+  // height: 20vh;
+  .shop {
+    .date {
+      font-size: 0.6em;
+      color: #999999;
+    }
+    .title {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .body {
+      font-size: 0.8em;
+    }
+    .image {
+      img {
+    width: 250px;
+      }
+    }
+  }
+}
+
 .head-title {
   margin-right: 1em;
 }

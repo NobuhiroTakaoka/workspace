@@ -36,20 +36,20 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="d-flex flex-row">
+                        <div class="d-flex flex-row mt-3">
                             <div class="shop_types font-weight-bold col-md-3">
                                 ラーメン店のタイプ
                             </div>
                             <div class="col-md-9 row">
                             @foreach ($shop_types as $key => $shop_type)
-                                <div style="white-space: nowrap;" class="ml-2">
-                                    {{ Form::checkbox('types[]', $key, in_array((String)$key, $params['types'], true), ['id' => 'types-' . $key]) }}
-                                    {{ Form::label('types-' . $shop_type, $shop_type) }}
+                                <div style="white-space: nowrap;" class="ml-2 form-check">
+                                    {{ Form::checkbox('types[]', $key, in_array((String)$key, $params['types'], true), ['id' => 'types-' . $key, 'class' => 'form-check-input']) }}
+                                    {{ Form::label('types-' . $key, $shop_type, ['for' => 'types-' . $key, 'class' => 'form-check-label']) }}
                                 </div>
                             @endforeach
                             </div>
                         </div>
-                        <div>
+                        <div class="mt-3">
                             {{ Form::submit(__('messages.Ranking_Disp'), ['class' => 'btn btn-primary']) }}
                         </div>
                         {{ Form::close() }}
@@ -80,7 +80,7 @@
 
                         @foreach ($shops as $key => $shop)
                             <div class="row">
-                                <div class="ranks col-md-8 mx-auto mt-2">
+                                <div class="ranks col-md-10 mx-auto mt-2">
                                     <form action="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" method="GET">
                                         <div class="left-contents float-left lead font-weight-bold pr-3">
                                         @if ($counter < 10)

@@ -15,6 +15,6 @@ class ShopTagSeeder extends Seeder
     public function run()
     {
         // 店舗タグレコードを登録
-        ShopTags::factory()->count(1)->create();  // 追記
+        ShopTags::factory()->count(10)->create();  // 追記
     }
 }

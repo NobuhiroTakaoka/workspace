@@ -69,20 +69,31 @@
                             </div>
 
                             @if ($review_detail[0]->user_id == $user_id)
-                            <div class="ml-4">
-                                <div class="pb-2">
-                                    <form action="{{ route('review_edit', ['shop_id' => $review_detail[0]->shop_id, 'review_id' => $review_detail[0]->id]) }}" method="GET">
-                                        {{ Form::submit(__('messages.Review_Edit'), ['class' => 'btn btn-primary']) }}
-                                    </form>
-                                </div>
-                                <div class="pb-2">                                  
-                                    <form action="{{ route('review_delete', ['shop_id' => $review_detail[0]->shop_id, 'review_id' => $review_detail[0]->id]) }}" method="POST">
-                                        {{ Form::submit(__('messages.Review_Delete'), ['class' => 'btn btn-secondary']) }}
-                                    </form>
-                                </div>
-                            </div>
-                            @endif
+                                <div class="ml-4">
+                                    <div class="pb-2">
+                                        <form action="{{ route('review_edit', ['shop_id' => $review_detail[0]->shop_id, 'review_id' => $review_detail[0]->id]) }}?" method="GET">
+                                            {{ Form::submit(__('messages.Review_Edit'), ['class' => 'btn btn-primary']) }}
+                                        </form>
+                                    </div>
+                                    <div class="pb-2">                                  
+                                        <form name="deleteform" action="{{ route('review_delete', ['shop_id' => $review_detail[0]->shop_id, 'review_id' => $review_detail[0]->id]) }}?" method="POST" enctype="multipart/form-data">
+                                            @csrf
 
+                                            {{ Form::submit(__('messages.Review_Delete'), ['class' => 'btn btn-secondary', 'onclick' => 'delete_alert(event);return false;']) }}
+
+                                            {{-- 削除ボタンをクリックしたら、呼び出される確認ダイアログ --}}
+                                            <script>
+                                                function delete_alert(e) {
+                                                    if (!window.confirm('本当に削除しますか？')) {
+                                                        return false;
+                                                    }
+                                                    document.deleteform.submit();
+                                                };
+                                            </script>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

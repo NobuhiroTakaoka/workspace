@@ -22,8 +22,11 @@
                                 <label for="shop_name" class="col-md-3 col-form-label text-md-right">{{ __('messages.Shop_Name') }}</label>
 
                                 <div class="col-md-6">
-                                    {{-- <input id="shop_name" type="text" class="form-control @error('shop_name') is-invalid @enderror" name="shop_name" value="{{ old('shop_name') }}" autofocus> --}}
-                                    <input id="shop_name" type="text" class="form-control @error('shop_name') is-invalid @enderror" name="shop_name" value="{{ $form['shop_name'] }}" autofocus>
+                                    @if ($form['shop_name'] != '')
+                                        <input id="shop_name" type="text" class="form-control @error('shop_name') is-invalid @enderror" name="shop_name" value="{{ $form['shop_name'] }}" autofocus>
+                                    @else
+                                        <input id="shop_name" type="text" class="form-control @error('shop_name') is-invalid @enderror" name="shop_name" value="{{ old('shop_name') }}" autofocus>
+                                    @endif
 
                                     @error('shop_name')
                                         <span class="invalid-feedback" role="alert">
@@ -38,9 +41,11 @@
                                 <label for="shop_name_kana" class="col-md-3 col-form-label text-md-right">{{ __('messages.Shop_Name_Kana') }}</label>
 
                                 <div class="col-md-6">
-                                    {{-- <input id="shop_name_kana" type="text" class="form-control @error('shop_name_kana') is-invalid @enderror" name="shop_name_kana" value="{{ old('shop_name_kana') }}"> --}}
-
-                                    <input id="shop_name_kana" type="text" class="form-control @error('shop_name_kana') is-invalid @enderror" name="shop_name_kana" value="{{ $form['shop_name_kana'] }}">
+                                    @if ($form['shop_name_kana'] != '')
+                                        <input id="shop_name_kana" type="text" class="form-control @error('shop_name_kana') is-invalid @enderror" name="shop_name_kana" value="{{ $form['shop_name_kana'] }}">
+                                    @else
+                                        <input id="shop_name_kana" type="text" class="form-control @error('shop_name_kana') is-invalid @enderror" name="shop_name_kana" value="{{ old('shop_name_kana') }}">
+                                    @endif
 
                                     @error('shop_name_kana')
                                         <span class="invalid-feedback" role="alert">
@@ -55,8 +60,11 @@
                                 <label for="branch" class="col-md-3 col-form-label text-md-right">{{ __('messages.Branch') }}</label>
 
                                 <div class="col-md-6">
-                                    {{-- <input id="branch" type="text" class="form-control @error('branch') is-invalid @enderror" name="branch" value="{{ old('branch') }}"> --}}
-                                    <input id="branch" type="text" class="form-control @error('branch') is-invalid @enderror" name="branch" value="{{ $form['branch'] }}">
+                                    @if ($form['branch'] != '')
+                                        <input id="branch" type="text" class="form-control @error('branch') is-invalid @enderror" name="branch" value="{{ $form['branch'] }}">
+                                    @else
+                                        <input id="branch" type="text" class="form-control @error('branch') is-invalid @enderror" name="branch" value="{{ old('branch') }}">
+                                    @endif
 
                                     @error('branch')
                                         <span class="invalid-feedback" role="alert">
@@ -73,8 +81,11 @@
                                 <label for="postcode" class="col-md-3 col-form-label text-md-right">{{ __('messages.Post_Code') }}</label>
 
                                 <div class="col-md-2 p-postal-code">
-                                    {{-- <input id="postcode" type="text" class="form-control p-postal-code @error('postcode') is-invalid @enderror" name="postcode" value="{{ old('postcode') }}" maxlength="7"> --}}
-                                    <input id="postcode" type="text" class="form-control p-postal-code @error('postcode') is-invalid @enderror" name="postcode" value="{{ $form['postcode'] }}" maxlength="7">
+                                    @if ($form['postcode'] != '')
+                                        <input id="postcode" type="text" class="form-control p-postal-code @error('postcode') is-invalid @enderror" name="postcode" value="{{ $form['postcode'] }}" maxlength="7">
+                                    @else
+                                        <input id="postcode" type="text" class="form-control p-postal-code @error('postcode') is-invalid @enderror" name="postcode" value="{{ old('postcode') }}" maxlength="7">
+                                    @endif
     
                                     @error('postcode')
                                         <span class="invalid-feedback" role="alert">
@@ -90,8 +101,11 @@
                                 <label for="address1" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address1') }}</label>
                                 
                                 <div class="col-md-6">
-                                    {{-- <input id="address1" type="text" class="form-control p-region @error('address1') is-invalid @enderror" name="address1" value="{{ old('address1') }}"> --}}
-                                    <input id="address1" type="text" class="form-control p-region @error('address1') is-invalid @enderror" name="address1" value="{{ $form['address1'] }}" placeholder="{{ __('messages.Prefecture') }}">
+                                    @if ($form['address1'] != '')
+                                        <input id="address1" type="text" class="form-control p-region @error('address1') is-invalid @enderror" name="address1" value="{{ $form['address1'] }}" placeholder="{{ __('messages.Prefecture') }}">
+                                    @else
+                                        <input id="address1" type="text" class="form-control p-region @error('address1') is-invalid @enderror" name="address1" value="{{ old('address1') }}" placeholder="{{ __('messages.Prefecture') }}">
+                                    @endif
 
                                     @error('address1')
                                         <span class="invalid-feedback" role="alert">
@@ -106,8 +120,11 @@
                                 <label for="address2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address2') }}</label>
                                 
                                 <div class="col-md-6">
-                                    {{-- <input id="address2" type="text" class="form-control p-locality @error('address2') is-invalid @enderror" name="address2" value="{{ old('address2') }}"> --}}
-                                    <input id="address2" type="text" class="form-control p-locality @error('address2') is-invalid @enderror" name="address2" value="{{ $form['address2'] }}" placeholder="{{ __('messages.Municipalities') }}">
+                                    @if ($form['address2'] != '')
+                                        <input id="address2" type="text" class="form-control p-locality @error('address2') is-invalid @enderror" name="address2" value="{{ $form['address2'] }}" placeholder="{{ __('messages.Municipalities') }}">
+                                    @else
+                                        <input id="address2" type="text" class="form-control p-locality @error('address2') is-invalid @enderror" name="address2" value="{{ old('address2') }}" placeholder="{{ __('messages.Municipalities') }}">
+                                    @endif
     
                                     @error('address2')
                                         <span class="invalid-feedback" role="alert">
@@ -122,9 +139,12 @@
                                 <label for="address3" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address3') }}</label>
                                 
                                 <div class="col-md-6">
-                                    {{-- <input id="address3" type="text" class="form-control p-street-address @error('address3') is-invalid @enderror" name="address3" value="{{ old('address3') }}"> --}}
-                                    <input id="address3" type="text" class="form-control p-street-address @error('address3') is-invalid @enderror" name="address3" value="{{ $form['address3'] }}" placeholder="{{ __('messages.After_Address1') }}">
-
+                                    @if ($form['address3'] != '')
+                                        <input id="address3" type="text" class="form-control p-street-address @error('address3') is-invalid @enderror" name="address3" value="{{ $form['address3'] }}" placeholder="{{ __('messages.After_Address1') }}">
+                                    @else
+                                        <input id="address3" type="text" class="form-control p-street-address @error('address3') is-invalid @enderror" name="address3" value="{{ old('address3') }}" placeholder="{{ __('messages.After_Address1') }}">
+                                    @endif
+                                    
                                     @error('address3')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -138,9 +158,12 @@
                                 <label for="address4" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address4') }}</label>
                                 
                                 <div class="col-md-6">
-                                    {{-- <input id="address4" type="text" class="form-control p-extended-address @error('address4') is-invalid @enderror" name="address4" value="{{ old('address4') }}"> --}}
-                                    <input id="address4" type="text" onblur="initMap()" class="form-control p-extended-address @error('address4') is-invalid @enderror" name="address4" value="{{ $form['address4'] }}" placeholder="{{ __('messages.After_Address2') }}">
-
+                                    @if ($form['address4'] != '')
+                                        <input id="address4" type="text" onblur="initMap()" class="form-control p-extended-address @error('address4') is-invalid @enderror" name="address4" value="{{ $form['address4'] }}" placeholder="{{ __('messages.After_Address2') }}">
+                                    @else
+                                        <input id="address4" type="text" onblur="initMap()" class="form-control p-extended-address @error('address4') is-invalid @enderror" name="address4" value="{{ old('address4') }}" placeholder="{{ __('messages.After_Address2') }}">
+                                    @endif
+                                    
                                     @error('address4')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -220,8 +243,11 @@
                                 <label for="phone_number1" class="col-md-3 col-form-label text-md-right">{{ __('messages.Phone_Number1') }}</label>
                                 
                                 <div class="col-md-3">
-                                    {{-- <input id="phone_number1" type="text" class="form-control @error('phone_number1') is-invalid @enderror" name="phone_number1" value="{{ old('phone_number1') }}" maxlength="11"> --}}
-                                    <input id="phone_number1" type="text" class="form-control @error('phone_number1') is-invalid @enderror" name="phone_number1" value="{{ $form['phone_number1'] }}" maxlength="11">
+                                    @if ($form['phone_number1'] != '')
+                                        <input id="phone_number1" type="text" class="form-control @error('phone_number1') is-invalid @enderror" name="phone_number1" value="{{ $form['phone_number1'] }}" maxlength="11">
+                                    @else
+                                        <input id="phone_number1" type="text" class="form-control @error('phone_number1') is-invalid @enderror" name="phone_number1" value="{{ old('phone_number1') }}" maxlength="11">
+                                    @endif
                                 
                                     @error('phone_number1')
                                         <span class="invalid-feedback" role="alert">
@@ -237,8 +263,11 @@
                                 <label for="phone_number2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Phone_Number2') }}</label>
                                 
                                 <div class="col-md-3">
-                                    {{-- <input id="phone_number2" type="text" class="form-control @error('phone_number2') is-invalid @enderror" name="phone_number2" value="{{ old('phone_number2') }}" maxlength="11"> --}}
-                                    <input id="phone_number2" type="text" class="form-control @error('phone_number2') is-invalid @enderror" name="phone_number2" value="{{ $form['phone_number2'] }}" maxlength="11">
+                                    @if ($form['phone_number2'] != '')
+                                        <input id="phone_number2" type="text" class="form-control @error('phone_number2') is-invalid @enderror" name="phone_number2" value="{{ $form['phone_number2'] }}" maxlength="11">
+                                    @else
+                                        <input id="phone_number2" type="text" class="form-control @error('phone_number2') is-invalid @enderror" name="phone_number2" value="{{ old('phone_number2') }}" maxlength="11">
+                                    @endif
                             
                                     @error('phone_number2')
                                         <span class="invalid-feedback" role="alert">
@@ -254,8 +283,11 @@
                                 <label for="opening_hour1" class="col-md-3 col-form-label text-md-right">{{ __('messages.Opening_Hour1') }}</label>
                                 
                                 <div class="col-md-5">
-                                    {{-- <input id="opening_hour1" type="text" class="form-control @error('opening_hour1') is-invalid @enderror" name="opening_hour1" value="{{ old('opening_hour1') }}"> --}}
-                                    <input id="opening_hour1" type="text" class="form-control @error('opening_hour1') is-invalid @enderror" name="opening_hour1" value="{{ $form['opening_hour1'] }}">
+                                    @if ($form['opening_hour1'] != '')
+                                        <input id="opening_hour1" type="text" class="form-control @error('opening_hour1') is-invalid @enderror" name="opening_hour1" value="{{ $form['opening_hour1'] }}">
+                                    @else
+                                        <input id="opening_hour1" type="text" class="form-control @error('opening_hour1') is-invalid @enderror" name="opening_hour1" value="{{ old('opening_hour1') }}">
+                                    @endif
                             
                                     @error('opening_hour1')
                                         <span class="invalid-feedback" role="alert">
@@ -270,8 +302,11 @@
                                 <label for="opening_hour2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Opening_Hour2') }}</label>
                                 
                                 <div class="col-md-5">
-                                    {{-- <input id="opening_hour2" type="text" class="form-control @error('opening_hour2') is-invalid @enderror" name="opening_hour2" value="{{ old('opening_hour2') }}"> --}}
-                                    <input id="opening_hour2" type="text" class="form-control @error('opening_hour2') is-invalid @enderror" name="opening_hour2" value="{{ $form['opening_hour2'] }}">
+                                    @if ($form['opening_hour2'] != '')
+                                        <input id="opening_hour2" type="text" class="form-control @error('opening_hour2') is-invalid @enderror" name="opening_hour2" value="{{ $form['opening_hour2'] }}">
+                                    @else
+                                        <input id="opening_hour2" type="text" class="form-control @error('opening_hour2') is-invalid @enderror" name="opening_hour2" value="{{ old('opening_hour2') }}">
+                                    @endif
                             
                                     @error('opening_hour2')
                                         <span class="invalid-feedback" role="alert">
@@ -286,9 +321,12 @@
                                 <label for="holiday" class="col-md-3 col-form-label text-md-right">{{ __('messages.Holiday') }}</label>
                                 
                                 <div class="col-md-4">
-                                    {{-- <input id="holiday" type="text" class="form-control @error('holiday') is-invalid @enderror" name="holiday" value="{{ old('holiday') }}"> --}}
-                                    <input id="holiday" type="text" class="form-control @error('holiday') is-invalid @enderror" name="holiday" value="{{ $form['holiday'] }}">
-                            
+                                    @if ($form['holiday'] != '')
+                                        <input id="holiday" type="text" class="form-control @error('holiday') is-invalid @enderror" name="holiday" value="{{ $form['holiday'] }}">
+                                    @else
+                                        <input id="holiday" type="text" class="form-control @error('holiday') is-invalid @enderror" name="holiday" value="{{ old('holiday') }}">
+                                    @endif
+
                                     @error('holiday')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -302,9 +340,12 @@
                                 <label for="seats" class="col-md-3 col-form-label text-md-right">{{ __('messages.Seats') }}</label>
                                 
                                 <div class="col-md-4">
-                                    {{-- <input id="seats" type="text" class="form-control @error('seats') is-invalid @enderror" name="seats" value="{{ old('seats') }}"> --}}
-                                    <input id="seats" type="text" class="form-control @error('seats') is-invalid @enderror" name="seats" value="{{ $form['seats'] }}">
-                                
+                                    @if ($form['seats'] != '')
+                                        <input id="seats" type="text" class="form-control @error('seats') is-invalid @enderror" name="seats" value="{{ $form['seats'] }}">
+                                    @else
+                                        <input id="seats" type="text" class="form-control @error('seats') is-invalid @enderror" name="seats" value="{{ old('seats') }}">
+                                    @endif
+
                                     @error('seats')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -320,7 +361,7 @@
                                 <div class="col-md-9">
                                     {{-- <input id="access" type="text" class="form-control @error('access') is-invalid @enderror" name="access" value="{{ old('access') }}"> --}}
                                     {{-- <input id="access" type="textarea" class="form-control @error('access') is-invalid @enderror" name="access" value="{{ $form['access'] }}"> --}}
-                                    {{ Form::textarea('access', $form["access"],
+                                    {{ Form::textarea('access', $form['access'],
                                         $errors->has('access') ? ['id' => 'access', 'class' => 'form-control is-invalid']
                                                                : ['id' => 'access', 'class' => 'form-control']
                                     ) }}
@@ -338,9 +379,12 @@
                                 <label for="parking" class="col-md-3 col-form-label text-md-right">{{ __('messages.Parking') }}</label>
                                 
                                 <div class="col-md-4">
-                                    {{-- <input id="parking" type="text" class="form-control @error('parking') is-invalid @enderror" name="parking" value="{{ old('parking') }}"> --}}
-                                    <input id="parking" type="text" class="form-control @error('parking') is-invalid @enderror" name="parking" value="{{ $form['parking'] }}">
-                                
+                                    @if ($form['parking'] != '')
+                                        <input id="parking" type="text" class="form-control @error('parking') is-invalid @enderror" name="parking" value="{{ $form['parking'] }}">
+                                    @else
+                                        <input id="parking" type="text" class="form-control @error('parking') is-invalid @enderror" name="parking" value="{{ old('parking') }}">
+                                    @endif
+
                                     @error('parking')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -354,9 +398,12 @@
                                 <label for="official_site" class="col-md-3 col-form-label text-md-right">{{ __('messages.Official_Site') }}</label>
                                 
                                 <div class="col-md-5">
-                                    {{-- <input id="official_site" type="text" class="form-control @error('official_site') is-invalid @enderror" name="official_site" value="{{ old('official_site') }}"> --}}
-                                    <input id="official_site" type="text" class="form-control @error('official_site') is-invalid @enderror" name="official_site" value="{{ $form['official_site'] }}">
-                                
+                                    @if ($form['official_site'] != '')
+                                        <input id="official_site" type="text" class="form-control @error('official_site') is-invalid @enderror" name="official_site" value="{{ $form['official_site'] }}">
+                                    @else
+                                        <input id="official_site" type="text" class="form-control @error('official_site') is-invalid @enderror" name="official_site" value="{{ old('official_site') }}">
+                                    @endif
+
                                     @error('official_site')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -370,8 +417,11 @@
                                 <label for="official_blog" class="col-md-3 col-form-label text-md-right">{{ __('messages.Official_Blog') }}</label>
                                 
                                 <div class="col-md-5">
-                                    {{-- <input id="official_blog" type="text" class="form-control @error('official_blog') is-invalid @enderror" name="official_blog" value="{{ old('official_blog') }}"> --}}
-                                    <input id="official_blog" type="text" class="form-control @error('official_blog') is-invalid @enderror" name="official_blog" value="{{ $form['official_blog'] }}">
+                                    @if ($form['official_blog'] != '')
+                                        <input id="official_blog" type="text" class="form-control @error('official_blog') is-invalid @enderror" name="official_blog" value="{{ $form['official_blog'] }}">
+                                    @else
+                                        <input id="official_blog" type="text" class="form-control @error('official_blog') is-invalid @enderror" name="official_blog" value="{{ old('official_blog') }}">
+                                    @endif
                                 
                                     @error('official_blog')
                                         <span class="invalid-feedback" role="alert">
@@ -386,9 +436,12 @@
                                 <label for="facebook" class="col-md-3 col-form-label text-md-right">{{ __('messages.Facebook') }}</label>
                                 
                                 <div class="col-md-5">
-                                    {{-- <input id="facebook" type="text" class="form-control @error('facebook') is-invalid @enderror" name="facebook" value="{{ old('facebook') }}"> --}}
-                                    <input id="facebook" type="text" class="form-control @error('facebook') is-invalid @enderror" name="facebook" value="{{ $form['facebook'] }}">
-                                
+                                    @if ($form['facebook'] != '')
+                                        <input id="facebook" type="text" class="form-control @error('facebook') is-invalid @enderror" name="facebook" value="{{ $form['facebook'] }}">
+                                    @else
+                                        <input id="facebook" type="text" class="form-control @error('facebook') is-invalid @enderror" name="facebook" value="{{ old('facebook') }}">
+                                    @endif
+
                                     @error('facebook')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -402,9 +455,12 @@
                                 <label for="twitter" class="col-md-3 col-form-label text-md-right">{{ __('messages.Twitter') }}</label>
                                 
                                 <div class="col-md-5">
-                                    {{-- <input id="twitter" type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value="{{ old('twitter') }}"> --}}
-                                    <input id="twitter" type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value="{{ $form['twitter'] }}">
-                                
+                                    @if ($form['twitter'] != '')
+                                        <input id="twitter" type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value="{{ $form['twitter'] }}">
+                                    @else
+                                        <input id="twitter" type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value="{{ old('twitter') }}">
+                                    @endif
+
                                     @error('twitter')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -449,9 +505,12 @@
                                 <label for="opening_date" class="col-md-3 col-form-label text-md-right">{{ __('messages.Opening_Date') }}</label>
                                 
                                 <div class="col-md-3">
-                                    {{-- <input id="opening_date" type="text" class="form-control @error('opening_date') is-invalid @enderror" name="opening_date" value="{{ old('opening_date') }}"> --}}
-                                    <input id="opening_date" type="text" class="form-control @error('opening_date') is-invalid @enderror" name="opening_date" value="{{ $form['opening_date'] }}">
-                                
+                                    @if ($form['opening_date'] != '')
+                                        <input id="opening_date" type="text" class="form-control @error('opening_date') is-invalid @enderror" name="opening_date" value="{{ $form['opening_date'] }}">
+                                    @else
+                                        <input id="opening_date" type="text" class="form-control @error('opening_date') is-invalid @enderror" name="opening_date" value="{{ old('opening_date') }}">
+                                    @endif
+
                                     @error('opening_date')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -487,7 +546,9 @@
                                 <div class="col-md-9">
                                     {{-- <input id="notes" type="text" class="form-control @error('notes') is-invalid @enderror" name="notes" value="{{ old('notes') }}"> --}}
                                     {{-- <input id="notes" type="text" class="form-control @error('notes') is-invalid @enderror" name="notes" value="{{ $form['notes'] }}"> --}}
-                                    {{ Form::textarea('notes', $form['notes'], ['id' => 'notes', 'class' => 'form-control']
+                                    {{ Form::textarea('notes', $form['notes'],
+                                    $errors->has('notes') ? ['id' => 'notes', 'class' => 'form-control is_invalid']
+                                                          : ['id' => 'notes', 'class' => 'form-control']
                                     ) }}
 
                                     @error('notes')

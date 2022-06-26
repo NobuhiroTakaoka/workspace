@@ -38,25 +38,17 @@
                                 <div class="col-md-9">
                                     @if (isset($profile[0]->gender))
                                         @foreach ($genders as $key => $gender)
-                                            <span style="white-space: nowrap;" class="mr-2">
-                                                @if ($gender == $profile[0]->gender)
-                                                    {{ Form::radio('gender', $gender, true) }}
-                                                @else
-                                                    {{ Form::radio('gender', $gender, false) }}
-                                                @endif
-                                                {{ Form::label($gender, $gender) }}
-                                            </span>
+                                        <span style="white-space: nowrap;" class="mr-2 form-check">
+                                            {{ Form::radio('gender', $gender, $gender == $profile[0]->gender, ['id' => 'gender-' . $key, 'class' => 'form-check-input']) }}
+                                            {{ Form::label('gender-' . $key, $gender, ['for' => 'gender-' . $key, 'class' => 'form-check-label']) }}
+                                        </span>
                                         @endforeach
                                     @else
                                         @foreach ($genders as $key => $gender)
-                                            <span style="white-space: nowrap;" class="mr-2">
-                                                @if ($key == 3)
-                                                    {{ Form::radio('gender', $gender, true) }}
-                                                @else
-                                                    {{ Form::radio('gender', $gender, false) }}
-                                                @endif
-                                                {{ Form::label($gender, $gender) }}
-                                            </span>
+                                        <span style="white-space: nowrap;" class="mr-2 form-check">
+                                            {{ Form::radio('gender', $gender, $key == 3, ['id' => 'gender-' . $key, 'class' => 'form-check-input']) }}
+                                            {{ Form::label('gender-' . $key, $gender, ['for' => 'gender-' . $key, 'class' => 'form-check-label']) }}
+                                        </span>
                                         @endforeach
                                     @endif
                                 </div>
@@ -66,9 +58,9 @@
                             <div class="form-group row">
                                 <label for="birth_year" class="col-md-3 col-form-label text-md-right">{{ __('messages.Birth_Year') }}</label>
                                 
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     {{ Form::select('birth_year', [
-                                        // 'nonpublic' => '非公開',
+                                        '非公開' => '非公開',
                                         '2016' => '2016年',
                                         '2015' => '2015年',
                                         '2014' => '2014年',
@@ -171,8 +163,8 @@
                                         '1917' => '1917年',
                                         '1916' => '1916年',
                                         ],
-                                        'nonpublic',
-                                        ['placeholder' => '非公開', 'id' => 'birth_year', 'class' => 'form-control'] 
+                                        isset($profile[0]->birth_year) ? $profile[0]->birth_year : '非公開',
+                                        ['id' => 'birth_year', 'class' => 'form-control'] 
                                     ) }}
                                 </div>
                             </div>
@@ -181,13 +173,13 @@
                             <div class="form-group row">
                                 <label for="base" class="col-md-3 col-form-label text-md-right">{{ __('messages.Base') }}</label>
                                 
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     {{-- 都道府県のプルダウンメニュー --}}
-                                    @if (isset($profile[0]->base))
-                                        {{ Form::select('preflist', App\Models\Prefectures::prefList(), $profile[0]->base, ['class' => 'form-control preflist', 'id' => 'preflist']) }}
-                                    @else
-                                        {{ Form::select('preflist', App\Models\Prefectures::prefList(), '非公開', ['placeholder' => '非公開', 'class' => 'form-control preflist', 'id' => 'preflist']) }}
-                                    @endif
+                                    {{ Form::select('base',
+                                        App\Models\Prefectures::prefList(),
+                                        $pref_id != '' ? $pref_id: '非公開',
+                                        $pref_id != '' ? ['class' => 'form-control', 'id' => 'base'] : ['placeholder' => '非公開', 'class' => 'form-control', 'id' => 'base']
+                                    ) }}
                                 </div>
                             </div>
 
@@ -195,9 +187,17 @@
                             <div class="form-group row">
                                 <label for="image_file" class="col-md-3 col-form-label text-md-right">{{ __('messages.Profile_Image') }}</label>
 
-                                <div class="col-md-4">
+                                <div class="col-md-9">
                                     {{-- <input id="profile_image" type="file" class="form-control-file" name="profile_image" value="{{ old('profile_image') }}"> --}}
-                                    {{Form::file('profile_image', ['class'=>'form-control-file','id'=>'profile_image'])}}
+                                    {{ Form::file('image_file', ['class'=>'form-control-file','id'=>'image_file']) }}
+
+                                    @if (isset($profile[0]->image_path) && $profile[0]->image_path !== '')                                       
+                                        <p>選択済みは{{ $profile[0]->image_path }}</p>
+                                        {{ Form::checkbox('image_delete', true, false, ['id'=>'image_delete']) }}
+                                        {{ Form::label('image_delete', '選択済みを削除する場合はチェックしてください') }}
+                                        <img class="img-thumbnail" src="{{ asset('storage/image/' . $profile[0]->image_path) }}">     
+                                        <input id="image_path" type="hidden" class="form-control" name="image_path" value="{{ $profile[0]->image_path }}">
+                                    @endif
                                 </div>
                             </div>
 

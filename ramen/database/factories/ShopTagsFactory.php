@@ -22,7 +22,7 @@ class ShopTagsFactory extends Factory
     public function definition()
     {
         return [
-            'shop_id' => $this->faker->unique()->numberBetween(61, 63),  // 店舗ID
+            'shop_id' => $this->faker->unique()->numberBetween(1, 10),  // 店舗ID
             'tag_id' => $this->faker->numberBetween(1, 10),  // タグID
         ];
     }

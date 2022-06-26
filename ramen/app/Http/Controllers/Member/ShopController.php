@@ -71,7 +71,7 @@ class ShopController extends Controller
 
     public $key = __CLASS__ . '-entry';  //登録セッションのキーを設定
     public $key2 = __CLASS__ . '-edit';  //更新セッションのキーを設定
-    public $key3 = __CLASS__ . '-rev_post';  //レビュー登録セッションのキーを設定
+    // public $key3 = __CLASS__ . '-rev_post';  //レビュー登録セッションのキーを設定
 
     public function add(Request $request)
     {
@@ -287,7 +287,7 @@ class ShopController extends Controller
         $data['shop_type'] = '不明';
 
         // データベース登録用に配列を作成
-        $data = array('user_id' => Auth::id(), 'user_id_update' => Auth::id());  // ユーザID、ユーザID（更新者）
+        $data = array('user_id_creater' => Auth::id(), 'user_id_updater' => Auth::id());  // ユーザID、ユーザID（更新者）
         $data += $form;  // フォームデータ
 
         // 任意入力の項目がnullの場合は空文字を設定
@@ -327,7 +327,7 @@ class ShopController extends Controller
             $data['notes'] = '';
         }
 
-        $data['tags'] = '';  // shopsテーブルのタグは未使用のため空
+        // $data['tags'] = '';  // shopsテーブルのタグは未使用のため空
 
         $data['other'] = '';  // 備考のデフォルトは空
 
@@ -375,6 +375,8 @@ class ShopController extends Controller
 
         // $shop_idのshop_tagsテーブルのレコードを取得
         $shop_tags = ShopTags::where('shop_id', $shop_id)->get();
+        $tags_id = $shop_tags->pluck('tag_id')->all();
+        // dd($tags_id);
 
         // 「修正する」ボタンが押された場合
         if ($request->has('reedit')) {
@@ -428,7 +430,9 @@ class ShopController extends Controller
                     $form['notes'] = '';
                 }
 
-                $form['tags'] = '';  // shopsテーブルのタグは未使用
+                if (!isset($form['tags'])) {
+                    $form['tags'] = [];
+                }
 
                 if (!isset($form['image_path'])) {
                     $form['image_path'] = '';
@@ -438,14 +442,14 @@ class ShopController extends Controller
                     $form['other'] = '';
                 }
                 
-                return view('member.shop.edit', ['shop_tags' => $shop_tags, 'shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form, 'shop_id' => $shop_id]);
+                return view('member.shop.edit', ['shop_tags' => $shop_tags, 'tags_id' => $tags_id, 'shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form, 'shop_id' => $shop_id]);
             }
         } 
         // セッションを破棄する
         $form = $request->session()->forget($this->key2);
 
         // shop/detail.blade.php ファイルを渡す
-        return view('member.shop.edit', ['shop_detail' => $shop_detail, 'shop_tags' => $shop_tags, 'shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form, 'shop_id' => $shop_id]);
+        return view('member.shop.edit', ['shop_detail' => $shop_detail, 'shop_tags' => $shop_tags, 'tags_id' => $tags_id, 'shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form, 'shop_id' => $shop_id]);
     }
 
     public function update(Request $request)
@@ -473,7 +477,7 @@ class ShopController extends Controller
         $data['shop_type'] = '不明';
 
         // データベース更新用に配列を作成
-        $data = array('user_id_update' => Auth::id());  // ユーザID（更新者）
+        $data = array('user_id_updater' => Auth::id());  // ユーザID（更新者）
         $data += $form;  // フォームデータ
         $shop_id = $data['shop_id'];
         unset($data['shop_id']);
@@ -515,14 +519,14 @@ class ShopController extends Controller
             $data['notes'] = '';
         }
 
-        $data['tags'] = '';  // shopsテーブルのタグは未使用のため空
+        // $data['tags'] = '';  // shopsテーブルのタグは未使用のため空
 
         // $shop_id = $request->shop_id;
 
-        // $shop_idのshopsテーブルのレコードを取得し、$shop_idに設定しなおす
+        // $shop_idのshopsテーブルのレコードを取得し、$shop_id_recに設定する
         $shop_id_rec = $shop::select()->find((Integer)$shop_id);
 
-        // データベースに保存する
+        // データベースに保存する（$shop_id_recを$dataで更新する）
         $shop_id_rec->fill($data);
         $shop_id_rec->save();
 

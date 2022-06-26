@@ -27,7 +27,7 @@
                             </div>
                             <div class="col-md-2">
                                 {{-- 都道府県のプルダウンメニュー --}}
-                                {{ Form::select('preflist', App\Models\Prefectures::prefList(), $pref_id, ['placeholder' => '▼都道府県', 'class' => 'form-control preflist', 'id' => 'preflist']) }}
+                                {{ Form::select('preflist', App\Models\Prefectures::prefList(), $pref_id, ['placeholder' => '▼都道府県', 'class' => 'form-control', 'id' => 'preflist']) }}
                             </div>
                             <div class="col-md-2">
                                 {{-- 市区町村のプルダウンメニュー --}}
@@ -40,7 +40,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="d-flex flex-row">
+                        <div class="d-flex flex-row mt-3">
                             <div class="favorite font-weight-bold col-md-2">
                                 こだわり
                             </div>
@@ -53,7 +53,7 @@
                             @endforeach
                             </div>
                         </div>
-                        <div class="d-flex flex-row">
+                        <div class="d-flex flex-row mt-1">
                             <div class="shop_types font-weight-bold col-md-3">
                                 ラーメン店のタイプ
                             </div>
@@ -61,12 +61,12 @@
                             @foreach ($shop_types as $key => $shop_type)
                                 <div style="white-space: nowrap;" class="ml-2">
                                     {{ Form::checkbox('types[]', $key, in_array((String)$key, $params['types'], true), ['id' => 'types-' . $key]) }}
-                                    {{ Form::label('types-' . $shop_type, $shop_type) }}
+                                    {{ Form::label('types-' . $key, $shop_type) }}
                                 </div>
                             @endforeach
                             </div>
                         </div>
-                        <div>
+                        <div class="mt-3">
                             {{ Form::submit(__('messages.Shop_Search'), ['class' => 'btn btn-primary']) }}
                         </div>
                         {{ Form::close() }}
@@ -88,7 +88,7 @@
 
                         @foreach ($shops as $shop)
                             <div class="row">
-                                <div class="shops col-md-8 mx-auto mt-2">
+                                <div class="shops col-md-10 mx-auto mt-2">
                                     {{-- <form action="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" method="GET"> --}}
                                     <div class="left-contents d-flex align-items-start float-left pr-3 mt-2 mb-2">
                                         <a class="text-decoration-none text-dark" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}?">

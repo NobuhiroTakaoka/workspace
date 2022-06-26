@@ -22,10 +22,10 @@ class ShopsFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 1,
-            // 'user_id_creater' => (Integer)1,
-            'user_id_update' => 1,  // ユーザID
-            // 'user_id_updater' => (Integer)1,
+            // 'user_id' => 1,
+            'user_id_creater' => (Integer)1,
+            // 'user_id_update' => 1,  // ユーザID
+            'user_id_updater' => (Integer)1,
             'shop_name' => $this->faker->company(),  // 店名の代替（会社名）
             'shop_name_kana' => $this->faker->company(),  // 店名（ふりがな）の代替（会社名）
             'branch' => $this->faker->company(),  // 支店名の代替（会社名）
@@ -52,7 +52,7 @@ class ShopsFactory extends Factory
             'opening_date' => $this->faker->date('Y/m/d'),  // 開店日
             'menu' => 'ラーメン ' . $this->faker->randomNumber(3) . '円' . "\n" . $this->faker->realText(300),  // メニュー
             'notes' => $this->faker->realText(300),  // 備考
-            'tags' => '',  // タグ（カラム削除予定）
+            // 'tags' => '',  // タグ（カラム削除予定）
             'image_path' => '0avVo3lJ28xHMe0XfqYfDJZg4L63BSmlUeRZfk5i.jpg',  // お店イメージ画像
             'other' => $this->faker->realText(300),  // その他（表示なし）
         ];

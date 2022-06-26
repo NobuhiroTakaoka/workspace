@@ -32,6 +32,7 @@ class InfoController extends Controller
         $reviews = Reviews::select('reviews.*', 'shops.shop_name', 'shops.branch', 'users.name')
             ->join('shops', 'reviews.shop_id', '=', 'shops.id')
             ->join('users', 'reviews.user_id', '=', 'users.id')
+            ->whereNull('reviews.deleted_at')
             ->orderByDesc('reviews.updated_at')
             ->limit(10)
             ->get();
@@ -59,8 +60,11 @@ class InfoController extends Controller
         // Prefecturesモデルクラスをインスタンス化
         $pref = new Prefectures();
 
+        // Prefecturesテーブルの都道府県名を全取得
+        $pref_names = $pref::select('prefectures.pref_name');
+
         if (!empty($pref_id)) {
-            // $prefectureのshopsテーブルのレコードを取得
+            // $pref_idから$pref_nameを取得
             $pref_rec = $pref::select()->find($pref_id);
             $pref_name = $pref_rec->pref_name;
         } else {
@@ -90,12 +94,14 @@ class InfoController extends Controller
 
         $types_flag = is_array($types_item) && count($types_item) > 0;
 
-        $rownum = 0;
-
         $shops = Shops::select('shops.*', Reviews::raw('avg(reviews.points) as avg_points', 'count(*) as count'))
-        ->leftjoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+        // ->leftjoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+        ->leftjoin('reviews', function($join) {
+            $join->on('shops.id', '=', 'reviews.shop_id')
+            ->whereNull('reviews.deleted_at');
+        })
         ->when($tags_flag, function($query) use ($tags) {
-            return $query->whereHas('tags', function($query2) use ($tags) {
+            return $query->whereHas('shop_tags', function($query2) use ($tags) {
                 return $query2->whereIn('tag_id', $tags);
             });
         })
@@ -108,14 +114,18 @@ class InfoController extends Controller
                             ->orWhere('address4', 'like', '%' .  addslashes($keyword) . '%');
             });
         })
-        ->when($pref_name != '', function($query5) use ($pref_name) {
-            return $query5->where('address1', addslashes($pref_name));
+        ->when($pref_name != '', function($query5) use ($pref_name, $pref_names) {
+            return $query5->when($pref_name != '海外', function($query6) use ($pref_name) {
+                return $query6->where('address1', addslashes($pref_name));
+            }, function($query7) use ($pref_names) {
+                return $query7->whereNotIn('address1', $pref_names);
+            });
         })
-        ->when($city != '', function($query6) use ($city) {
-            return $query6->where('address2', addslashes($city));
+        ->when($city != '', function($query8) use ($city) {
+            return $query8->where('address2', addslashes($city));
         })
-        ->when($types_flag, function($query7) use ($types_item) {
-            return $query7->whereIn('shop_type', $types_item);
+        ->when($types_flag, function($query9) use ($types_item) {
+            return $query9->whereIn('shop_type', $types_item);
         })
         ->groupby('shops.id')
         ->paginate($disp);
@@ -180,7 +190,11 @@ class InfoController extends Controller
         $types_flag = is_array($types_item) && count($types_item) > 0;
 
         $shops = Shops::select('shops.*', Reviews::raw('avg(reviews.points) as avg_points'))
-        ->leftjoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+        // ->leftjoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+        ->leftjoin('reviews', function($join) {
+            $join->on('shops.id', '=', 'reviews.shop_id')
+            ->whereNull('reviews.deleted_at');
+        })
         ->when($pref_name != '', function($query5) use ($pref_name) {
             return $query5->where('address1', addslashes($pref_name));
         })

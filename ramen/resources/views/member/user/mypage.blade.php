@@ -38,11 +38,11 @@
                         <div class="clearfix">
                             <div class="col-md-3">
                                 {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }}
-                                <div class="pb-2">
+                                <div class="pb-3">
                                     {{-- キーワード検索フォーム --}}
                                     {{ Form::text('keyword', $keyword, ['class' => 'form-control', 'placeholder' => __('messages.Keyword')]) }}
                                 </div>
-                                <div class="pb-2">
+                                <div class="pb-3">
                                     {{ Form::submit(__('messages.MyReview_Search'), ['class' => 'btn btn-primary']) }}
                                 </div>
                                 {{ Form::close() }}
@@ -54,20 +54,20 @@
 
                             <div class="table-responsive">
                                 <table class="table mt-2">
-                                    <thead>
+                                    <thead class="table-info">
                                         <tr>
-                                            <th style="width: 30%" scope="col">{{ __('messages.Menu_Title_Table') }}</th>
-                                            <th style="width: 30%" scope="col">{{ __('messages.Shop_Name_Table') }}</th>
+                                            <th style="width: 35%" scope="col">{{ __('messages.Menu_Title_Table') }}</th>
+                                            <th style="width: 25%" scope="col">{{ __('messages.Shop_Name_Table') }}</th>
                                             <th style="width: 10%" scope="col">{{ __('messages.Points_Table') }}</th>
                                             <th style="width: 15%" scope="col">{{ __('messages.Posted_At') }}</th>
                                             <th style="width: 15%" scope="col">{{ __('messages.Updated_At') }}</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="table-warning">
                                         @foreach ($my_reviews as $my_review)
                                             <tr>
                                                 <th scope="row">
-                                                    <a class="text-decoration-none text-danger" href="{{ route('shop.review_detail', ['shop_id' => $my_review->shop_id, 'review_id' => $my_review->id]) }}?">
+                                                    <a class="text-decoration-none text-success" href="{{ route('shop.review_detail', ['shop_id' => $my_review->shop_id, 'review_id' => $my_review->id]) }}?">
                                                         {{ $my_review->menu_title }}
                                                     </a>
                                                 </th>

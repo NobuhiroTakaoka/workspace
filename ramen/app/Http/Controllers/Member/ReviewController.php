@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\Reviews;
+use App\Models\Shops;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,6 +24,7 @@ class ReviewController extends Controller
     ];
 
     public $key = __CLASS__ . '-rev_post';  //レビュー登録セッションのキーを設定
+    public $key2 = __CLASS__ . '-rev_edit';  //レビュー登録セッションのキーを設定
 
     public function reviewPost(Request $request, int $shop_id)
     {
@@ -194,7 +197,7 @@ class ReviewController extends Controller
         }
 
         // Reviewsモデルクラスをインスタンス化
-        $shop = new Reviews;
+        $review = new Reviews;
 
         // セッション情報からtokenを削除する
         unset($form['_token']);
@@ -212,8 +215,8 @@ class ReviewController extends Controller
         $data += $form;  // フォームデータ
 
         // データベースに保存する
-        $shop->fill($data);
-        $shop->save();
+        $review->fill($data);
+        $review->save();
 
         // セッションを破棄する
         $key = $this->key;
@@ -221,5 +224,97 @@ class ReviewController extends Controller
 
         // searchにリダイレクトする
         return redirect('search');
+    }
+
+    public function reviewEdit(Request $request, int $shop_id, int $review_id)
+    {
+        // reviewsモデルクラスをインスタンス化
+        $review = new Reviews();
+
+        // $review_idのreviewsテーブルのレコードを取得
+        $review_detail = $review::select()->find($review_id);
+
+        // shopsモデルクラスをインスタンス化
+        $shop = new Shops();
+        
+        // $shop_idからshopsテーブルのレコードを取得（$shop_nameと$branchが必要）
+        $shop_detail = $shop::select()->find($shop_id);
+
+        return view('member.shop.review_edit', ['shop_id' => $shop_id, 'review_id' => $review_id, 'review_detail' => $review_detail, 'shop_detail' => $shop_detail,]);
+    }
+
+    public function reviewUpdate(Request $request, int $shop_id, int $review_id)
+    {
+        // リクエストをすべて取得する
+        $form = $request->all();
+
+        // 画像ファイル名が設定されている場合
+        if (isset($form['menu_image'])) {
+            // 画像ファイル名を取得
+            // $image_name = $form['menu_title']->getClientOriginalName();
+            // 画像ファイルを保存
+            $path = $request->file('menu_image')->store('public/image');
+            // 保存した画像ファイルパスからファイル名を取得
+            $form['image_path'] = basename($path);
+        } else {
+            $form['image_path'] = '';
+        }
+
+        // リクエストされたフォームからtokenを削除する
+        unset($form['_token']);
+
+        // ログイン中のユーザIDを取得
+        $user_id = Auth::id();
+
+        // データベース更新用に配列を作成
+        $data = array('shop_id' => $shop_id);  // 店舗ID
+        $data += array('user_id' => $user_id);  // ユーザID
+        $data += $form;  // フォームデータ
+        
+        // $review_idのreviewsテーブルのレコードを取得
+        $review = Reviews::select()->find($review_id);
+
+        // 画像ファイル名が設定されていない、かつテーブルのimage_pathが存在、かつ画像ファイル削除にチェックが入っていない場合はテーブルのimage_pathを再設定する
+        if ($form['image_path'] == '' && $review->image_path != '' && !$request->has('image_delete')) {
+            $data['image_path'] = $review->image_path;
+        }
+
+        // 画像ファイル名が設定されていない、かつテーブルのimage_pathが存在、かつ画像ファイル削除にチェックが入っている場合はテーブルのimage_pathに空文字を設定する
+        if ($form['image_path'] == '' && $review->image_path != '' && $request->has('image_delete')) {
+            $data['image_path'] = '';
+        }
+        
+        Reviews::where('id', $review_id)->update(
+            ['shop_id' => $data['shop_id'],
+             'user_id' => $data['user_id'],
+             'menu_title' => $data['menu_title'],
+             'category' => $data['category'],
+             'soup' => $data['soup'],
+             'points' => $data['points'],
+             'image_path' => $data['image_path'],
+             'comment' => $data['comment'],
+             'updated_at' => Carbon::now(),
+            ]
+        );
+
+        // マイページにリダイレクトする
+        return redirect('member/mypage');
+    }
+
+    public function reviewDelete(Request $request, int $shop_id, int $review_id)
+    {
+        // リクエストをすべて取得する
+        $form = $request->all();
+
+        // リクエストされたフォームからtokenを削除する
+        unset($form['_token']);
+        
+        Reviews::where('id', $review_id)->delete(
+            // ['deleted_at' => Carbon::now(),
+            // ]
+        );
+
+        // マイページにリダイレクトする
+        return redirect('member/mypage');
     }
 }

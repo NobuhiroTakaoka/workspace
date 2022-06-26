@@ -116,7 +116,7 @@ return [
     'Edit' => '更新する',
     'Fix' => '修正する',
 
-    // レビュー投稿
+    // レビュー投稿・編集
     'Review_Post' => 'レビュー投稿',
     'Review_Post_Cd' => 'レビュー投稿　（*）は入力必須',
     'Menu_Title' => 'メニュー（タイトル） *',
@@ -126,6 +126,7 @@ return [
     'Menu_Image' => 'メニュー画像',
     'Comment' => 'コメント *',
     'Post' => '投稿する',
+    'Review_Edit_Cd' => 'レビュー編集　（*）は入力必須',
 
     // レビューリスト
     'Review_List' => 'レビューリスト',
@@ -134,4 +135,7 @@ return [
     'Review_Detail' => 'レビュー詳細',
     'Review_Edit' => '編集',
     'Review_Delete' => '削除',
+
+    // ユーザプロフィール
+    'User_Profile' => 'ユーザプロフィール',
 ];

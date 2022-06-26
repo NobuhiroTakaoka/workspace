@@ -567,22 +567,36 @@
                                 
                                 <div class="col-md-9">
                                     @foreach ($tags_category as $key => $tag_category)
-                                    @php
-                                        $tag_flg = 0;
-                                    @endphp
-                                    {{-- @foreach ($shop_tags as $key => $shop_tag) --}}
-                                        @foreach ($shop_tags as $shop_tag)
-                                            @if ($key === $shop_tag->tag_id)
-                                            {{-- @if (is_array($shop_tags) && in_array($key, $shop_tags, true)) --}}
-                                                {{ Form::checkbox('tags[]', $key, true, ['id' => 'tags-' . $key]) }}
+                                        @php
+                                            $tag_flag = false;
+                                        @endphp
+                                        @if (isset($form['tags']))
+                                            @if (in_array((String)$key, $form['tags'], true))
                                                 @php
-                                                    $tag_flg = 1;
+                                                    $tag_flag = true;
                                                 @endphp
                                             @endif
-                                        @endforeach
-                                        @if ($tag_flg === 0)
-                                            {{ Form::checkbox('tags[]', $key, false, ['id' => 'tags-' . $key]) }}
+                                        @else
+                                            @if (in_array($key, $tags_id, true))
+                                                @php
+                                                    $tag_flag = true;
+                                                @endphp
+                                            @endif
                                         @endif
+                                        {{ Form::checkbox('tags[]', $key, $tag_flag, ['id' => 'tags-' . $key]) }}    
+
+                                    {{-- @foreach ($shop_tags as $key => $shop_tag) --}}
+                                        {{-- @foreach ($shop_tags as $shop_tag)
+                                            @if ($key === $shop_tag->tag_id)
+                                                {{ Form::checkbox('tags[]', $key, true, ['id' => 'tags-' . $key]) }}
+                                                @php
+                                                    $tag_flag = 1;
+                                                @endphp
+                                            @endif
+                                        @endforeach --}}
+                                        {{-- @if ($tag_flag === 0)
+                                            {{ Form::checkbox('tags[]', $key, false, ['id' => 'tags-' . $key]) }}
+                                        @endif --}}
                                         {{ Form::label('tags-' . $key, $tag_category) }}
                                     @endforeach
                                 </div>

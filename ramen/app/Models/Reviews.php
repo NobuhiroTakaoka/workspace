@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Reviews extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     // $guardedプロパティの設定にカラムを追加
     protected $guarded = ['id'];

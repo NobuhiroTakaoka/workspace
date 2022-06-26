@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            // PrefectureSeeder::class,
-            // CitySeeder::class,
-            // ShopSeeder::class,
-            // ShopTagSeeder::class,
+            PrefectureSeeder::class,
+            CitySeeder::class,
+            ShopSeeder::class,
+            ShopTagSeeder::class,
             ReviewSeeder::class,
         ]);
     }

@@ -40,9 +40,13 @@
                     <div class="form-group row">
                         <label for="menu_title" class="col-md-3 col-form-label text-md-right">{{ __('messages.Menu_Title') }}</label>
 
-                        <div class="col-md-5">
-                            <input id="menu_title" type="text" class="form-control @error('menu_title') is-invalid @enderror" name="menu_title" value="{{ $form['menu_title'] }}" maxlength="30" autofocus>
-                            <span>30文字以内</span>
+                        <div class="col-md-8">
+                            @if ($form['menu_title'] != '')
+                                <input id="menu_title" type="text" class="form-control @error('menu_title') is-invalid @enderror" name="menu_title" value="{{ $form['menu_title'] }}" maxlength="40" autofocus>
+                            @else
+                                <input id="menu_title" type="text" class="form-control @error('menu_title') is-invalid @enderror" name="menu_title" value="{{ old('menu_title') }}" maxlength="40" autofocus>
+                            @endif
+                            <span>40文字以内</span>
 
                             @error('menu_title')
                                 <span class="invalid-feedback" role="alert">
@@ -228,9 +232,9 @@
 
                     {{-- メニュー画像 --}}
                     <div class="form-group row">
-                        <label for="image_file" class="col-md-3 col-form-label text-md-right">{{ __('messages.Menu_Image') }}</label>
+                        <label for="menu_image" class="col-md-3 col-form-label text-md-right">{{ __('messages.Menu_Image') }}</label>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <input id="menu_image" type="file" class="form-control-file" name="menu_image" value="{{ old('menu_image') }}">
 
                             @if ($form['image_name'] !== '')

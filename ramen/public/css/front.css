@@ -94,6 +94,24 @@ body {
   width: 250px;
 }
 
+.users {
+  background-color: #fff;
+}
+.users .shop .date {
+  font-size: 0.6em;
+  color: #999999;
+}
+.users .shop .title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.users .shop .body {
+  font-size: 0.8em;
+}
+.users .shop .image img {
+  width: 250px;
+}
+
 .head-title {
   margin-right: 1em;
 }
