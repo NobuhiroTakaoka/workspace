@@ -42,7 +42,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // ログインユーザ
 Route::group(['prefix' => 'member', 'middleware' => 'auth'], function () {
     Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
-    Route::post('/mypage/profile/public', [UserController::class, 'profilePublic'])->name('profile_public');
+    Route::get('/mypage/profile/public', [UserController::class, 'profilePublic'])->name('profile_public');
     Route::get('/mypage/profile/edit', [UserController::class, 'profileEdit'])->name('profile_edit');
     // Route::post('/mypage/profile/check', [UserController::class, 'profileCheck'])->name('profile_check');
     Route::post('/mypage/profile/save', [UserController::class, 'profileSave'])->name('profile_save');

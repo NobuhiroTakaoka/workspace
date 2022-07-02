@@ -90,7 +90,7 @@
                                         @endif
                                         </div>
                                         <div class="left-contents float-left mr-3 mt-2 mb-2">
-                                            <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}?">
+                                            <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}">
                                                 @if ($shop->image_path)
                                                     <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}">
                                                 @else
@@ -108,7 +108,7 @@
                                                 @endif
                                             </div>
                                             <div>
-                                                <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}?">
+                                                <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}">
                                                     <span class="shop_name lead font-weight-bold">{{ $shop->shop_name }}</span>
                                                     <span class="branch lead font-weight-bold">{{ $shop->branch }}</span>
                                                 </a>

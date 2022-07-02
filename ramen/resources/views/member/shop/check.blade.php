@@ -387,7 +387,7 @@
 
                     <div class="card-body">
                     @if ($chk_mode === 'edit')
-                        <form action="{{ route('shop.edit', ['shop_id' => $shop_id]) }}?" method="GET">
+                        <form action="{{ route('shop.edit', ['shop_id' => $shop_id]) }}" method="GET">
                             @csrf
                             <input id="reedit" type="hidden" class="form-control" name="reedit" value="true">
                     @else

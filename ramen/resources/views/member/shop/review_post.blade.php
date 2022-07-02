@@ -30,7 +30,7 @@
             </div>
 
             <div class="card-body">
-                <form action="{{ route('review_check', ['shop_id' => $shop_id]) }}?" class="h-adr" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('review_check', ['shop_id' => $shop_id]) }}" class="h-adr" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <input id="shop_name" type="hidden" class="form-control" name="shop_name" value="{{ $form['shop_name'] }}">

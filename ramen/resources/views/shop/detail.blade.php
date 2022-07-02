@@ -280,7 +280,7 @@
         </div>
 
         <div class="review d-grid gap-2 col-6 mx-auto row">
-            <form action="{{ route('shop.edit', ['shop_id' => $shop_id]) }}?" method="GET">
+            <form action="{{ route('shop.edit', ['shop_id' => $shop_id]) }}" method="GET">
                 <div class="float-left m-3">
                     {{ csrf_field() }}
                     {{-- <input id="shop_id" type="hidden" class="form-control" name="shop_id" value="{{ $shop_id }}"> --}}
@@ -289,7 +289,7 @@
                     </button>
                 </div>
             </form>
-            <form action="{{ route('review_post', ['shop_id' => $shop_id]) }}?" method="GET">
+            <form action="{{ route('review_post', ['shop_id' => $shop_id]) }}" method="GET">
                 <div class="float-left m-3">
                     {{ csrf_field() }}
                     <input id="shop_name" type="hidden" class="form-control" name="shop_name" value="{{ $shop_detail->shop_name }}">
@@ -299,7 +299,7 @@
                     </button>
                 </div>
             </form>
-            <form action="{{ route('shop.review_list', ['shop_id' => $shop_id]) }}?" method="GET">
+            <form action="{{ route('shop.review_list', ['shop_id' => $shop_id]) }}" method="GET">
                 <div class="float-left m-3">
                     {{ csrf_field() }}
                     <input id="shop_name" type="hidden" class="form-control" name="shop_name" value="{{ $shop_detail->shop_name }}">

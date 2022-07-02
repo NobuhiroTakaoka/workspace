@@ -33,7 +33,7 @@
                         <div class="reviews col-md-10 mx-auto pt-2">
                             <div class="top-contents mt-2">
                                 <div>
-                                    <span class="points lead font-weight-bold pr-2">{{ $review_detail[0]->points }}点</span>
+                                    <span class="points h4 font-weight-bold pr-2">{{ $review_detail[0]->points }}点</span>
                                     <span class="menu_title lead font-weight-bold">{{ $review_detail[0]->menu_title }}</span>
                                 </div>
                             </div>
@@ -63,8 +63,11 @@
                         <div class="bottom-contents col-md-10 mx-auto d-flex align-items-end justify-content-end">
                             <div>
                                 <div>
-                                    <span class="updated">{{ $review_detail[0]->updated_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp
-                                    <span class="text-right">投稿者 &nbsp{{ $review_detail[0]->name }}</span>
+                                    <span class="created">{{ $review_detail[0]->created_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp
+                                    <span class="updated">{{ $review_detail[0]->updated_at->format('Y/m/d H:i') }}&nbsp 更新</span>&nbsp&nbsp
+                                    <a class="text-decoration-none" href="{{ route('profile_refer', ['user_id' => $review_detail[0]->user_id]) }}?">
+                                        <span class="text-right">投稿者 &nbsp{{ $review_detail[0]->name }}</span>
+                                    </a>
                                 </div>
                             </div>
 

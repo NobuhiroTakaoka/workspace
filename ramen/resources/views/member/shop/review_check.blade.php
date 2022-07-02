@@ -14,7 +14,7 @@
                     <div class="card-header">{{ __('messages.Shop_Entry_Check') }}</div>
 
                     <div class="card-body">
-                        <form action="{{ route('review_create', ['shop_id' => $shop_id]) }}?" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('review_create', ['shop_id' => $shop_id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             {{-- メニュー（タイトル） --}}
@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('review_post', ['shop_id' => $shop_id]) }}?" method="GET">
+                        <form action="{{ route('review_post', ['shop_id' => $shop_id]) }}" method="GET">
                             @csrf
                             <input id="mode" type="hidden" class="form-control" name="mode" value="true">
                             <input id="shop_name" type="hidden" class="form-control" name="shop_name" value="{{ $form['shop_name'] }}">

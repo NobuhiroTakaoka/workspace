@@ -67,11 +67,15 @@
                                         @foreach ($my_reviews as $my_review)
                                             <tr>
                                                 <th scope="row">
-                                                    <a class="text-decoration-none text-success" href="{{ route('shop.review_detail', ['shop_id' => $my_review->shop_id, 'review_id' => $my_review->id]) }}?">
+                                                    <a class="text-decoration-none text-primary" href="{{ route('shop.review_detail', ['shop_id' => $my_review->shop_id, 'review_id' => $my_review->id]) }}">
                                                         {{ $my_review->menu_title }}
                                                     </a>
                                                 </th>
-                                                <td>{{ $my_review->shop_name }}&nbsp{{ $my_review->branch }}</td>
+                                                <td>
+                                                    <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $my_review->shop_id]) }}">
+                                                        {{ $my_review->shop_name }}&nbsp{{ $my_review->branch }}
+                                                    </a>
+                                                </td>
                                                 <td>{{ $my_review->points }}点</td>
                                                 <td>{{ $my_review->created_at->format('Y/m/d H:i') }}</td>
                                                 <td>{{ $my_review->updated_at->format('Y/m/d H:i') }}</td>

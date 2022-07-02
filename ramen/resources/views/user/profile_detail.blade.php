@@ -8,7 +8,6 @@
 
 @section('content')
     <div class="container">
-        <hr color="#c0c0c0">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.Title') }}</a></li>
@@ -31,7 +30,7 @@
                         <div class="form-group row">
                             <label for="nickname" class="col-md-3 col-form-label text-md-right">{{ __('messages.Nickname') }}</label>
 
-                            <div class="col-md-5 d-flex align-items-center">
+                            <div class="col-md-9 d-flex align-items-center">
                                 <span>{{ $profile[0]->nickname }}</span>
                             </div>
                         </div>

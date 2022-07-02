@@ -71,7 +71,7 @@
                         </div>
                         {{ Form::close() }}
                         
-                        {{ Form::open(['url' => '/member/shop/entry', 'method' => 'get']) }}
+                        {{ Form::open(['url' => route('shop.entry'), 'method' => 'get']) }}
                         <div class="float-right">
                             <div>
                                 {{ Form::submit(__('messages.Shop_Enter'), ['class' => 'btn btn-success']) }}
@@ -91,7 +91,7 @@
                                 <div class="shops col-md-10 mx-auto mt-2">
                                     {{-- <form action="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" method="GET"> --}}
                                     <div class="left-contents d-flex align-items-start float-left pr-3 mt-2 mb-2">
-                                        <a class="text-decoration-none text-dark" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}?">
+                                        <a class="text-decoration-none text-dark" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}">
                                             @if ($shop->image_path)
                                                 <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}">
                                             @else
@@ -102,7 +102,7 @@
 
                                     <div class="right-contents clearfix mt-2">
                                         <div>
-                                            <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}?">
+                                            <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}">
                                                 <span class="shop_name lead font-weight-bold">{{ $shop->shop_name }}</span>
                                                 <span class="branch lead font-weight-bold">{{ $shop->branch }}</span>
                                             </a>
