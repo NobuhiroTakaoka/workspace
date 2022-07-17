@@ -17,23 +17,23 @@
                         {{-- 各種メニュー --}}
                         <div class="float-right row mb-4">
                             {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }}
-                            <div class="pr-3">
+                            <div class="pr-3 pb-2">
                                 {{ Form::submit(__('messages.Top'), ['class' => 'btn btn-success']) }}
                             </div>
                             {{ Form::close() }}
                             {{ Form::open(['url' => route('profile_public'), 'method' => 'get']) }}
-                            <div class="pr-3">
+                            <div class="pr-3 pb-2">
                                 {{ Form::submit(__('messages.Public_Profile'), ['class' => 'btn btn-success']) }}
                             </div>
                             {{ Form::close() }}
                             {{ Form::open(['url' => route('profile_edit'), 'method' => 'get']) }}
-                            <div class="pr-3">
+                            <div class="pr-3 pb-2">
                                 {{ Form::submit(__('messages.Profile_Edit'), ['class' => 'btn btn-success']) }}
                             </div>
                             {{ Form::close() }}
                         </div>
 
-                        <div class="float-left">
+                        <div class="float-left col-md-12">
                             <form action="{{ route('profile_save') }}" class="h-adr" method="POST" enctype="multipart/form-data">
                                 @csrf
 

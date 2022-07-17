@@ -23,7 +23,7 @@ class ReviewsFactory extends Factory
     {
         return [
             'shop_id' => $this->faker->unique()->numberBetween(1, 10),  // 店舗ID
-            'user_id' => 1,  // ユーザID
+            'user_id' => (Integer)1,  // ユーザID
             'menu_title' => $this->faker->realText(30),  // メニュー（タイトル）
             'category' => $this->faker->randomElement(['ラーメン', 'つけ麺', 'まぜそば', 'その他の麺']),  // カテゴリ
             'soup' => $this->faker->randomElement(['醤油系', '味噌系', '塩系', '豚骨系', '魚介系', 'その他スープ']),  // スープ

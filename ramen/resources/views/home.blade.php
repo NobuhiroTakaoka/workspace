@@ -17,9 +17,11 @@
 
                     {{-- {{ __('You are logged in!') }} --}}
                     {{ __('ログインしました。') }}
-                    <form action="{{ route('index') }}" method="GET">
-                        <input type="submit" class="btn btn-primary" value="{{ __('トップページ') }}">
-                    </form>
+                    <div class="pt-3">
+                        <form action="{{ route('index') }}" method="GET">
+                            <input type="submit" class="btn btn-primary" value="{{ __('トップページ') }}">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

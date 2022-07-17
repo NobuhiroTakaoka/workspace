@@ -14,10 +14,10 @@
                     <div class="card-header">
                         <form action="{{ route('search') }}" method="GET">
                             <div class="form-group row">
-                                <div class="col-md-4">
+                                <div class="pr-3 pb-2">
                                     <input type="text" class="form-control" name="keyword" placeholder="{{ __('messages.Keyword') }}">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="pr-3 pb-2">
                                     {{ csrf_field() }}
                                     <input type="submit" class="btn btn-primary" value="{{ __('messages.Shop_Search') }}">
                                 </div>
@@ -77,10 +77,14 @@
                                         </div>
                                         {{-- </div> --}}
                                     </div>
-                                    <div class="bottom-contents col-md-10 mx-auto d-flex align-items-end justify-content-end">
+                                    <div class="pt-3 bottom-contents col-md-10 mx-auto d-flex align-items-end justify-content-end">
                                         <div>
                                             <span class="created">{{ $review->created_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp
+                                        </div>
+                                        <div>
                                             <span class="updated">{{ $review->updated_at->format('Y/m/d H:i') }}&nbsp 更新</span>&nbsp&nbsp
+                                        </div>
+                                        <div>   
                                             <a class="text-decoration-none" href="{{ route('profile_refer', ['user_id' => $review->user_id]) }}">
                                                 <span class="text-right">投稿者 &nbsp{{ $review->name }}</span>
                                             </a>

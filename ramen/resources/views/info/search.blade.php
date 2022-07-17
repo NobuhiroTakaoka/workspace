@@ -20,16 +20,16 @@
                 <div class="card">
                     <div class="card-header">{{ __('messages.Shop_Filter') }}
                         {{ Form::open(['url' => '/search', 'method' => 'get']) }}
-                        <div class="d-flex flex-row">
-                            <div class="col-md-3">
+                        <div class="form-group row">
+                            <div class="pr-3 pb-2">
                                 {{-- キーワード検索フォーム --}}
                                 {{ Form::text('keyword', $keyword, ['class' => 'form-control', 'placeholder' => __('messages.Keyword')]) }}
                             </div>
-                            <div class="col-md-2">
+                            <div class="pr-3 pb-2">
                                 {{-- 都道府県のプルダウンメニュー --}}
                                 {{ Form::select('preflist', App\Models\Prefectures::prefList(), $pref_id, ['placeholder' => '▼都道府県', 'class' => 'form-control', 'id' => 'preflist']) }}
                             </div>
-                            <div class="col-md-2">
+                            <div class="pr-3 pb-2">
                                 {{-- 市区町村のプルダウンメニュー --}}
                                 <select name="city" id="city" class="form-control">
                                     @if ($city != '')

@@ -45,7 +45,7 @@
 
                             @foreach ($review_list as $review)
                                 <div class="row">
-                                    <div class="reviews col-md-8 mx-auto mt-2">
+                                    <div class="reviews col-md-10 mx-auto mt-2">
                                         {{-- <form action="{{ route('shop.review_list', ['shop_id' => $review->shop_id, 'user_id' => $review->user_id]) }}" method="GET"> --}}
                                         <div class="top-contents mt-2">
                                             <a class="text-decoration-none text-dark" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}">
@@ -88,10 +88,14 @@
                                         </div>
                                         {{-- </form> --}}
                                     </div>
-                                    <div class="bottom-contents col-md-8 mx-auto d-flex align-items-end justify-content-end">
+                                    <div class="pt-3 bottom-contents col-md-10 mx-auto d-flex align-items-end justify-content-end">
                                         <div>
                                             <span class="created">{{ $review->created_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp
+                                        </div>
+                                        <div>
                                             <span class="updated">{{ $review->updated_at->format('Y/m/d H:i') }}&nbsp 更新</span>&nbsp&nbsp
+                                        </div>
+                                        <div>
                                             <a class="text-decoration-none" href="{{ route('profile_refer', ['user_id' => $review->user_id]) }}">
                                                 <span class="text-right">投稿者 &nbsp{{ $review->name }}</span>
                                             </a>

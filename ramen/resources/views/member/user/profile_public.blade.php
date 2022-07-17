@@ -15,7 +15,7 @@
 
                     <div class="card-body">
                         {{-- 各種メニュー --}}
-                        <div class="float-right row">
+                        <div class="float-right row mb-4">
                             {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }}
                             <div class="pr-3">
                                 {{ Form::submit(__('messages.Top'), ['class' => 'btn btn-success']) }}
@@ -33,13 +33,17 @@
                             {{ Form::close() }}
                         </div>
 
-                        <div class="float-left mt-5">
+                        <div class="float-left col-md-12">
                             {{-- ニックネーム --}}
                             <div class="form-group row">
                                 <label for="nickname" class="col-md-3 col-form-label text-md-right">{{ __('messages.Nickname') }}</label>
 
                                 <div class="col-md-9 d-flex align-items-center">
-                                    <span>{{ $profile[0]->nickname }}</span>
+                                    @if (isset($profile[0]))
+                                        <span>{{ $profile[0]->nickname }}</span>
+                                    @else
+                                        <span>非公開</span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -48,7 +52,11 @@
                                 <label for="gender" class="col-md-3 col-form-label text-md-right">{{ __('messages.Gender') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
-                                    <span>{{ $profile[0]->gender }}</span>
+                                    @if (isset($profile[0]))
+                                        <span>{{ $profile[0]->gender }}</span>
+                                    @else
+                                        <span>非公開</span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -57,7 +65,11 @@
                                 <label for="birth_year" class="col-md-3 col-form-label text-md-right">{{ __('messages.Birth_Year') }}</label>
                                 
                                 <div class="col-md-3 d-flex align-items-center">
-                                    <span>{{ $profile[0]->birth_year }}年</span>
+                                    @if (isset($profile[0]))
+                                        <span>{{ $profile[0]->birth_year }}年</span>
+                                    @else
+                                        <span>非公開</span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -66,7 +78,11 @@
                                 <label for="base" class="col-md-3 col-form-label text-md-right">{{ __('messages.Base') }}</label>
                                 
                                 <div class="col-md-3 d-flex align-items-center">
-                                    <span>{{ $profile[0]->base }}</span>
+                                    @if (isset($profile[0]))
+                                        <span>{{ $profile[0]->base }}</span>
+                                    @else
+                                        <span>非公開</span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -75,8 +91,12 @@
                                 <label for="image_file" class="col-md-3 col-form-label text-md-right">{{ __('messages.Profile_Image') }}</label>
 
                                 <div class="col-md-9 d-flex align-items-center">
-                                    @if (!empty($profile[0]->image_path))
-                                        <img class="img-thumbnail" src="{{ asset('storage/image/' . $profile[0]->image_path) }}">
+                                    @if (isset($profile[0]))
+                                        @if (!empty($profile[0]->image_path))
+                                            <img class="img-thumbnail" src="{{ asset('storage/image/' . $profile[0]->image_path) }}">
+                                        @else
+                                            <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">
+                                        @endif
                                     @else
                                         <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">
                                     @endif
@@ -88,7 +108,11 @@
                                 <label for="introduction" class="col-md-3 col-form-label text-md-right">{{ __('messages.Introduction') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
-                                    <span>{{ $profile[0]->introduction }}</span>
+                                    @if (isset($profile[0]))
+                                        <span>{{ $profile[0]->introduction }}</span>
+                                    @else
+                                        <span>非公開</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
