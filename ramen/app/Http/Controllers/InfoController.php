@@ -101,7 +101,7 @@ class InfoController extends Controller
             ->whereNull('reviews.deleted_at');
         })
         ->when($tags_flag, function($query) use ($tags) {
-            return $query->whereHas('shop_tags', function($query2) use ($tags) {
+            return $query->whereHas('tags', function($query2) use ($tags) {
                 return $query2->whereIn('tag_id', $tags);
             });
         })
