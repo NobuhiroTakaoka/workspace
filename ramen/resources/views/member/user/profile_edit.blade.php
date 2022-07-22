@@ -15,7 +15,7 @@
 
                     <div class="card-body">
                         {{-- 各種メニュー --}}
-                        <div class="float-right row mb-4">
+                        <div class="float-right row mb-4 col-6">
                             {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }}
                             <div class="pr-3 pb-2">
                                 {{ Form::submit(__('messages.Top'), ['class' => 'btn btn-success']) }}

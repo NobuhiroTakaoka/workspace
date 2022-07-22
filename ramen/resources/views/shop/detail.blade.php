@@ -268,10 +268,10 @@
         <div class="form-group row">
             <label for="tags" class="col-md-3 col-form-label text-md-right">{{ __('messages.Tags') }}</label>
             
-            <div class="col-md-6 d-flex align-items-center row">
+            <div class="col-md-9 d-flex align-items-center row">
                 @foreach ($shop_tags as $shop_tag)
                     @if (isset($tags_category[$shop_tag->tag_id]))                  
-                        <div class="m-1">
+                        <div class="ml-3">
                             {{ $tags_category[$shop_tag->tag_id] }}
                         </div>
                     @endif
@@ -279,7 +279,7 @@
             </div>
         </div>
 
-        <div class="review d-grid gap-2 col-6 mx-auto row">
+        <div class="review d-grid gap-2 col-8 mx-auto row">
             <form action="{{ route('shop.edit', ['shop_id' => $shop_id]) }}" method="GET">
                 <div class="float-left m-3">
                     {{ csrf_field() }}

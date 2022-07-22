@@ -17,7 +17,7 @@
                         @csrf
 
                         {{-- 各種メニュー --}}
-                        <div class="float-right row mb-2">
+                        <div class="float-right row mb-4 col-6">
                             {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }}
                             <div class="pr-3 pb-2">
                                 {{ Form::submit(__('messages.Top'), ['class' => 'btn btn-success']) }}
@@ -38,11 +38,11 @@
                         <div class="clearfix">
                             <div class="col-md-3">
                                 {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }}
-                                <div class="pb-3">
+                                <div class="pr-3 pb-2">
                                     {{-- キーワード検索フォーム --}}
                                     {{ Form::text('keyword', $keyword, ['class' => 'form-control', 'placeholder' => __('messages.Keyword')]) }}
                                 </div>
-                                <div class="pb-3">
+                                <div class="pr-3 pb-2">
                                     {{ Form::submit(__('messages.MyReview_Search'), ['class' => 'btn btn-primary']) }}
                                 </div>
                                 {{ Form::close() }}
@@ -54,13 +54,13 @@
 
                             <div class="table-responsive">
                                 <table class="table mt-2">
-                                    <thead class="table-info">
+                                    <thead class="table-info text-nowrap">
                                         <tr>
-                                            <th style="width: 35%" scope="col">{{ __('messages.Menu_Title_Table') }}</th>
-                                            <th style="width: 25%" scope="col">{{ __('messages.Shop_Name_Table') }}</th>
-                                            <th style="width: 10%" scope="col">{{ __('messages.Points_Table') }}</th>
-                                            <th style="width: 15%" scope="col">{{ __('messages.Posted_At') }}</th>
-                                            <th style="width: 15%" scope="col">{{ __('messages.Updated_At') }}</th>
+                                            <th scope="col">{{ __('messages.Menu_Title_Table') }}</th>
+                                            <th scope="col">{{ __('messages.Shop_Name_Table') }}</th>
+                                            <th scope="col">{{ __('messages.Points_Table') }}</th>
+                                            <th scope="col">{{ __('messages.Posted_At') }}</th>
+                                            <th scope="col">{{ __('messages.Updated_At') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-warning">
@@ -71,12 +71,13 @@
                                                         {{ $my_review->menu_title }}
                                                     </a>
                                                 </th>
-                                                <td>
+                                                <td class="text-nowrap">
                                                     <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $my_review->shop_id]) }}">
-                                                        {{ $my_review->shop_name }}&nbsp{{ $my_review->branch }}
+                                                        <div>{{ $my_review->shop_name }}</div>
+                                                        <div>{{ $my_review->branch }}</div>
                                                     </a>
                                                 </td>
-                                                <td>{{ $my_review->points }}点</td>
+                                                <td class="text-nowrap">{{ $my_review->points }}点</td>
                                                 <td>{{ $my_review->created_at->format('Y/m/d H:i') }}</td>
                                                 <td>{{ $my_review->updated_at->format('Y/m/d H:i') }}</td>
                                             </tr>

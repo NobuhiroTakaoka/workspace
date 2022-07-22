@@ -12,9 +12,13 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <span class="review_edit">{{ __('messages.Review_Edit_Cd') }}</span>
-                        <span class="lead font-weight-bold">{{ $shop_detail->shop_name }}</span>&nbsp
-                        <span class="lead font-weight-bold">{{ $shop_detail->branch }}</span>
+                        <div>
+                            <span class="review_edit">{{ __('messages.Review_Edit_Cd') }}</span>
+                        </div>
+                        <div>
+                            <span class="lead font-weight-bold">{{ $shop_detail->shop_name }}</span>&nbsp
+                            <span class="lead font-weight-bold">{{ $shop_detail->branch }}</span>
+                        </div>
                     </div>
 
                     <div class="card-body">

@@ -19,14 +19,18 @@
 
         <div class="card">
             <div class="card-header">
-                <span class="review_post">{{ __('messages.Review_Post_Cd') }}</span>
-                @if (isset($form['shop_name']))
-                    <span class="lead font-weight-bold">{{ $form['shop_name'] }}</span>&nbsp
-                    <span class="lead font-weight-bold">{{ $form['branch'] }}</span>
-                @else
-                    <span class="lead font-weight-bold">{{ $shop_name }}</span>&nbsp
-                    <span class="lead font-weight-bold">{{ $branch }}</span>
-                @endif
+                <div>
+                    <span class="review_post">{{ __('messages.Review_Post_Cd') }}</span>
+                </div>
+                <div>
+                    @if (isset($form['shop_name']))
+                        <span class="lead font-weight-bold">{{ $form['shop_name'] }}</span>&nbsp
+                        <span class="lead font-weight-bold">{{ $form['branch'] }}</span>
+                    @else
+                        <span class="lead font-weight-bold">{{ $shop_name }}</span>&nbsp
+                        <span class="lead font-weight-bold">{{ $branch }}</span>
+                    @endif
+                </div>
             </div>
 
             <div class="card-body">
