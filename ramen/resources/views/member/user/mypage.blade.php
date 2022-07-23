@@ -14,44 +14,49 @@
                     <div class="card-header">{{ __('messages.Mypage') }}</div>
 
                     <div class="card-body">
-                        @csrf
-
                         {{-- 各種メニュー --}}
-                        <div class="float-right row mb-4 col-6">
-                            {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }}
+                        <div class="float-right row mb-4 col-7">
+                            {{-- {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }} --}}
                             <div class="pr-3 pb-2">
-                                {{ Form::submit(__('messages.Top'), ['class' => 'btn btn-success']) }}
+                                {{-- {{ Form::submit(__('messages.Top'), ['class' => 'btn btn-success']) }} --}}
+                                <a href="{{ route('mypage') }}" class="btn btn-success">{{ __('messages.Top') }}</a>
                             </div>
-                            {{ Form::close() }}
-                            {{ Form::open(['url' => route('profile_public'), 'method' => 'get']) }}
+                            {{-- {{ Form::close() }} --}}
+                            {{-- {{ Form::open(['url' => route('profile_public'), 'method' => 'get']) }} --}}
                             <div class="pr-3 pb-2">
-                                {{ Form::submit(__('messages.Public_Profile'), ['class' => 'btn btn-success']) }}
+                                {{-- {{ Form::submit(__('messages.Public_Profile'), ['class' => 'btn btn-success']) }} --}}
+                                <a href="{{ route('profile_public') }}" class="btn btn-success">{{ __('messages.Public_Profile') }}</a>
                             </div>
-                            {{ Form::close() }}
-                            {{ Form::open(['url' => route('profile_edit'), 'method' => 'get']) }}
+                            {{-- {{ Form::close() }} --}}
+                            {{-- {{ Form::open(['url' => route('profile_edit'), 'method' => 'get']) }} --}}
                             <div class="pr-3 pb-2">
-                                {{ Form::submit(__('messages.Profile_Edit'), ['class' => 'btn btn-success']) }}
+                                {{-- {{ Form::submit(__('messages.Profile_Edit'), ['class' => 'btn btn-success']) }} --}}
+                                <a href="{{ route('profile_edit') }}" class="btn btn-success">{{ __('messages.Profile_Edit') }}</a>
                             </div>
-                            {{ Form::close() }}
+                            {{-- {{ Form::close() }} --}}
                         </div>
                     
-                        <div class="clearfix">
-                            <div class="col-md-3">
-                                {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }}
+                        <div class="float-left pb-3">
+                            {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }}
                                 <div class="pr-3 pb-2">
+                                    {{-- {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }} --}}
                                     {{-- キーワード検索フォーム --}}
                                     {{ Form::text('keyword', $keyword, ['class' => 'form-control', 'placeholder' => __('messages.Keyword')]) }}
+                                    {{-- {{ Form::close() }} --}}
                                 </div>
                                 <div class="pr-3 pb-2">
                                     {{ Form::submit(__('messages.MyReview_Search'), ['class' => 'btn btn-primary']) }}
+                                    {{-- <a href="{{ route('mypage') }}" class="btn btn-primary">{{ __('messages.MyReview_Search') }}</a> --}}
+                                    {{-- <button type="submit" class="btn btn-primary" name="finput" value="true">{{ __('messages.MyReview_Search') }}</button> --}}
                                 </div>
-                                {{ Form::close() }}
-                            </div>
+                            {{ Form::close() }}
+                        </div>
 
-                            <div class="mt-4 lead font-weight-bold">
-                                レビュー投稿履歴
-                            </div>
+                        <div class="float-left col-10 lead font-weight-bold">
+                            レビュー投稿履歴
+                        </div>
 
+                        <div class="clearfix">
                             <div class="table-responsive">
                                 <table class="table mt-2">
                                     <thead class="table-info text-nowrap">

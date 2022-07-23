@@ -40,8 +40,11 @@ return [
     'Profile_Edit' => 'プロフィール編集',
     'MyReview_Search' => 'マイレビュー検索',
 
+    // マイページ - 公開プロフィール
+    'Mypage_Public_Profile' => 'マイページ - 公開プロフィール',
+
     // マイページ - プロフィール編集
-    'Mypage_Profile_Edit' => 'マイページ  - プロフィール編集',
+    'Mypage_Profile_Edit' => 'マイページ - プロフィール編集',
     'Nickname' => 'ニックネーム',
     'Gender' => '性別',
     'Birth_Year' => '誕生年',
