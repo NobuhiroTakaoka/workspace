@@ -54,7 +54,7 @@ class ShopController extends Controller
         // $shop_idのreviewsテーブルのレコードを取得
         $review_list = $review::select('reviews.*', 'users.name')->where('shop_id', $shop_id)
             ->join('users', 'reviews.user_id', '=', 'users.id')
-            ->orderByDesc('reviews.updated_at')
+            ->orderByDesc('reviews.created_at')
             ->paginate($disp);
 
         // shop/review.blade.php ファイルを渡す

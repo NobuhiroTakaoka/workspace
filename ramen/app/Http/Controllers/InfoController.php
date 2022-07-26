@@ -33,7 +33,7 @@ class InfoController extends Controller
             ->join('shops', 'reviews.shop_id', '=', 'shops.id')
             ->join('users', 'reviews.user_id', '=', 'users.id')
             ->whereNull('reviews.deleted_at')
-            ->orderByDesc('reviews.updated_at')
+            ->orderByDesc('reviews.created_at')
             ->limit(10)
             ->get();
             // ->paginate($disp);
