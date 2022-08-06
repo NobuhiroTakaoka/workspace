@@ -201,7 +201,7 @@
                                         {{ Form::select('base',
                                             App\Models\Prefectures::prefList(),
                                             $pref_id != '' ? $pref_id: '非公開',
-                                            $pref_id != '' ? ['class' => 'form-control', 'id' => 'base'] : ['placeholder' => '非公開', 'class' => 'form-control', 'id' => 'base']
+                                            ['placeholder' => '非公開', 'class' => 'form-control', 'id' => 'base']
                                         ) }}
                                     </div>
                                 </div>

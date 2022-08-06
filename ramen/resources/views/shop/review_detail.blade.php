@@ -33,14 +33,31 @@
                         <div class="reviews col-md-10 mx-auto pt-2">
                             <div class="top-contents mt-2">
                                 <div>
-                                    <span class="points h4 font-weight-bold pr-2">{{ $review_detail[0]->points }}点</span>
-                                    <span class="menu_title lead font-weight-bold">{{ $review_detail[0]->menu_title }}</span>
+                                    <span class="points h4 font-weight-bold px-1 bg-warning rounded border border-danger">{{ $review_detail[0]->points }}点</span>
+                                    <span class="menu_title lead font-weight-bold pl-1">{{ $review_detail[0]->menu_title }}</span>
                                 </div>
                             </div>
                             <div class="left-contents d-flex align-items-start float-left pr-3 mt-2">
                                 <div>
-                                    @if ($review_detail[0]->image_path)
+                                    {{-- @if ($review_detail[0]->image_path)
                                         <img class="img-thumbnail" src="{{ asset('storage/image/' . $review_detail[0]->image_path) }}">
+                                    @else
+                                        <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
+                                    @endif --}}
+
+                                    @if ($review_detail[0]->image_path)
+                                        <img src="{{ asset('storage/image/' . $review_detail[0]->image_path) }}" alt="review-image" class="img-thumbnail" data-toggle="modal" data-target="#image-modal" style="cursor:pointer">
+
+                                        <div class="modal fade" id="image-modal">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-body">
+                                                    <img src="{{ asset('storage/image/' . $review_detail[0]->image_path) }}" alt="review-image" class="img-thumbnail d-block mx-auto w-100">
+                                                </div>
+                                                <div class="modal-img_footer">
+                                                    <button type="button" class="btn btn-primary mx-auto d-block" data-dismiss="modal">閉じる</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @else
                                         <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
                                     @endif
@@ -91,7 +108,7 @@
                                             {{-- 削除ボタンをクリックしたら、呼び出される確認ダイアログ --}}
                                             <script>
                                                 function delete_alert(e) {
-                                                    if (!window.confirm('本当に削除しますか？')) {
+                                                    if (!window.confirm('このレビューを本当に削除しますか？')) {
                                                         return false;
                                                     }
                                                     document.deleteform.submit();

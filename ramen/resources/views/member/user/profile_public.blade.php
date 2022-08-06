@@ -69,7 +69,11 @@
                                 
                                 <div class="col-md-3 d-flex align-items-center">
                                     @if (isset($profile[0]))
-                                        <span>{{ $profile[0]->birth_year }}年</span>
+                                        @if ($profile[0]->birth_year == '非公開')
+                                            <span>{{ $profile[0]->birth_year }}</span>
+                                        @else
+                                            <span>{{ $profile[0]->birth_year }}年</span>
+                                        @endif
                                     @else
                                         <span>非公開</span>
                                     @endif

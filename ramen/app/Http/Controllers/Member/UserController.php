@@ -118,14 +118,19 @@ class UserController extends Controller
         // $user_idのprofilesテーブルのレコードを取得
         $profile = Profiles::where('user_id', $user_id)->get();
 
-        // レコードが存在する場合は$pref_idを取得、存在しない場合は空文字を設定
+        // レコードが存在する場合は出身地の判定、存在しない場合は空文字を設定
         if (!empty($profile[0]->user_id)) {
-            // Prefecturesモデルクラスをインスタンス化
-            $pref = new Prefectures();
+            // 出身地が非公開の場合は空文字を設定、そうでない場合は$pref_idを取得
+            if ($profile[0]->base == '非公開') {
+                $pref_id = '';
+            } else {
+                // Prefecturesモデルクラスをインスタンス化
+                $pref = new Prefectures();
 
-            // $pref_nameから$pref_idを取得
-            $pref_rec = $pref::select()->where('pref_name', $profile[0]->base)->get();
-            $pref_id = $pref_rec[0]->id;
+                // $pref_nameから$pref_idを取得
+                $pref_rec = $pref::select()->where('pref_name', $profile[0]->base)->get();
+                $pref_id = $pref_rec[0]->id;
+            } 
         } else {
             $pref_id = '';
         }

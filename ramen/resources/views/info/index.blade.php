@@ -37,26 +37,43 @@
                                 <div class="row">
                                     <div class="reviews col-md-10 mx-auto mt-2">
                                         <div class="top-contents mt-2">
-                                            <a class="text-decoration-none text-dark" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}">
-                                                <span class="points h4 font-weight-bold pr-2">{{ $review->points }}点</span>
-                                                <span class="menu_title lead font-weight-bold text-muted">{{ $review->menu_title }}</span>
+                                            <a class="text-dark" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}">
+                                                <span class="points h4 font-weight-bold px-1 bg-warning rounded border border-danger">{{ $review->points }}点</span>
+                                                <span class="menu_title lead font-weight-bold pl-1">{{ $review->menu_title }}</span>
                                             </a>
                                         </div>
                                         {{-- <div class="mt-2"> --}}
                                         <div class="left-contents d-flex align-items-start float-left pr-3 mt-2">
                                             <div>
-                                                <a class="review-img" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}">
+                                                {{-- <a class="review-img" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}">
                                                     @if ($review->image_path)
                                                         <img class="img-thumbnail" src="{{ asset('storage/image/' . $review->image_path) }}">
                                                     @else
                                                         <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
                                                     @endif
-                                                </a>
+                                                </a> --}}
+                                                
+                                                @if ($review->image_path)
+                                                    <img src="{{ asset('storage/image/' . $review->image_path) }}" alt="review-image" class="img-thumbnail" data-toggle="modal" data-target="#image-modal" style="cursor:pointer">
+
+                                                    <div class="modal fade" id="image-modal">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-body">
+                                                                <img src="{{ asset('storage/image/' . $review->image_path) }}" alt="review-image" class="img-thumbnail d-block mx-auto w-100">
+                                                            </div>
+                                                            <div class="modal-img_footer">
+                                                                <button type="button" class="btn btn-primary mx-auto d-block" data-dismiss="modal">閉じる</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="right-contents clearfix pr-3 mt-2">
                                             <div>                                                
-                                                <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $review->shop_id]) }}">
+                                                <a class="text-danger" href="{{ route('shop.detail', ['shop_id' => $review->shop_id]) }}">
                                                     {{-- <span class="postcode">〒{{ $shop->postcode }}</span> --}}
                                                     <span class="shop_name font-weight-bold pr-2">{{ $review->shop_name }}</span>
                                                     <span class="branch font-weight-bold">{{ $review->branch }}</span>
