@@ -84,19 +84,39 @@
                                     <form action="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" method="GET">
                                         <div class="left-contents float-left lead font-weight-bold pr-3">
                                         @if ($counter < 10)
-                                            <span>&nbsp {{ $counter }}位</span>
+                                            <span>&nbsp&nbsp {{ $counter }}位</span>
                                         @else
-                                            <span>{{ $counter }}位</span>
+                                            @if ($counter < 100)
+                                                <span>&nbsp {{ $counter }}位</span>
+                                            @else
+                                                <span>{{ $counter }}位</span>
+                                            @endif
                                         @endif
                                         </div>
                                         <div class="left-contents float-left mr-3 mt-2 mb-2">
-                                            <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}">
+                                            @if ($shop->image_path)
+                                                <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}" alt="shop-image" data-toggle="modal" data-target="#image-modal" style="cursor:pointer">
+
+                                                <div class="modal fade" id="image-modal">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-body">
+                                                            <img src="{{ asset('storage/image/' . $shop->image_path) }}" alt="review-image" class="img-thumbnail d-block mx-auto w-100">
+                                                        </div>
+                                                        <div class="modal-img_footer">
+                                                            <button type="button" class="btn btn-primary mx-auto d-block" data-dismiss="modal">閉じる</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
+                                            @endif
+                                            {{-- <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}">
                                                 @if ($shop->image_path)
                                                     <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}">
                                                 @else
                                                     <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
                                                 @endif
-                                            </a>
+                                            </a> --}}
                                         </div>
 
                                         <div class="right-contents clearfix mt-2">
@@ -108,7 +128,7 @@
                                                 @endif
                                             </div>
                                             <div>
-                                                <a class="text-decoration-none text-danger" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}">
+                                                <a class="text-danger" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}">
                                                     <span class="shop_name lead font-weight-bold">{{ $shop->shop_name }}</span>
                                                     <span class="branch lead font-weight-bold">{{ $shop->branch }}</span>
                                                 </a>

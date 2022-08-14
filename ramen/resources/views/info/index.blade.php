@@ -37,8 +37,19 @@
                                 <div class="row">
                                     <div class="reviews col-md-10 mx-auto mt-2">
                                         <div class="top-contents mt-2">
+                                            <span class="px-1 pt-2 pb-1 bg-warning rounded border border-danger">
+                                                @if (mb_strlen($review->points) == 1)
+                                                    <span class="h4 font-weight-bold">&nbsp&nbsp {{ $review->points }}</span>
+                                                @else
+                                                    @if (mb_strlen($review->points) == 2)
+                                                        <span class="h4 font-weight-bold">&nbsp {{ $review->points }}</span>
+                                                    @else
+                                                        <span class="h4 font-weight-bold">{{ $review->points }}</span>
+                                                    @endif
+                                                @endif
+                                                <span class="h6 font-weight-bold">点</span>
+                                            </span>
                                             <a class="text-dark" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}">
-                                                <span class="points h4 font-weight-bold px-1 bg-warning rounded border border-danger">{{ $review->points }}点</span>
                                                 <span class="menu_title lead font-weight-bold pl-1">{{ $review->menu_title }}</span>
                                             </a>
                                         </div>

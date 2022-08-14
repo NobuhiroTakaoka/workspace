@@ -23,8 +23,8 @@
                             @csrf
 
                             {{-- 店名 --}}
-                            <div class="form-group row">
-                                <label for="shop_name" class="col-md-3 col-form-label text-md-right">{{ __('messages.Shop_Name') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="shop_name" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Shop_Name') }}</label>
 
                                 <div class="col-md-6 d-flex align-items-center">
                                     <span>{{ $form["shop_name"] }}</span>
@@ -33,8 +33,8 @@
                             </div>
 
                             {{-- 店名（ふりがな） --}}
-                            <div class="form-group row">
-                                <label for="shop_name_kana" class="col-md-3 col-form-label text-md-right">{{ __('messages.Shop_Name_Kana') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="shop_name_kana" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Shop_Name_Kana') }}</label>
 
                                 <div class="col-md-6 d-flex align-items-center">
                                     <span>{{ $form["shop_name_kana"] }}</span>
@@ -43,8 +43,8 @@
                             </div>
 
                             {{-- 支店名 --}}                        
-                            <div class="form-group row">
-                                <label for="branch" class="col-md-3 col-form-label text-md-right">{{ __('messages.Branch') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="branch" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Branch') }}</label>
 
                                 <div class="col-md-6 d-flex align-items-center">
                                     <span>{{ $form["branch"] }}</span>
@@ -53,8 +53,8 @@
                             </div>
 
                             {{-- 郵便番号 --}}
-                            <div class="form-group row">
-                                <label for="postcode" class="col-md-3 col-form-label text-md-right">{{ __('messages.Post_Code') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="postcode" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Post_Code') }}</label>
 
                                 <div class="col-md-2 d-flex align-items-center">
                                     <span>{{ $form["postcode"] }}</span>
@@ -63,8 +63,8 @@
                             </div>
 
                             {{-- 住所１ --}}
-                            <div class="form-group row">
-                                <label for="address1" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address1') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="address1" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Address1') }}</label>
                                 
                                 <div class="col-md-6 d-flex align-items-center">
                                     <span>{{ $form["address1"] }}</span>
@@ -73,8 +73,8 @@
                             </div>
 
                             {{-- 住所２ --}}
-                            <div class="form-group row">
-                                <label for="address2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address2') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="address2" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Address2') }}</label>
                                 
                                 <div class="col-md-6 d-flex align-items-center">
                                     <span>{{ $form["address2"] }}</span>
@@ -83,8 +83,8 @@
                             </div>
 
                             {{-- 住所３ --}}
-                            <div class="form-group row">
-                                <label for="address3" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address3') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="address3" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Address3') }}</label>
                                 
                                 <div class="col-md-6 d-flex align-items-center">
                                     <span>{{ $form["address3"] }}</span>
@@ -93,8 +93,8 @@
                             </div>
 
                             {{-- 住所４ --}}
-                            <div class="form-group row">
-                                <label for="address4" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address4') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="address4" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Address4') }}</label>
                                 
                                 <div class="col-md-6 d-flex align-items-center">
                                     <span>{{ $form["address4"] }}</span>
@@ -103,22 +103,22 @@
                             </div>
 
                             {{-- 地図の緯度（表示しない） --}}
-                            <div class="form-group row">                            
+                            <div class="form-group row mx-5">                            
                                 <div class="col-md-6 d-flex align-items-center">
                                     <input id="map_lat" type="hidden" class="form-control" name="map_lat" value="{{ $form["map_lat"] }}">
                                 </div>
                             </div>
 
                             {{-- 地図の経度（表示しない） --}}
-                            <div class="form-group row">                            
+                            <div class="form-group row mx-5">                            
                                 <div class="col-md-6 d-flex align-items-center">
                                     <input id="map_long" type="hidden" class="form-control" name="map_long" value="{{ $form["map_long"] }}">
                                 </div>
                             </div>
 
                             {{-- 地図表示（緯度・経度） --}}
-                            <div class="map-container form-group row">
-                                <label for="map" class="col-md-3 col-form-label text-md-right">{{ __('messages.Map') }}</label>
+                            <div class="map-container form-group row rounded border border-warning mx-5">
+                                <label for="map" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Map') }}</label>
 
                                 <div class="map_wrapper col-md-9 d-flex align-items-center">
                                     <div id="map" class="map" style="width: 550px; height: 460px;"></div>
@@ -168,8 +168,8 @@
                             </div>
 
                             {{-- 電話番号１ --}}
-                            <div class="form-group row">
-                                <label for="phone_number1" class="col-md-3 col-form-label text-md-right">{{ __('messages.Phone_Number1') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="phone_number1" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Phone_Number1') }}</label>
                                 
                                 <div class="col-md-3 d-flex align-items-center">
                                     <span>{{ $form["phone_number1"] }}</span>
@@ -178,8 +178,8 @@
                             </div>
 
                             {{-- 電話番号２ --}}
-                            <div class="form-group row">
-                                <label for="phone_number2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Phone_Number2') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="phone_number2" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Phone_Number2') }}</label>
                                 
                                 <div class="col-md-3 d-flex align-items-center">
                                     <span>{{ $form["phone_number2"] }}</span>
@@ -188,8 +188,8 @@
                             </div>
 
                             {{-- 営業時間１ --}}
-                            <div class="form-group row">
-                                <label for="opening_hour1" class="col-md-3 col-form-label text-md-right">{{ __('messages.Opening_Hour1') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="opening_hour1" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Opening_Hour1') }}</label>
                                 
                                 <div class="col-md-5 d-flex align-items-center">
                                     <span>{{ $form["opening_hour1"] }}</span>
@@ -198,8 +198,8 @@
                             </div>
 
                             {{-- 営業時間２ --}}
-                            <div class="form-group row">
-                                <label for="opening_hour2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Opening_Hour2') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="opening_hour2" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Opening_Hour2') }}</label>
                                 
                                 <div class="col-md-5 d-flex align-items-center">
                                     <span>{{ $form["opening_hour2"] }}</span>
@@ -208,8 +208,8 @@
                             </div>
 
                             {{-- 定休日 --}}
-                            <div class="form-group row">
-                                <label for="holiday" class="col-md-3 col-form-label text-md-right">{{ __('messages.Holiday') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="holiday" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Holiday') }}</label>
                                 
                                 <div class="col-md-4 d-flex align-items-center">
                                     <span>{{ $form["holiday"] }}</span>
@@ -218,8 +218,8 @@
                             </div>
 
                             {{-- 座席数 --}}
-                            <div class="form-group row">
-                                <label for="seats" class="col-md-3 col-form-label text-md-right">{{ __('messages.Seats') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="seats" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Seats') }}</label>
                                 
                                 <div class="col-md-4 d-flex align-items-center">
                                     <span>{{ $form["seats"] }}</span>
@@ -228,8 +228,8 @@
                             </div>
 
                             {{-- アクセス --}}
-                            <div class="form-group row">
-                                <label for="access" class="col-md-3 col-form-label text-md-right">{{ __('messages.Access') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="access" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Access') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     <span>{{ $form["access"] }}</span>
@@ -238,8 +238,8 @@
                             </div>
 
                             {{-- 駐車場 --}}
-                            <div class="form-group row">
-                                <label for="parking" class="col-md-3 col-form-label text-md-right">{{ __('messages.Parking') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="parking" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Parking') }}</label>
                                 
                                 <div class="col-md-4 d-flex align-items-center">
                                     <span>{{ $form["parking"] }}</span>
@@ -248,8 +248,8 @@
                             </div>
 
                             {{-- 公式サイト --}}
-                            <div class="form-group row">
-                                <label for="official_site" class="col-md-3 col-form-label text-md-right">{{ __('messages.Official_Site') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="official_site" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Official_Site') }}</label>
                                 
                                 <div class="col-md-5 d-flex align-items-center">
                                     <span>{{ $form["official_site"] }}</span>
@@ -258,8 +258,8 @@
                             </div>
 
                             {{-- 公式ブログ--}}
-                            <div class="form-group row">
-                                <label for="official_blog" class="col-md-3 col-form-label text-md-right">{{ __('messages.Official_Blog') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="official_blog" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Official_Blog') }}</label>
                                 
                                 <div class="col-md-5 d-flex align-items-center">
                                     <span>{{ $form["official_blog"] }}</span>
@@ -268,8 +268,8 @@
                             </div>
 
                             {{-- Facebooページ --}}
-                            <div class="form-group row">
-                                <label for="facebook" class="col-md-3 col-form-label text-md-right">{{ __('messages.Facebook') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="facebook" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Facebook') }}</label>
                                 
                                 <div class="col-md-5 d-flex align-items-center">
                                     <span>{{ $form["facebook"] }}</span>
@@ -278,8 +278,8 @@
                             </div>
 
                             {{-- Twitter ID --}}
-                            <div class="form-group row">
-                                <label for="twitter" class="col-md-3 col-form-label text-md-right">{{ __('messages.Twitter') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="twitter" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Twitter') }}</label>
                                 
                                 <div class="col-md-5 d-flex align-items-center">
                                     <span>{{ $form["twitter"] }}</span>
@@ -288,8 +288,8 @@
                             </div>
 
                             {{-- お店のタイプ --}}
-                            <div class="form-group row">
-                                <label for="shop_type" class="col-md-3 col-form-label text-md-right">{{ __('messages.Shop_Type') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="shop_type" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Shop_Type') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     <span>{{ $form["shop_type"] }}</span>
@@ -298,8 +298,8 @@
                             </div>
 
                             {{-- 開店日 --}}
-                            <div class="form-group row">
-                                <label for="opening_date" class="col-md-3 col-form-label text-md-right">{{ __('messages.Opening_Date') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="opening_date" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Opening_Date') }}</label>
                                 
                                 <div class="col-md-3 d-flex align-items-center">
                                     <span>{{ $form["opening_date"] }}</span>
@@ -308,8 +308,8 @@
                             </div>
 
                             {{-- メニュー --}}
-                            <div class="form-group row">
-                                <label for="menu" class="col-md-3 col-form-label text-md-right">{{ __('messages.Menu') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="menu" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Menu') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     <span>{{ $form["menu"] }}</span>
@@ -318,8 +318,8 @@
                             </div>
 
                             {{-- 備考 --}}
-                            <div class="form-group row">
-                                <label for="notes" class="col-md-3 col-form-label text-md-right">{{ __('messages.Notes') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="notes" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Notes') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     <span>{{ $form["notes"] }}</span>
@@ -328,8 +328,8 @@
                             </div>
 
                             {{-- タグ --}}
-                            <div class="form-group row">
-                                <label for="tags" class="col-md-3 col-form-label text-md-right">{{ __('messages.Tags') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="tags" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Tags') }}</label>
                                 
                                 <div class="col-md-6 d-flex align-items-center">
                                     {{-- $form['tags']が存在する場合（タグが選択されている場合） --}}
@@ -345,8 +345,8 @@
                             </div>
                             
                             {{-- お店イメージ画像 --}}
-                            <div class="form-group row">
-                                <label for="image_name" class="col-md-3 col-form-label text-md-right">{{ __('messages.Image_Name') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="image_name" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Image_Name') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     {{-- 更新の場合 --}}

@@ -18,8 +18,8 @@
                             @csrf
 
                             {{-- メニュー（タイトル） --}}
-                            <div class="form-group row">
-                                <label for="menu_title" class="col-md-3 col-form-label text-md-right">{{ __('messages.Menu_Title') }}</label>
+                            <div class="form-group row rounded border border-warning mx-3">
+                                <label for="menu_title" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Menu_Title') }}</label>
 
                                 <div class="col-md-6 d-flex align-items-center">
                                     <span>{{ $form['menu_title'] }}</span>
@@ -34,8 +34,8 @@
                             </div>
 
                             {{-- カテゴリ --}}
-                            <div class="form-group row">
-                                <label for="category" class="col-md-3 col-form-label text-md-right">{{ __('messages.Category') }}</label>
+                            <div class="form-group row rounded border border-warning mx-3">
+                                <label for="category" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Category') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     <span>{{ $form['category'] }}</span>
@@ -44,8 +44,8 @@
                             </div>
 
                             {{-- スープ --}}
-                            <div class="form-group row">
-                                <label for="soups" class="col-md-3 col-form-label text-md-right">{{ __('messages.Soups') }}</label>
+                            <div class="form-group row rounded border border-warning mx-3">
+                                <label for="soups" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Soups') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     <span>{{ $form['soup'] }}</span>
@@ -54,8 +54,8 @@
                             </div>
 
                             {{-- 点数 --}}
-                            <div class="form-group row">
-                                <label for="points" class="col-md-3 col-form-label text-md-right">{{ __('messages.Points') }}</label>
+                            <div class="form-group row rounded border border-warning mx-3">
+                                <label for="points" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Points') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     <span>{{ $form['points'] }}点</span>
@@ -64,8 +64,8 @@
                             </div>
 
                             {{-- メニュー画像 --}}
-                            <div class="form-group row">
-                                <label for="image_name" class="col-md-3 col-form-label text-md-right">{{ __('messages.Image_Name') }}</label>
+                            <div class="form-group row rounded border border-warning mx-3">
+                                <label for="image_name" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Image_Name') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     <div>{{ $form["image_name"] }}</div>
@@ -74,8 +74,8 @@
                             </div>
 
                             {{-- コメント --}}
-                            <div class="form-group row">
-                                <label for="comment" class="col-md-3 col-form-label text-md-right">{{ __('messages.Comment') }}</label>
+                            <div class="form-group row rounded border border-warning mx-3">
+                                <label for="comment" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Comment') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     <span>{{ $form['comment'] }}</span>

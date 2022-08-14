@@ -206,6 +206,7 @@ class InfoController extends Controller
         })
         ->groupby('shops.id')
         ->orderByDesc('avg_points')
+        ->limit(100)
         ->paginate($disp);
 
         $params = [

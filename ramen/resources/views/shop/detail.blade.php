@@ -18,8 +18,8 @@
         </nav>
 
         {{-- 店名 --}}
-        <div class="form-group row">
-            <label for="shop_name" class="col-md-3 col-form-label text-md-right">{{ __('messages.Shop_Name_D') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="shop_name" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Shop_Name_D') }}</label>
 
             <div class="col-md-6 d-flex align-items-center">
                 <span>{{ $shop_detail->shop_name }}</span>
@@ -27,8 +27,8 @@
         </div>
 
         {{-- 支店名 --}}                        
-        <div class="form-group row">
-            <label for="branch" class="col-md-3 col-form-label text-md-right">{{ __('messages.Branch') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="branch" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Branch') }}</label>
 
             <div class="col-md-6 d-flex align-items-center">
                 <span>{{ $shop_detail->branch }}</span>
@@ -45,8 +45,8 @@
         </div> --}}
 
         {{-- 住所 --}}
-        <div class="form-group row">
-            <label for="address" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="address" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Address') }}</label>
             
             <div class="col-md-6 d-flex align-items-center">
                 <span>{{ $shop_detail->address1 }}</span>&nbsp
@@ -84,22 +84,22 @@
         </div> --}}
 
         {{-- 地図の緯度（表示しない） --}}
-        <div class="form-group row">                            
+        <div class="form-group row mx-5">                            
             <div class="col-md-6 d-flex align-items-center">
                 <input id="map_lat" type="hidden" class="form-control" name="map_lat" value="{{ $shop_detail->map_lat }}">
             </div>
         </div>
 
         {{-- 地図の経度（表示しない） --}}
-        <div class="form-group row">                            
+        <div class="form-group row mx-5">                            
             <div class="col-md-6 d-flex align-items-center">
                 <input id="map_long" type="hidden" class="form-control" name="map_long" value="{{ $shop_detail->map_long }}">
             </div>
         </div>
 
         {{-- 地図表示（緯度・経度） --}}
-        <div class="map-container form-group row">
-            <label for="map" class="col-md-3 col-form-label text-md-right">{{ __('messages.Map') }}</label>
+        <div class="map-container form-group row rounded border border-warning mx-5">
+            <label for="map" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Map') }}</label>
 
             <div class="map_wrapper col-md-9 d-flex align-items-center">
                 <div id="map" class="map" style="width: 550px; height: 460px;"></div>
@@ -119,8 +119,8 @@
         </div>
 
         {{-- 電話番号 --}}
-        <div class="form-group row">
-            <label for="phone_number" class="col-md-3 col-form-label text-md-right">{{ __('messages.Phone_Number') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="phone_number" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Phone_Number') }}</label>
             
             <div class="col-md-3 d-flex align-items-center">
                 <span>{{ $shop_detail->phone_number1 }}</span>&nbsp&nbsp
@@ -138,8 +138,8 @@
         </div> --}}
 
         {{-- 営業時間１ --}}
-        <div class="form-group row">
-            <label for="opening_hour" class="col-md-3 col-form-label text-md-right">{{ __('messages.Opening_Hour') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="opening_hour" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Opening_Hour') }}</label>
             
             <div class="col-md-5 d-flex align-items-center">
                 <span>{{ $shop_detail->opening_hour1 }}</span>&nbsp&nbsp
@@ -157,8 +157,8 @@
         </div> --}}
 
         {{-- 定休日 --}}
-        <div class="form-group row">
-            <label for="holiday" class="col-md-3 col-form-label text-md-right">{{ __('messages.Holiday_D') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="holiday" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Holiday_D') }}</label>
             
             <div class="col-md-4 d-flex align-items-center">
                 <span>{{ $shop_detail->holiday }}</span>
@@ -166,8 +166,8 @@
         </div>
 
         {{-- 座席数 --}}
-        <div class="form-group row">
-            <label for="seats" class="col-md-3 col-form-label text-md-right">{{ __('messages.Seats_D') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="seats" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Seats_D') }}</label>
             
             <div class="col-md-4 d-flex align-items-center">
                 <span>{{ $shop_detail->seats }}</span>
@@ -175,8 +175,8 @@
         </div>
 
         {{-- アクセス --}}
-        <div class="form-group row">
-            <label for="access" class="col-md-3 col-form-label text-md-right">{{ __('messages.Access_D') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="access" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Access_D') }}</label>
             
             <div class="col-md-9 d-flex align-items-center">
                 <span>{{ $shop_detail->access }}</span>
@@ -184,8 +184,8 @@
         </div>
 
         {{-- 駐車場 --}}
-        <div class="form-group row">
-            <label for="parking" class="col-md-3 col-form-label text-md-right">{{ __('messages.Parking_D') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="parking" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Parking_D') }}</label>
             
             <div class="col-md-4 d-flex align-items-center">
                 <span>{{ $shop_detail->parking }}</span>
@@ -193,8 +193,8 @@
         </div>
 
         {{-- 公式サイト --}}
-        <div class="form-group row">
-            <label for="official_site" class="col-md-3 col-form-label text-md-right">{{ __('messages.Official_Site') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="official_site" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Official_Site') }}</label>
             
             <div class="col-md-5 d-flex align-items-center">
                 <span>{{ $shop_detail->official_site }}</span>
@@ -202,8 +202,8 @@
         </div>
 
         {{-- 公式ブログ--}}
-        <div class="form-group row">
-            <label for="official_blog" class="col-md-3 col-form-label text-md-right">{{ __('messages.Official_Blog') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="official_blog" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Official_Blog') }}</label>
             
             <div class="col-md-5 d-flex align-items-center">
                 <span>{{ $shop_detail->official_blog }}</span>
@@ -211,8 +211,8 @@
         </div>
 
         {{-- Facebooページ --}}
-        <div class="form-group row">
-            <label for="facebook" class="col-md-3 col-form-label text-md-right">{{ __('messages.Facebook') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="facebook" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Facebook') }}</label>
             
             <div class="col-md-5 d-flex align-items-center">
                 <span>{{ $shop_detail->facebook }}</span>
@@ -220,8 +220,8 @@
         </div>
 
         {{-- Twitter ID --}}
-        <div class="form-group row">
-            <label for="twitter" class="col-md-3 col-form-label text-md-right">{{ __('messages.Twitter') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="twitter" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Twitter') }}</label>
             
             <div class="col-md-5 d-flex align-items-center">
                 <span>{{ $shop_detail->twitter }}</span>
@@ -229,8 +229,8 @@
         </div>
 
         {{-- お店のタイプ --}}
-        <div class="form-group row">
-            <label for="shop_type" class="col-md-3 col-form-label text-md-right">{{ __('messages.Shop_Type_D') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="shop_type" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Shop_Type_D') }}</label>
             
             <div class="col-md-9 d-flex align-items-center">
                 <span>{{ $shop_detail->shop_type }}</span>
@@ -238,8 +238,8 @@
         </div>
 
         {{-- 開店日 --}}
-        <div class="form-group row">
-            <label for="opening_date" class="col-md-3 col-form-label text-md-right">{{ __('messages.Opening_Date') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="opening_date" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Opening_Date') }}</label>
             
             <div class="col-md-3 d-flex align-items-center">
                 <span>{{ $shop_detail->opening_date }}</span>
@@ -247,8 +247,8 @@
         </div>
 
         {{-- メニュー --}}
-        <div class="form-group row">
-            <label for="menu" class="col-md-3 col-form-label text-md-right">{{ __('messages.Menu_D') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="menu" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Menu_D') }}</label>
             
             <div class="col-md-9 d-flex align-items-center">
                 <span>{{ $shop_detail->menu }}</span>
@@ -256,8 +256,8 @@
         </div>
 
         {{-- 備考 --}}
-        <div class="form-group row">
-            <label for="notes" class="col-md-3 col-form-label text-md-right">{{ __('messages.Notes') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="notes" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Notes') }}</label>
             
             <div class="col-md-9 d-flex align-items-center">
                 <span>{{ $shop_detail->notes }}</span>
@@ -265,8 +265,8 @@
         </div>
 
         {{-- タグ --}}
-        <div class="form-group row">
-            <label for="tags" class="col-md-3 col-form-label text-md-right">{{ __('messages.Tags') }}</label>
+        <div class="form-group row rounded border border-warning mx-5">
+            <label for="tags" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Tags') }}</label>
             
             <div class="col-md-9 d-flex align-items-center row">
                 @foreach ($shop_tags as $shop_tag)
