@@ -100,7 +100,7 @@
                                                 <div class="modal fade" id="image-modal">
                                                     <div class="modal-dialog modal-lg">
                                                         <div class="modal-body">
-                                                            <img src="{{ asset('storage/image/' . $shop->image_path) }}" alt="review-image" class="img-thumbnail d-block mx-auto w-100">
+                                                            <img src="{{ asset('storage/image/' . $shop->image_path) }}" alt="shop-image" class="img-thumbnail d-block mx-auto w-100">
                                                         </div>
                                                         <div class="modal-img_footer">
                                                             <button type="button" class="btn btn-primary mx-auto d-block" data-dismiss="modal">閉じる</button>

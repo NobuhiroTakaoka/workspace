@@ -42,7 +42,7 @@
                         </div>
                         <div class="d-flex flex-row mt-3">
                             <div class="favorite font-weight-bold col-md-2">
-                                こだわり
+                                <span>こだわり</span>
                             </div>
                             <div class="col-md-10 row">
                             @foreach ($tags_category as $key => $tag_category)
@@ -55,7 +55,7 @@
                         </div>
                         <div class="d-flex flex-row mt-1">
                             <div class="shop_types font-weight-bold col-md-3">
-                                ラーメン店のタイプ
+                                <span>ラーメン店のタイプ</span>
                             </div>
                             <div class="col-md-9 row">
                             @foreach ($shop_types as $key => $shop_type)
@@ -91,13 +91,29 @@
                                 <div class="shops col-md-10 mx-auto mt-2">
                                     {{-- <form action="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" method="GET"> --}}
                                     <div class="left-contents d-flex align-items-start float-left pr-3 mt-2 mb-2">
-                                        <a class="text-decoration-none text-dark" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}">
+                                        @if ($shop->image_path)
+                                            <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}" alt="shop-image" data-toggle="modal" data-target="#image-modal" style="cursor:pointer">
+
+                                            <div class="modal fade" id="image-modal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-body">
+                                                        <img src="{{ asset('storage/image/' . $shop->image_path) }}" alt="shop-image" class="img-thumbnail d-block mx-auto w-100">
+                                                    </div>
+                                                    <div class="modal-img_footer">
+                                                        <button type="button" class="btn btn-primary mx-auto d-block" data-dismiss="modal">閉じる</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
+                                        @endif
+                                        {{-- <a class="text-decoration-none text-dark" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}">
                                             @if ($shop->image_path)
                                                 <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}">
                                             @else
                                                 <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
                                             @endif
-                                        </a>
+                                        </a> --}}
                                     </div>
 
                                     <div class="right-contents clearfix mt-2">
