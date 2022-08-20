@@ -49,10 +49,12 @@
             <label for="address" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Address') }}</label>
             
             <div class="col-md-6 d-flex align-items-center">
-                <span>{{ $shop_detail->address1 }}</span>&nbsp
-                <span>{{ $shop_detail->address2 }}</span>&nbsp
-                <span>{{ $shop_detail->address3 }}</span>&nbsp
-                <span>{{ $shop_detail->address4 }}</span>
+                <span>
+                    {{ $shop_detail->address1 }}&nbsp
+                    {{ $shop_detail->address2 }}&nbsp
+                    {{ $shop_detail->address3 }}&nbsp
+                    {{ $shop_detail->address4 }}
+                </span>
             </div>
         </div>
 
@@ -108,9 +110,16 @@
                         var target = document.getElementById('map');
                         var lat = document.getElementById('map_lat').value;
                         var long = document.getElementById('map_long').value;
-                        map = new google.maps.Map(target, {
-                            center: {lat: Number(lat), lng: Number(long)},
+                        var position = {lat: Number(lat), lng: Number(long)};
+                        var map = new google.maps.Map(target, {
+                            center: position,
                             zoom: 14
+                        });
+
+                        var marker = new google.maps.Marker({
+                            position: position,
+                            map: map,
+                            // animation: google.maps.Animation.DROP
                         });
                     }
                 </script>
