@@ -95,7 +95,37 @@
         
         {{-- フッター --}}
         <div class="row">
-            <footer class="mx-auto">
+            <footer class="footer-contents mx-auto">
+                <div class="text-center">
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+                    <span class="text-muted">シェアする</span><br />
+                    <div class="shares row mx-auto">
+                        <!-- Facebook -->
+                        <a class="js-sns-link m-2" href="//www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" rel="nofollow noopener noreferrer">
+                            <span>facebook</span><br />
+                            <img class="m-1" src="{{ asset('storage/' . 'facebook_share_logo.png') }}">
+                        </a>
+                        <!-- Twitter -->
+                        <a class="js-sns-link m-2" href="//twitter.com/intent/tweet?text=&url=" target="_blank" rel="nofollow noopener noreferrer">
+                            <span>twitter</span><br />
+                            <img class="m-1" src="{{ asset('storage/' . 'Twitter_share_logo.png') }}">
+                        </a>
+                    </div>
+
+                    <script>
+                        let url = location.href
+                        let snsLinks = $(".js-sns-link")
+                        for (let i = 0; i < snsLinks.length; i++) {
+                            let href = snsLinks.eq(i).attr('href');
+                            // シェアページのURL上書き
+                            href = href.replace("u=","u="+url)      // facebook
+                            href = href.replace("url=","url="+url)  // twitter,LINE,はてなブログ,ピンタレスト
+                            snsLinks.eq(i).attr('href',href);
+                        }
+                    </script>
+                </div>
+                
                 <p class="text-muted">copyright © ラーメンResearch</p>
             </footer>
         </div>

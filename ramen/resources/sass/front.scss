@@ -142,15 +142,42 @@ body {
   margin-right: 1em;
 }
 
+.top-contents {
+  div {
+    width: 4.7em;
+  }
+}
+
+.headline {
+  width: 3.7em;
+}
+
 .left-contents {
   img {
-    width: 15vw;
+    width: 10vw;
+    min-width: 5em;
     // height: 17vh;
     // object-fit: contain;
+  }
+}
+
+.links {
+  a {
+    img {
+      width: 2em;
+    }
   }
 }
 
 .bottom-contents {
   background-color: #fff;
   // height: 6vh;
+}
+
+.shares {
+  a {
+    img {
+      width: 2em;
+    }
+  }
 }

@@ -36,21 +36,13 @@
                             @foreach ($reviews as $review)
                                 <div class="row">
                                     <div class="reviews col-md-10 mx-auto mt-2">
-                                        <div class="top-contents mt-2">
-                                            <span class="px-1 pt-2 pb-1 bg-warning rounded border border-danger">
-                                                @if (mb_strlen($review->points) == 1)
-                                                    <span class="h4 font-weight-bold">&nbsp&nbsp {{ $review->points }}</span>
-                                                @else
-                                                    @if (mb_strlen($review->points) == 2)
-                                                        <span class="h4 font-weight-bold">&nbsp {{ $review->points }}</span>
-                                                    @else
-                                                        <span class="h4 font-weight-bold">{{ $review->points }}</span>
-                                                    @endif
-                                                @endif
+                                        <div class="top-contents ml-1 mt-2 row">
+                                            <div class="px-1 pt-2 pb-1 bg-warning rounded border border-danger text-right">
+                                                <span class="h4 font-weight-bold">{{ $review->points }}</span>
                                                 <span class="h6 font-weight-bold">点</span>
-                                            </span>
-                                            <a class="text-dark" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}">
-                                                <span class="menu_title lead font-weight-bold pl-1">{{ $review->menu_title }}</span>
+                                            </div>
+                                            <a class="text-dark pl-2 pt-2" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}">
+                                                <span class="menu_title lead font-weight-bold">{{ $review->menu_title }}</span>
                                             </a>
                                         </div>
                                         {{-- <div class="mt-2"> --}}
@@ -106,13 +98,9 @@
                                         {{-- </div> --}}
                                     </div>
                                     <div class="pt-3 bottom-contents col-md-10 mx-auto d-flex align-items-end justify-content-end">
-                                        <div class="pr-1">
-                                            <span class="created">{{ $review->created_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp&nbsp
-                                        </div>
-                                        <div class="pr-1">
-                                            <span class="updated">{{ $review->updated_at->format('Y/m/d H:i') }}&nbsp 更新</span>&nbsp&nbsp&nbsp
-                                        </div>
-                                        <div>   
+                                        <div>
+                                            <span class="created">{{ $review->created_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp&nbsp<br class="d-sm-none" />
+                                            <span class="updated">{{ $review->updated_at->format('Y/m/d H:i') }}&nbsp 更新</span>&nbsp&nbsp&nbsp<br class="d-sm-none" />
                                             <a class="text-decoration-none" href="{{ route('profile_refer', ['user_id' => $review->user_id]) }}">
                                                 <span class="poster">投稿者 &nbsp{{ $review->name }}</span>
                                             </a>

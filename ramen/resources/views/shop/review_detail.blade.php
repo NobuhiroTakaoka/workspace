@@ -31,11 +31,12 @@
 
                     <div class="card-body">
                         <div class="reviews col-md-10 mx-auto pt-2">
-                            <div class="top-contents mt-2">
-                                <div>
-                                    <span class="points h4 font-weight-bold px-1 bg-warning rounded border border-danger">{{ $review_detail[0]->points }}点</span>
-                                    <span class="menu_title lead font-weight-bold pl-1">{{ $review_detail[0]->menu_title }}</span>
+                            <div class="top-contents ml-1 mt-2 row">
+                                <div class="px-1 pt-2 pb-1 bg-warning rounded border border-danger text-right">
+                                    <span class="h4 font-weight-bold">{{ $review_detail[0]->points }}</span>
+                                    <span class="h6 font-weight-bold">点</span>
                                 </div>
+                                <span class="menu_title lead font-weight-bold pl-2 pt-2">{{ $review_detail[0]->menu_title }}</span>
                             </div>
                             <div class="left-contents d-flex align-items-start float-left pr-3 mt-2">
                                 <div>

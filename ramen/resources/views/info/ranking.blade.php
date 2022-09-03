@@ -81,17 +81,17 @@
                         @foreach ($shops as $key => $shop)
                             <div class="row">
                                 <div class="ranks col-md-10 mx-auto mt-2">
-                                    <form action="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" method="GET">
-                                        <div class="left-contents float-left lead font-weight-bold pr-3">
-                                        @if ($counter < 10)
+                                    {{-- <form action="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" method="GET"> --}}
+                                        <div class="headline float-left lead font-weight-bold pt-2 pr-3 text-right">
+                                        {{-- @if ($counter < 10)
                                             <span>&nbsp&nbsp {{ $counter }}位</span>
                                         @else
                                             @if ($counter < 100)
                                                 <span>&nbsp {{ $counter }}位</span>
-                                            @else
+                                            @else --}}
                                                 <span>{{ $counter }}位</span>
-                                            @endif
-                                        @endif
+                                            {{-- @endif
+                                        @endif --}}
                                         </div>
                                         <div class="left-contents float-left mr-3 mt-2 mb-2">
                                             @if ($shop->image_path)
@@ -139,8 +139,23 @@
                                                 <span class="address3">{{ $shop->address3 }}</span>
                                                 <span class="address4">{{ $shop->address4 }}</span>
                                             </div>
+                                            {{-- <div class="links text-center float-left mt-2">
+                                                @if ($shop->facebook || $shop->twitter)
+                                                    <span class="text-secondary font-weight-bold">外部リンク</span><br />
+                                                @endif
+                                                @if ($shop->facebook)
+                                                    <a href="{{ $shop->facebook }}">
+                                                        <img class="m-1" src="{{ asset('storage/' . 'facebook_logo.png') }}">
+                                                    </a>
+                                                @endif
+                                                @if ($shop->twitter)
+                                                    <a href="{{ $shop->twitter }}">
+                                                        <img class="m-1" src="{{ asset('storage/' . 'Twitter_logo.png') }}">
+                                                    </a>
+                                                @endif
+                                            </div>     --}}
                                         </div>
-                                    </form>
+                                    {{-- </form> --}}
                                 </div>
                             </div>
                             {{ Form::hidden('counter', $counter++) }}

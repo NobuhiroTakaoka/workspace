@@ -136,6 +136,21 @@
                                                 <span class="points lead font-weight-bold">-------点</span>
                                             @endif
                                         </div>
+                                        {{-- <div class="links text-center float-left mt-2">
+                                            @if ($shop->facebook || $shop->twitter)
+                                                <span class="text-secondary font-weight-bold">外部リンク</span><br />
+                                            @endif
+                                            @if ($shop->facebook)
+                                                <a href="{{ $shop->facebook }}">
+                                                    <img class="m-1" src="{{ asset('storage/' . 'facebook_logo.png') }}">
+                                                </a>
+                                            @endif
+                                            @if ($shop->twitter)
+                                                <a href="{{ $shop->twitter }}">
+                                                    <img class="m-1" src="{{ asset('storage/' . 'Twitter_logo.png') }}">
+                                                </a>
+                                            @endif
+                                        </div> --}}
                                     </div>
                                     {{-- </form> --}}
                                 </div>
