@@ -44,11 +44,13 @@ body {
 
 .meet {
   color: #fff;
+  span {
+    margin-right: 0.5em;
+  }
 }
 
 .shops {
   background-color: #fff;
-  // height: 20vh;
   .shop {
     .date {
       font-size: 0.6em;
@@ -71,7 +73,6 @@ body {
 
 .reviews {
   background-color: #fff;
-  // height: 25vh;
   .review {
     .date {
       font-size: 0.6em;
@@ -94,7 +95,6 @@ body {
 
 .ranks {
   background-color: #fff;
-  // height: 20vh;
   .shop {
     .date {
       font-size: 0.6em;
@@ -142,10 +142,8 @@ body {
   margin-right: 1em;
 }
 
-.top-contents {
-  div {
+.top-contents div {
     width: 4.7em;
-  }
 }
 
 .headline {
@@ -156,28 +154,29 @@ body {
   img {
     width: 10vw;
     min-width: 5em;
-    // height: 17vh;
-    // object-fit: contain;
   }
 }
 
-.links {
-  a {
-    img {
-      width: 2em;
-    }
-  }
+.links img {
+  width: 2em;
 }
 
 .bottom-contents {
   background-color: #fff;
-  // height: 6vh;
 }
 
-.shares {
-  a {
-    img {
-      width: 2em;
-    }
-  }
+.shares img {
+  width: 2em;
+}
+
+.histories span {
+  margin: 0 0.3em;
+}
+
+.addresses span {
+  margin-right: 0.1em;
+}
+
+.info-details span {
+  margin-right: 1em;
 }

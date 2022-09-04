@@ -98,12 +98,17 @@
                                         {{-- </div> --}}
                                     </div>
                                     <div class="pt-3 bottom-contents col-md-10 mx-auto d-flex align-items-end justify-content-end">
-                                        <div>
-                                            <span class="created">{{ $review->created_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp&nbsp<br class="d-sm-none" />
-                                            <span class="updated">{{ $review->updated_at->format('Y/m/d H:i') }}&nbsp 更新</span>&nbsp&nbsp&nbsp<br class="d-sm-none" />
-                                            <a class="text-decoration-none" href="{{ route('profile_refer', ['user_id' => $review->user_id]) }}">
-                                                <span class="poster">投稿者 &nbsp{{ $review->name }}</span>
-                                            </a>
+                                        <div class="row">
+                                            <div class="histories">
+                                                <span>{{ $review->created_at->format('Y/m/d H:i') }}</span>
+                                                <span class="mr-3">投稿</span><br class="d-sm-none" />
+                                                <span>{{ $review->updated_at->format('Y/m/d H:i') }}</span>
+                                                <span class="mr-3">更新</span><br class="d-sm-none" />
+                                                <a class="text-decoration-none" href="{{ route('profile_refer', ['user_id' => $review->user_id]) }}">
+                                                    <span>投稿者</span>
+                                                    <span class="mr-3">{{ $review->name }}</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -331,14 +331,16 @@
                             <div class="form-group row rounded border border-warning mx-5">
                                 <label for="tags" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Tags') }}</label>
                                 
-                                <div class="col-md-6 d-flex align-items-center">
+                                <div class="col-md-6 d-flex align-items-center row">
                                     {{-- $form['tags']が存在する場合（タグが選択されている場合） --}}
                                     @if (isset($form['tags']))
                                         {{-- $form['tags']のタグIDを繰り返し取得 --}}
                                         @foreach ($form['tags'] as $tag)
-                                            {{-- タグIDがキーの値を表示 --}}
-                                            <span>{{ $tags_category[$tag] }}</span>&nbsp;
-                                            <input id="tags" type="hidden" class="form-control" name="tags" value="{{ $tag }}">
+                                            <div class="ml-3">
+                                                {{-- タグIDがキーの値を表示 --}}
+                                                {{ $tags_category[$tag] }}
+                                                <input id="tags" type="hidden" class="form-control" name="tags" value="{{ $tag }}">
+                                            </div>
                                         @endforeach
                                     @endif
                                 </div>

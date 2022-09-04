@@ -35,7 +35,8 @@
         
                     <div class="card-body">
                         <div class="meet lead font-weight-bold">
-                            {{ $shop_name . ' ' . $branch }}
+                            <span>{{ $shop_name }}</span>
+                            <span>{{ $branch }}</span>
                         </div>
                         <div class="meet">
                             レビュー件数: {{ $review_list -> total() }}件
@@ -47,9 +48,12 @@
                                 <div class="row">
                                     <div class="reviews col-md-10 mx-auto mt-2">
                                         {{-- <form action="{{ route('shop.review_list', ['shop_id' => $review->shop_id, 'user_id' => $review->user_id]) }}" method="GET"> --}}
-                                        <div class="top-contents mt-2">
-                                            <a class="text-dark" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}">
-                                                <span class="points h4 font-weight-bold px-1 bg-warning rounded border border-danger">{{ $review->points }}点</span>
+                                        <div class="top-contents ml-1 mt-2 row">
+                                            <div class="px-1 pt-2 pb-1 bg-warning rounded border border-danger text-right">
+                                                <span class="h4 font-weight-bold">{{ $review->points }}</span>
+                                                <span class="h6 font-weight-bold">点</span>
+                                            </div>
+                                            <a class="text-dark pl-2 pt-2" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}">
                                                 <span class="menu_title lead font-weight-bold pl-1">{{ $review->menu_title }}</span>
                                             </a>
                                         </div>
@@ -92,8 +96,8 @@
                                             </div>
                                             <div>
                                                 <span class="comment">
-                                                    @if (mb_strlen($review->comment) > 40)
-                                                        {!! nl2br(e(Str::limit($review->comment, 30, '…'))) !!}
+                                                    @if (mb_strlen($review->comment) > 120)
+                                                        {!! nl2br(e(Str::limit($review->comment, 100, '…'))) !!}
                                                         <a class="text-decoration-none" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}">
                                                             続きを見る
                                                         </a>
@@ -106,12 +110,17 @@
                                         {{-- </form> --}}
                                     </div>
                                     <div class="pt-3 bottom-contents col-md-10 mx-auto d-flex align-items-end justify-content-end">
-                                        <div>
-                                            <span class="created">{{ $review->created_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp&nbsp<br class="d-sm-none" />
-                                            <span class="updated">{{ $review->updated_at->format('Y/m/d H:i') }}&nbsp 更新</span>&nbsp&nbsp&nbsp<br class="d-sm-none" />
-                                            <a class="text-decoration-none" href="{{ route('profile_refer', ['user_id' => $review->user_id]) }}">
-                                                <span class="poster">投稿者 &nbsp{{ $review->name }}</span>
-                                            </a>
+                                        <div class="row">
+                                            <div class="histories">
+                                                <span>{{ $review->created_at->format('Y/m/d H:i') }}</span>
+                                                <span class="mr-3">投稿</span><br class="d-sm-none" />
+                                                <span>{{ $review->updated_at->format('Y/m/d H:i') }}</span>
+                                                <span class="mr-3">更新</span><br class="d-sm-none" />
+                                                <a class="text-decoration-none" href="{{ route('profile_refer', ['user_id' => $review->user_id]) }}">
+                                                    <span>投稿者</span>
+                                                    <span class="mr-3">{{ $review->name }}</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

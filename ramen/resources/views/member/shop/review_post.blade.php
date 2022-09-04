@@ -24,10 +24,10 @@
                 </div>
                 <div>
                     @if (isset($form['shop_name']))
-                        <span class="lead font-weight-bold">{{ $form['shop_name'] }}</span>&nbsp
+                        <span class="lead font-weight-bold pr-2">{{ $form['shop_name'] }}</span>
                         <span class="lead font-weight-bold">{{ $form['branch'] }}</span>
                     @else
-                        <span class="lead font-weight-bold">{{ $shop_name }}</span>&nbsp
+                        <span class="lead font-weight-bold pr-2">{{ $shop_name }}</span>
                         <span class="lead font-weight-bold">{{ $branch }}</span>
                     @endif
                 </div>

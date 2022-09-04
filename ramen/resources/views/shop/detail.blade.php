@@ -49,10 +49,10 @@
             <label for="address" class="col-md-2 col-form-label text-md-right font-weight-bold">{{ __('messages.Address') }}</label>
             
             <div class="col-md-9 d-flex align-items-center">
-                <div>
-                    <span>{{ $shop_detail->address1 }}</span>&nbsp
-                    <span>{{ $shop_detail->address2 }}</span>&nbsp<br class="d-sm-none" />
-                    <span>{{ $shop_detail->address3 }}</span>&nbsp
+                <div class="addresses">
+                    <span>{{ $shop_detail->address1 }}</span>
+                    <span>{{ $shop_detail->address2 }}</span><br class="d-sm-none" />
+                    <span>{{ $shop_detail->address3 }}</span>
                     <span>{{ $shop_detail->address4 }}</span>
                 </div>
             </div>
@@ -132,8 +132,8 @@
             <label for="phone_number" class="col-md-2 col-form-label text-md-right font-weight-bold">{{ __('messages.Phone_Number') }}</label>
             
             <div class="col-md-9 d-flex align-items-center">
-                <div>
-                    <span>{{ $shop_detail->phone_number1 }}</span>&nbsp&nbsp<br class="d-sm-none" />
+                <div class="info-details">
+                    <span>{{ $shop_detail->phone_number1 }}</span><br class="d-sm-none" />
                     <span>{{ $shop_detail->phone_number2 }}</span>
                 </div>
             </div>
@@ -153,8 +153,8 @@
             <label for="opening_hour" class="col-md-2 col-form-label text-md-right font-weight-bold">{{ __('messages.Opening_Hour') }}</label>
             
             <div class="col-md-9 d-flex align-items-center">
-                <div>
-                    <span>{{ $shop_detail->opening_hour1 }}</span>&nbsp&nbsp<br class="d-sm-none" />
+                <div class="info-details">
+                    <span>{{ $shop_detail->opening_hour1 }}</span><br class="d-sm-none" />
                     <span>{{ $shop_detail->opening_hour2 }}</span>
                 </div>
             </div>

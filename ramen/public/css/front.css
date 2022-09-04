@@ -39,6 +39,9 @@ body {
 .meet {
   color: #fff;
 }
+.meet span {
+  margin-right: 0.5em;
+}
 
 .shops {
   background-color: #fff;
@@ -129,7 +132,7 @@ body {
   min-width: 5em;
 }
 
-.links a img {
+.links img {
   width: 2em;
 }
 
@@ -137,6 +140,18 @@ body {
   background-color: #fff;
 }
 
-.shares a img {
+.shares img {
   width: 2em;
+}
+
+.histories span {
+  margin: 0 0.3em;
+}
+
+.addresses span {
+  margin-right: 0.1em;
+}
+
+.info-details span {
+  margin-right: 1em;
 }

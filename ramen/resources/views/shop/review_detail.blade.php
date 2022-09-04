@@ -23,10 +23,8 @@
                 <div class="card">
                     <div class="card-header">
                         <span class="head-title">{{ __('messages.Review_Detail') }}</span>
-                        <span class="font-weight-bold">
-                            {{ $review_detail[0]->shop_name }}
-                            {{ $review_detail[0]->branch }}
-                        </span>
+                        <span class="font-weight-bold pr-2">{{ $review_detail[0]->shop_name }}</span>
+                        <span class="font-weight-bold">{{ $review_detail[0]->branch }}</span>
                     </div>
 
                     <div class="card-body">
@@ -80,15 +78,18 @@
                         </div>
                         <div class="pt-3 bottom-contents col-md-10 mx-auto d-flex align-items-end justify-content-end">
                             <div>
-                                <div class="pr-1">
-                                    <span class="created">{{ $review_detail[0]->created_at->format('Y/m/d H:i') }}&nbsp 投稿</span>&nbsp&nbsp&nbsp
+                                <div class="histories">
+                                    <span>{{ $review_detail[0]->created_at->format('Y/m/d H:i') }}</span>
+                                    <span>投稿</span>
                                 </div>
-                                <div class="pr-1">
-                                    <span class="updated">{{ $review_detail[0]->updated_at->format('Y/m/d H:i') }}&nbsp 更新</span>&nbsp&nbsp&nbsp
+                                <div class="histories">
+                                    <span>{{ $review_detail[0]->updated_at->format('Y/m/d H:i') }}</span>
+                                    <span>更新</span>
                                 </div>
-                                <div>
+                                <div class="histories">
                                     <a class="text-decoration-none" href="{{ route('profile_refer', ['user_id' => $review_detail[0]->user_id]) }}">
-                                        <span class="poster">投稿者 &nbsp{{ $review_detail[0]->name }}</span>
+                                        <span>投稿者</span>
+                                        <span>{{ $review_detail[0]->name }}</span>
                                     </a>
                                 </div>
                             </div>
@@ -96,25 +97,15 @@
                             @if ($review_detail[0]->user_id == $user_id)
                                 <div class="ml-4">
                                     <div class="pb-2">
-                                        <form action="{{ route('review_edit', ['shop_id' => $review_detail[0]->shop_id, 'review_id' => $review_detail[0]->id]) }}" method="GET">
-                                            {{ Form::submit(__('messages.Review_Edit'), ['class' => 'btn btn-primary']) }}
-                                        </form>
+                                        <a href="{{ route('review_edit', ['shop_id' => $review_detail[0]->shop_id, 'review_id' => $review_detail[0]->id]) }}">
+                                            <button class="btn btn-primary">{{ __('messages.Review_Edit') }}</button>
+                                        </a>
                                     </div>
                                     <div class="pb-2">                                  
                                         <form name="deleteform" action="{{ route('review_delete', ['shop_id' => $review_detail[0]->shop_id, 'review_id' => $review_detail[0]->id]) }}" method="POST" enctype="multipart/form-data">
                                             @csrf
-
-                                            {{ Form::submit(__('messages.Review_Delete'), ['class' => 'btn btn-secondary', 'onclick' => 'delete_alert(event);return false;']) }}
-
                                             {{-- 削除ボタンをクリックしたら、呼び出される確認ダイアログ --}}
-                                            <script>
-                                                function delete_alert(e) {
-                                                    if (!window.confirm('このレビューを本当に削除しますか？')) {
-                                                        return false;
-                                                    }
-                                                    document.deleteform.submit();
-                                                };
-                                            </script>
+                                            {{ Form::submit(__('messages.Review_Delete'), ['class' => 'btn btn-secondary', 'onclick' => 'return confirm(\'このレビューを本当に削除しますか？\');']) }}
                                         </form>
                                     </div>
                                 </div>
