@@ -100,16 +100,21 @@
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
                     <span class="text-muted">シェアする</span><br />
-                    <div class="shares row mx-auto">
+                    <div class="row mx-auto">
                         <!-- Facebook -->
                         <a class="js-sns-link m-2" href="//www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" rel="nofollow noopener noreferrer">
                             <span>facebook</span><br />
-                            <img class="m-1" src="{{ asset('storage/' . 'facebook_share_logo.png') }}">
+                            <img class="facebook-share m-1" src="{{ asset('storage/' . 'facebook_share_logo.png') }}">
                         </a>
                         <!-- Twitter -->
                         <a class="js-sns-link m-2" href="//twitter.com/intent/tweet?text=&url=" target="_blank" rel="nofollow noopener noreferrer">
                             <span>twitter</span><br />
-                            <img class="m-1" src="{{ asset('storage/' . 'Twitter_share_logo.png') }}">
+                            <img class="twitter-share m-1" src="{{ asset('storage/' . 'Twitter_share_logo.png') }}">
+                        </a>
+                        <!-- LINE -->
+                        <a class="js-sns-link m-2" href="//timeline.line.me/social-plugin/share?url=&text=" target="_blank" rel="nofollow noopener noreferrer">
+                            <span>LINE</span><br />
+                            <img class="LINE-share mx-2 my-1" src="{{ asset('storage/' . 'LINE_share_logo.png') }}">
                         </a>
                     </div>
 

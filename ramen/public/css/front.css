@@ -140,7 +140,15 @@ body {
   background-color: #fff;
 }
 
-.shares img {
+.facebook-share {
+  width: 3em;
+}
+
+.twitter-share {
+  width: 2em;
+}
+
+.LINE-share {
   width: 2em;
 }
 
