@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="float-left col-10 lead font-weight-bold">
-                            レビュー投稿履歴
+                            <span>レビュー投稿履歴</span>
                         </div>
 
                         <div class="clearfix">

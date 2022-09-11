@@ -198,7 +198,7 @@
 
         {{-- 駐車場 --}}
         <div class="form-group row rounded border border-warning mx-5">
-            <label for="parking" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Parking_D') }}</label>
+            <label for="parking" class="col-md-2 col-form-label text-md-right font-weight-bold">{{ __('messages.Parking_D') }}</label>
             
             <div class="col-md-9 d-flex align-items-center">
                 <span>{{ $shop_detail->parking }}</span>

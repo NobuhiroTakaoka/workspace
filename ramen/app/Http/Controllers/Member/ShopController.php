@@ -86,7 +86,11 @@ class ShopController extends Controller
             // セッションが存在する場合（登録後に修正ボタンを押した場合のエラーを回避）
             if (isset($form)) {
                 // お店登録ページに渡す戻り値に連想配列$shop_types、$formを追加
-                return view('member.shop.entry', ['shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form]);
+                return view('member.shop.entry', [
+                    'shop_types' => $shop_types,
+                    'tags_category' => $tags_category,
+                    'form' => $form,
+                ]);
             }
         } 
         // セッションを破棄する
@@ -98,7 +102,11 @@ class ShopController extends Controller
         // $form['tags'] = [];
 
         // お店登録ページに渡す戻り値に連想配列$shop_types、$formを追加
-        return view('member.shop.entry', ['shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form]);
+        return view('member.shop.entry', [
+            'shop_types' => $shop_types,
+            'tags_category' => $tags_category,
+            'form' => $form,
+        ]);
     }
 
     public function check(Request $request)
@@ -122,7 +130,11 @@ class ShopController extends Controller
             $form['shop_type'] = '不明';
 
             // お店登録ページに渡す戻り値に連想配列$shop_types、$formを追加
-            return view('member.shop.entry', ['shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form]);
+            return view('member.shop.entry', [
+                'shop_types' => $shop_types,
+                'tags_category' => $tags_category,
+                'form' => $form,
+            ]);
         }
 
         // 登録の場合は$shop_idを初期化
@@ -257,7 +269,13 @@ class ShopController extends Controller
 
         // お店登録確認ページに渡す戻り値に連想配列$shopプロパティを追加
         // return view('member.shop.check', compact('form', 'tags_category'));
-        return view('member.shop.check', ['form' => $form, 'tags_category' => $tags_category, 'chk_mode' => $chk_mode, 'shop_id' => $shop_id, 'chk_img_mode' => $chk_img_mode]);
+        return view('member.shop.check', [
+            'form' => $form,
+            'tags_category' => $tags_category,
+            'chk_mode' => $chk_mode,
+            'shop_id' => $shop_id,
+            'chk_img_mode' => $chk_img_mode,
+        ]);
     }
     
     public function create(Request $request)
@@ -442,14 +460,29 @@ class ShopController extends Controller
                     $form['other'] = '';
                 }
                 
-                return view('member.shop.edit', ['shop_tags' => $shop_tags, 'tags_id' => $tags_id, 'shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form, 'shop_id' => $shop_id]);
+                return view('member.shop.edit', [
+                    'shop_tags' => $shop_tags,
+                    'tags_id' => $tags_id,
+                    'shop_types' => $shop_types,
+                    'tags_category' => $tags_category,
+                    'form' => $form,
+                    'shop_id' => $shop_id,
+                ]);
             }
         } 
         // セッションを破棄する
         $form = $request->session()->forget($this->key2);
 
         // shop/detail.blade.php ファイルを渡す
-        return view('member.shop.edit', ['shop_detail' => $shop_detail, 'shop_tags' => $shop_tags, 'tags_id' => $tags_id, 'shop_types' => $shop_types, 'tags_category' => $tags_category, 'form' => $form, 'shop_id' => $shop_id]);
+        return view('member.shop.edit', [
+            'shop_detail' => $shop_detail,
+            'shop_tags' => $shop_tags,
+            'tags_id' => $tags_id,
+            'shop_types' => $shop_types,
+            'tags_category' => $tags_category,
+            'form' => $form,
+            'shop_id' => $shop_id,
+        ]);
     }
 
     public function update(Request $request)

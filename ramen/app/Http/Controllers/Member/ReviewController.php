@@ -42,7 +42,12 @@ class ReviewController extends Controller
             // セッションが存在する場合（登録後に修正ボタンを押した場合のエラーを回避）
             if (isset($form)) {
                 // お店登録ページに渡す戻り値に連想配列$shop_types、$formを追加
-                return view('member.shop.review_post', ['form' => $form, 'shop_id' => $shop_id, 'shop_name' => $shop_name, 'branch' => $branch]);
+                return view('member.shop.review_post', [
+                    'form' => $form,
+                    'shop_id' => $shop_id,
+                    'shop_name' => $shop_name,
+                    'branch' => $branch,
+                ]);
             }
         } 
         // セッションを破棄する
@@ -53,7 +58,12 @@ class ReviewController extends Controller
         $form += array('shop_name' => $shop_name, 'branch' => $branch);
 
         // レビュー投稿ページに渡す
-        return view('member.shop.review_post', ['form' => $form, 'shop_id' => $shop_id, 'shop_name' => $shop_name, 'branch' => $branch]);
+        return view('member.shop.review_post', [
+            'form' => $form,
+            'shop_id' => $shop_id,
+            'shop_name' => $shop_name,
+            'branch' => $branch,
+        ]);
     }
 
     public function reviewCheck(Request $request)
@@ -73,7 +83,9 @@ class ReviewController extends Controller
             $form = array_fill_keys($this->forms, '');
 
             // レビュー投稿ページに渡す戻り値に連想配列$formを追加
-            return view('member.shop.review_post', ['form' => $form]);
+            return view('member.shop.review_post', [
+                'form' => $form,
+            ]);
         }
 
         // セッションを取得する（更新の場合、登録の場合）
@@ -178,7 +190,11 @@ class ReviewController extends Controller
         }
 
         // レビュー投稿確認ページに渡す戻り値に連想配列$shopプロパティを追加
-        return view('member.shop.review_check', ['form' => $form, 'shop_id' => $shop_id, 'chk_img_mode' => $chk_img_mode]);
+        return view('member.shop.review_check', [
+            'form' => $form,
+            'shop_id' => $shop_id,
+            'chk_img_mode' => $chk_img_mode,
+        ]);
     }
 
     public function reviewCreate(Request $request)
@@ -226,7 +242,8 @@ class ReviewController extends Controller
         return redirect('search');
     }
 
-    public function reviewEdit(Request $request, int $shop_id, int $review_id)
+    // public function reviewEdit(Request $request, int $shop_id, int $review_id)
+    public function reviewEdit(int $shop_id, int $review_id)
     {
         // reviewsモデルクラスをインスタンス化
         $review = new Reviews();
@@ -240,7 +257,12 @@ class ReviewController extends Controller
         // $shop_idからshopsテーブルのレコードを取得（$shop_nameと$branchが必要）
         $shop_detail = $shop::select()->find($shop_id);
 
-        return view('member.shop.review_edit', ['shop_id' => $shop_id, 'review_id' => $review_id, 'review_detail' => $review_detail, 'shop_detail' => $shop_detail,]);
+        return view('member.shop.review_edit', [
+            'shop_id' => $shop_id,
+            'review_id' => $review_id,
+            'review_detail' => $review_detail,
+            'shop_detail' => $shop_detail,
+        ]);
     }
 
     public function reviewUpdate(Request $request, int $shop_id, int $review_id)
@@ -284,18 +306,17 @@ class ReviewController extends Controller
             $data['image_path'] = '';
         }
         
-        Reviews::where('id', $review_id)->update(
-            ['shop_id' => $data['shop_id'],
-             'user_id' => $data['user_id'],
-             'menu_title' => $data['menu_title'],
-             'category' => $data['category'],
-             'soup' => $data['soup'],
-             'points' => $data['points'],
-             'image_path' => $data['image_path'],
-             'comment' => $data['comment'],
-             'updated_at' => Carbon::now(),
-            ]
-        );
+        Reviews::where('id', $review_id)->update([
+            'shop_id' => $data['shop_id'],
+            'user_id' => $data['user_id'],
+            'menu_title' => $data['menu_title'],
+            'category' => $data['category'],
+            'soup' => $data['soup'],
+            'points' => $data['points'],
+            'image_path' => $data['image_path'],
+            'comment' => $data['comment'],
+            'updated_at' => Carbon::now(),
+        ]);
 
         // マイページにリダイレクトする
         return redirect('member/mypage');
@@ -309,10 +330,7 @@ class ReviewController extends Controller
         // リクエストされたフォームからtokenを削除する
         unset($form['_token']);
         
-        Reviews::where('id', $review_id)->delete(
-            // ['deleted_at' => Carbon::now(),
-            // ]
-        );
+        Reviews::where('id', $review_id)->delete();
 
         // マイページにリダイレクトする
         return redirect('member/mypage');

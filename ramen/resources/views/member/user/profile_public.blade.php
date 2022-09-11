@@ -38,8 +38,8 @@
 
                         <div class="float-left col-md-12">
                             {{-- ニックネーム --}}
-                            <div class="form-group row">
-                                <label for="nickname" class="col-md-3 col-form-label text-md-right">{{ __('messages.Nickname') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="nickname" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Nickname') }}</label>
 
                                 <div class="col-md-9 d-flex align-items-center">
                                     @if (isset($profile[0]))
@@ -51,8 +51,8 @@
                             </div>
 
                             {{-- 性別 --}}
-                            <div class="form-group row">
-                                <label for="gender" class="col-md-3 col-form-label text-md-right">{{ __('messages.Gender') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="gender" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Gender') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     @if (isset($profile[0]))
@@ -64,8 +64,8 @@
                             </div>
 
                             {{-- 誕生年 --}}
-                            <div class="form-group row">
-                                <label for="birth_year" class="col-md-3 col-form-label text-md-right">{{ __('messages.Birth_Year') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="birth_year" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Birth_Year') }}</label>
                                 
                                 <div class="col-md-3 d-flex align-items-center">
                                     @if (isset($profile[0]))
@@ -81,8 +81,8 @@
                             </div>
 
                             {{-- 出身地 --}}
-                            <div class="form-group row">
-                                <label for="base" class="col-md-3 col-form-label text-md-right">{{ __('messages.Base') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="base" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Base') }}</label>
                                 
                                 <div class="col-md-3 d-flex align-items-center">
                                     @if (isset($profile[0]))
@@ -94,8 +94,8 @@
                             </div>
 
                             {{-- プロフィール画像 --}}
-                            <div class="form-group row">
-                                <label for="image_file" class="col-md-3 col-form-label text-md-right">{{ __('messages.Profile_Image') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="image_file" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Profile_Image') }}</label>
 
                                 <div class="col-md-9 d-flex align-items-center">
                                     @if (isset($profile[0]))
@@ -111,12 +111,14 @@
                             </div>
 
                             {{-- 自己紹介 --}}
-                            <div class="form-group row d-flex align-items-center">
-                                <label for="introduction" class="col-md-3 col-form-label text-md-right">{{ __('messages.Introduction') }}</label>
+                            <div class="form-group row rounded border border-warning mx-5">
+                                <label for="introduction" class="col-md-3 col-form-label text-md-right font-weight-bold">{{ __('messages.Introduction') }}</label>
                                 
                                 <div class="col-md-9 d-flex align-items-center">
                                     @if (isset($profile[0]))
-                                        <span>{{ $profile[0]->introduction }}</span>
+                                        <span>
+                                            {!! nl2br(e($profile[0]->introduction)) !!}
+                                        </span>
                                     @else
                                         <span>非公開</span>
                                     @endif

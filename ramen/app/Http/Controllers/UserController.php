@@ -22,34 +22,15 @@ class UserController extends Controller
             if (empty($profile[0]->nickname)) {
                 $profile[0]->nickname = '非公開';
             }
-
-            // // レコードを取得できない（null）の場合は、性別を非公開に設定
-            // if (empty($profile[0]->gender)) {
-            //     $profile[0]->gender = '非公開';
-            // }
-
-            // // レコードを取得できない（null）の場合は、誕生年を非公開に設定
-            // if (empty($profile[0]->birth_year)) {
-            //     $profile[0]->birth_year = '非公開';
-            // }
-
-            // // レコードを取得できない（null）の場合は、出身地を非公開に設定
-            // if (empty($profile[0]->base)) {
-            //     $profile[0]->base = '非公開';
-            // }
-
-            // // 取得したレコードのプロフィール画像が空文字の場合は空文字を設定
-            // if (empty($profile[0]->image_path)) {
-            //     $profile[0]->image_path = '';
-            // }
-
             // 取得したレコードの自己紹介が空文字の場合は非公開に設定
             if (empty($profile[0]->introduction)) {
                 $profile[0]->introduction = '非公開';
             }
         }
 
-
-        return view('user.profile_detail', ['profile' => $profile, 'user' => $user,]);
+        return view('user.profile_detail', [
+            'profile' => $profile,
+            'user' => $user,
+        ]);
     }
 }

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;  // 追記
 class ShopController extends Controller
 {
     // リストを初期化
-    private $shop_types = [];  // お店のタイプリスト
+    // private $shop_types = [];  // お店のタイプリスト
     private $tags_category = [];  // タグリスト
 
     // コンストラクタでMasterCommonsクラスより、リストの配列を定義
@@ -22,7 +22,8 @@ class ShopController extends Controller
         $this->tags_category = MasterCommons::$tags_category;
     }
 
-    public function refer(Request $request, int $shop_id)
+    // public function refer(Request $request, int $shop_id)
+    public function refer(int $shop_id)
     {
         // Shopsモデルクラスをインスタンス化
         $shop = new Shops();
@@ -34,7 +35,12 @@ class ShopController extends Controller
         $shop_tags = ShopTags::where('shop_id', $shop_id)->get();
 
         // shop/detail.blade.php ファイルを渡す
-        return view('shop.detail', ['shop_detail' => $shop_detail, 'shop_tags' => $shop_tags, 'tags_category' => $this->tags_category, 'shop_id' => $shop_id]);
+        return view('shop.detail', [
+            'shop_detail' => $shop_detail,
+            'shop_tags' => $shop_tags,
+            'tags_category' => $this->tags_category,
+            'shop_id' => $shop_id,
+        ]);
     }
 
     public function reviewList(Request $request, int $shop_id)
@@ -58,7 +64,13 @@ class ShopController extends Controller
             ->paginate($disp);
 
         // shop/review.blade.php ファイルを渡す
-        return view('shop.review_list', ['review_list' => $review_list, 'shop_id' => $shop_id, 'disp' => $disp, 'shop_name' => $shop_name, 'branch' => $branch]);
+        return view('shop.review_list', [
+            'review_list' => $review_list,
+            'shop_id' => $shop_id,
+            'disp' => $disp,
+            'shop_name' => $shop_name,
+            'branch' => $branch,
+        ]);
     }
 
     public function reviewRefer(Request $request, int $shop_id, int $review_id)
@@ -82,6 +94,10 @@ class ShopController extends Controller
         $user_id = Auth::id();
 
         // shop/review.blade.php ファイルを渡す
-        return view('shop.review_detail', ['review_detail' => $review_detail, 'shop_id' => $shop_id, 'user_id' => $user_id]);
+        return view('shop.review_detail', [
+            'review_detail' => $review_detail,
+            'shop_id' => $shop_id,
+            'user_id' => $user_id,
+        ]);
     }
 }

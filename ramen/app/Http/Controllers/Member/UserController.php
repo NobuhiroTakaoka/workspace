@@ -62,10 +62,15 @@ class UserController extends Controller
             ->orderByDesc('reviews.created_at')
             ->paginate($disp);
 
-        return view('member.user.mypage', ['my_reviews' => $my_reviews, 'keyword' => $keyword, 'disp' => $disp]);
+        return view('member.user.mypage', [
+            'my_reviews' => $my_reviews,
+            'keyword' => $keyword,
+            'disp' => $disp,
+        ]);
     }
 
-    public function profilePublic(Request $request)
+    // public function profilePublic(Request $request)
+    public function profilePublic()
     {        
         // ログイン中のユーザIDを取得
         $user_id = Auth::id();
@@ -79,38 +84,20 @@ class UserController extends Controller
             if (empty($profile[0]->nickname)) {
                 $profile[0]->nickname = '非公開';
             }
-
-            // // レコードを取得できない（null）の場合は、性別を非公開に設定
-            // if (empty($profile[0]->gender)) {
-            //     $profile[0]->gender = '非公開';
-            // }
-
-            // // レコードを取得できない（null）の場合は、誕生年を非公開に設定
-            // if (empty($profile[0]->birth_year)) {
-            //     $profile[0]->birth_year = '非公開';
-            // }
-
-            // // レコードを取得できない（null）の場合は、出身地を非公開に設定
-            // if (empty($profile[0]->base)) {
-            //     $profile[0]->base = '非公開';
-            // }
-
-            // // 取得したレコードのプロフィール画像が空文字の場合は空文字を設定
-            // if (empty($profile[0]->image_path)) {
-            //     $profile[0]->image_path = '';
-            // }
-
             // 取得したレコードの自己紹介が空文字の場合は非公開に設定
             if (empty($profile[0]->introduction)) {
                 $profile[0]->introduction = '非公開';
             }
         }
 
-
-        return view('member.user.profile_public', ['profile' => $profile, 'user_id' => $user_id]);
+        return view('member.user.profile_public', [
+            'profile' => $profile,
+            'user_id' => $user_id,
+        ]);
     }
 
-    public function profileEdit(Request $request)
+    // public function profileEdit(Request $request)
+    public function profileEdit()
     {        
         // ログイン中のユーザIDを取得
         $user_id = Auth::id();
@@ -135,7 +122,12 @@ class UserController extends Controller
             $pref_id = '';
         }
 
-        return view('member.user.profile_edit', ['profile' => $profile, 'user_id' => $user_id, 'genders' => $this->genders, 'pref_id' => $pref_id,]);
+        return view('member.user.profile_edit', [
+            'profile' => $profile,
+            'user_id' => $user_id,
+            'genders' => $this->genders,
+            'pref_id' => $pref_id,
+        ]);
     }
 
     public function profileSave(Request $request)
@@ -205,30 +197,28 @@ class UserController extends Controller
         
         // レコードが存在しない場合は空の配列を設定
         if (empty($profile[0])) {
-            Profiles::insert(
-                ['user_id' => $data['user_id'],
-                 'nickname' => $data['nickname'],
-                 'gender' => $data['gender'],
-                 'birth_year' => $data['birth_year'],
-                 'base' => $data['base'],
-                 'image_path' => $data['image_path'],
-                 'introduction' => $data['introduction'],
-                 'created_at' => Carbon::now(),
-                 'updated_at' => Carbon::now(),
-                ]
-            );
+            Profiles::insert([
+                'user_id' => $data['user_id'],
+                'nickname' => $data['nickname'],
+                'gender' => $data['gender'],
+                'birth_year' => $data['birth_year'],
+                'base' => $data['base'],
+                'image_path' => $data['image_path'],
+                'introduction' => $data['introduction'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
         } else {
-            Profiles::where('user_id', $user_id)->update(
-                ['user_id' => $data['user_id'],
-                 'nickname' => $data['nickname'],
-                 'gender' => $data['gender'],
-                 'birth_year' => $data['birth_year'],
-                 'base' => $data['base'],
-                 'image_path' => $data['image_path'],
-                 'introduction' => $data['introduction'],
-                 'updated_at' => Carbon::now(),
-                ]
-            );
+            Profiles::where('user_id', $user_id)->update([
+                'user_id' => $data['user_id'],
+                'nickname' => $data['nickname'],
+                'gender' => $data['gender'],
+                'birth_year' => $data['birth_year'],
+                'base' => $data['base'],
+                'image_path' => $data['image_path'],
+                'introduction' => $data['introduction'],
+                'updated_at' => Carbon::now(),
+            ]);
         }
 
         // マイページにリダイレクトする
