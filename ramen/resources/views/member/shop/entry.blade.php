@@ -14,7 +14,7 @@
                     <div class="card-header">{{ __('messages.Shop_Entry') }}</div>
 
                     <div class="card-body">
-                        <form action="{{ url('/member/shop/check') }}" class="h-adr" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('check') }}" class="h-adr" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             {{-- 店名フォーム --}}
@@ -172,13 +172,6 @@
                                 </div>
                             </div>
 
-                            {{-- 地図表示 --}}
-                            {{-- <div class="map-container">
-                                <div class="map_wrapper">
-                                    <div id="map" class="map" style="width: 600px; height: 500px;"></div>
-                                </div>
-                            </div> --}}
-
                             {{-- 地図の緯度フォーム（表示しない） --}}
                             <div class="form-group row">                                
                                 <div class="col-md-6">
@@ -198,11 +191,11 @@
                             <script>
                                 function initMap() {
                                     console.log('initMap');
-                                    var address1 = document.getElementById('address1').value;  //住所１の入力内容を取得
-                                    var address2 = document.getElementById('address2').value;  //住所２の入力内容を取得
-                                    var address3 = document.getElementById('address3').value;  //住所３の入力内容を取得
-                                    var address4 = document.getElementById('address4').value;  //住所４の入力内容を取得
-                                    var address = address1 + address2 + address3 + address4;  //住所１～４を結合 
+                                    var address1 = document.getElementById('address1').value;  // 住所１の入力内容を取得
+                                    var address2 = document.getElementById('address2').value;  // 住所２の入力内容を取得
+                                    var address3 = document.getElementById('address3').value;  // 住所３の入力内容を取得
+                                    var address4 = document.getElementById('address4').value;  // 住所４の入力内容を取得
+                                    var address = address1 + address2 + address3 + address4;  // 住所１～４を結合 
 
                                     var geocoder = new google.maps.Geocoder();  
                                 
@@ -211,27 +204,12 @@
                                         if (status === 'OK' && results[0]){
                                             
                                             console.log(results[0].geometry.location);
-                                            var latlng = results[0].geometry.location;  //LatLngインスタンスを変数に格納
-                                            var lat = latlng.lat();  //メソッドで緯度を取得し、変数に格納
+                                            var latlng = results[0].geometry.location;  // LatLngインスタンスを変数に格納
+                                            var lat = latlng.lat();  // メソッドで緯度を取得し、変数に格納
                                             var long = latlng.lng();  // メソッドで経度を取得し、変数に格納
                                             document.getElementById('map_lat').value = lat ;
                                             document.getElementById('map_long').value = long ;
                                             
-                                            // var map = new google.maps.Map(target, {  
-                                            //     center: results[0].geometry.location,
-                                            //     zoom: 18
-                                            // });
-                                
-                                            // var marker = new google.maps.Marker({
-                                            //     position: results[0].geometry.location,
-                                            //     map: map,
-                                            //     animation: google.maps.Animation.DROP
-                                            // });
-
-                                        // }else{ 
-                                        //     // 住所が存在しない場合の処理
-                                        //     alert('住所が正しくないか存在しません。');
-                                        //     target.style.display='none';
                                         }
                                     });
                                 }
@@ -359,8 +337,6 @@
                                 <label for="access" class="col-md-3 col-form-label text-md-right">{{ __('messages.Access') }}</label>
                                 
                                 <div class="col-md-9">
-                                    {{-- <input id="access" type="text" class="form-control @error('access') is-invalid @enderror" name="access" value="{{ old('access') }}"> --}}
-                                    {{-- <input id="access" type="textarea" class="form-control @error('access') is-invalid @enderror" name="access" value="{{ $form['access'] }}"> --}}
                                     {{ Form::textarea('access', $form['access'],
                                         $errors->has('access') ? ['id' => 'access', 'class' => 'form-control is-invalid']
                                                                : ['id' => 'access', 'class' => 'form-control']
@@ -477,26 +453,15 @@
                                     {{-- Laravel CollectiveのFormファサード使用 --}}
                                     @foreach ($shop_types as $shop_type)
                                         <span style="white-space: nowrap;" class="mr-2">
-                                            {{-- {{ Form::radio('shop_type', $shop_type, false, ['value'=>old('shop_type')]) }} --}}
                                             @if ($shop_type == $form['shop_type'])
-                                                {{-- {{ Form::radio('shop_type', $shop_type, true, ['value'=>$form["shop_type"]]) }} --}} 
-                                                {{-- {{ Form::radio('shop_type', $shop_type, true, ['id'=>'shop_type','class'=>'form-control @error('shop_type') is-invalid @enderror']) }} --}}
                                                 {{ Form::radio('shop_type', $shop_type, true) }}
                                             @else
-                                                {{-- {{ Form::radio('shop_type', $shop_type, false, ['value'=>$form["shop_type"]]) }} --}}
-                                                {{-- {{ Form::radio('shop_type', $shop_type, false, ['id'=>'shop_type','class'=>'form-control @error('shop_type') is-invalid @enderror']) }} --}}
                                                 {{ Form::radio('shop_type', $shop_type, false) }}
                                             @endif
 
                                             {{ Form::label($shop_type, $shop_type) }}
                                         </span>
                                     @endforeach
-
-                                    {{-- @error('shop_type')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror --}}
                                 </div>
                             </div>
 
@@ -524,8 +489,6 @@
                                 <label for="menu" class="col-md-3 col-form-label text-md-right">{{ __('messages.Menu') }}</label>
                                 
                                 <div class="col-md-9">
-                                    {{-- <input id="menu" type="text" class="form-control @error('menu') is-invalid @enderror" name="menu" value="{{ old('menu') }}"> --}}
-                                    {{-- <input id="menu" type="text" class="form-control @error('menu') is-invalid @enderror" name="menu" value="{{ $form['menu'] }}"> --}}
                                     {{ Form::textarea('menu', $form['menu'],
                                     $errors->has('menu') ? ['id' => 'menu', 'class' => 'form-control is-invalid']
                                                          : ['id' => 'menu', 'class' => 'form-control']
@@ -544,8 +507,6 @@
                                 <label for="notes" class="col-md-3 col-form-label text-md-right">{{ __('messages.Notes') }}</label>
                                 
                                 <div class="col-md-9">
-                                    {{-- <input id="notes" type="text" class="form-control @error('notes') is-invalid @enderror" name="notes" value="{{ old('notes') }}"> --}}
-                                    {{-- <input id="notes" type="text" class="form-control @error('notes') is-invalid @enderror" name="notes" value="{{ $form['notes'] }}"> --}}
                                     {{ Form::textarea('notes', $form['notes'],
                                     $errors->has('notes') ? ['id' => 'notes', 'class' => 'form-control is_invalid']
                                                           : ['id' => 'notes', 'class' => 'form-control']
@@ -564,16 +525,12 @@
                                 <label for="tags" class="col-md-3 col-form-label text-md-right">{{ __('messages.Tags') }}</label>
                                 
                                 <div class="col-md-9">
-                                    {{-- <input id="tags" type="text" class="form-control @error('tags') is-invalid @enderror" name="tags" value="{{ old('tags') }}"> --}}
-                                    {{-- <input id="tags" type="text" class="form-control @error('tags') is-invalid @enderror" name="tags" value="{{ $form['tags'] }}"> --}}
-
                                     {{-- タグカテゴリを繰り返し取得 --}}
                                     @foreach ($tags_category as $key => $tag_category)
                                         <span style="white-space: nowrap;" class="mr-2">
                                             {{-- $form['tags']が存在する場合（タグが選択されている場合） --}}
                                             @if (isset($form['tags']))
                                                 {{-- $form['tags']が配列であり、$keyの値が入っている場合 --}}
-                                                {{-- @if (is_array($form['tags']) && in_array($key, $form['tags'], true)) --}}
                                                 @if (is_array($form['tags']) && in_array((String)$key, $form['tags'], true))
                                                     {{ Form::checkbox('tags[]', $key, true, ['id' => 'tags-' . $key]) }}
                                                 @else
@@ -586,12 +543,6 @@
                                             {{ Form::label('tags-' . $key, $tag_category) }}
                                         </span>
                                     @endforeach
-                            
-                                    {{-- @error('tags')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror --}}
                                 </div>
                             </div>
 

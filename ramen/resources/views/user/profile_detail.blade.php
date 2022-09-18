@@ -10,7 +10,7 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.Title') }}</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('index') }}">{{ __('messages.Title') }}</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ $user->name }}</li>
             </ol>
         </nav>

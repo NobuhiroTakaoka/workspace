@@ -16,24 +16,15 @@
                     <div class="card-body">
                         {{-- 各種メニュー --}}
                         <div class="float-right row mb-4 col-7">
-                            {{-- {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }} --}}
                             <div class="pr-3 pb-2">
-                                {{-- {{ Form::submit(__('messages.Top'), ['class' => 'btn btn-success']) }} --}}
                                 <a href="{{ route('mypage') }}" class="btn btn-success">{{ __('messages.Top') }}</a>
                             </div>
-                            {{-- {{ Form::close() }} --}}
-                            {{-- {{ Form::open(['url' => route('profile_public'), 'method' => 'get']) }} --}}
                             <div class="pr-3 pb-2">
-                                {{-- {{ Form::submit(__('messages.Public_Profile'), ['class' => 'btn btn-success']) }} --}}
                                 <a href="{{ route('profile_public') }}" class="btn btn-success">{{ __('messages.Public_Profile') }}</a>
                             </div>
-                            {{-- {{ Form::close() }} --}}
-                            {{-- {{ Form::open(['url' => route('profile_edit'), 'method' => 'get']) }} --}}
                             <div class="pr-3 pb-2">
-                                {{-- {{ Form::submit(__('messages.Profile_Edit'), ['class' => 'btn btn-success']) }} --}}
                                 <a href="{{ route('profile_edit') }}" class="btn btn-success">{{ __('messages.Profile_Edit') }}</a>
                             </div>
-                            {{-- {{ Form::close() }} --}}
                         </div>
 
                         <div class="float-left col-md-12">
@@ -62,15 +53,27 @@
                                         @if (isset($profile[0]->gender))
                                             @foreach ($genders as $key => $gender)
                                             <span style="white-space: nowrap;" class="mr-2 form-check">
-                                                {{ Form::radio('gender', $gender, $gender == $profile[0]->gender, ['id' => 'gender-' . $key, 'class' => 'form-check-input']) }}
-                                                {{ Form::label('gender-' . $key, $gender, ['for' => 'gender-' . $key, 'class' => 'form-check-label']) }}
+                                                {{ Form::radio('gender', $gender, $gender == $profile[0]->gender, [
+                                                    'id' => 'gender-' . $key,
+                                                    'class' => 'form-check-input'
+                                                    ]) }}
+                                                {{ Form::label('gender-' . $key, $gender, [
+                                                    'for' => 'gender-' . $key,
+                                                    'class' => 'form-check-label'
+                                                    ]) }}
                                             </span>
                                             @endforeach
                                         @else
                                             @foreach ($genders as $key => $gender)
                                             <span style="white-space: nowrap;" class="mr-2 form-check">
-                                                {{ Form::radio('gender', $gender, $key == 3, ['id' => 'gender-' . $key, 'class' => 'form-check-input']) }}
-                                                {{ Form::label('gender-' . $key, $gender, ['for' => 'gender-' . $key, 'class' => 'form-check-label']) }}
+                                                {{ Form::radio('gender', $gender, $key == 3, [
+                                                    'id' => 'gender-' . $key,
+                                                    'class' => 'form-check-input'
+                                                    ]) }}
+                                                {{ Form::label('gender-' . $key, $gender, [
+                                                    'for' => 'gender-' . $key,
+                                                    'class' => 'form-check-label'
+                                                    ]) }}
                                             </span>
                                             @endforeach
                                         @endif
@@ -230,13 +233,15 @@
                                     
                                     <div class="col-md-9">
                                         @if (isset($profile[0]->introduction))
-                                            {{ Form::textarea('introduction', $profile[0]->introduction,
-                                                ['id' => 'introduction', 'class' => 'form-control']
-                                            ) }}
+                                            {{ Form::textarea('introduction', $profile[0]->introduction, [
+                                                'id' => 'introduction',
+                                                'class' => 'form-control'
+                                                ]) }}
                                         @else
-                                            {{ Form::textarea('introduction', "",
-                                                ['id' => 'introduction', 'class' => 'form-control']
-                                            ) }}
+                                            {{ Form::textarea('introduction', "", [
+                                                'id' => 'introduction',
+                                                'class' => 'form-control'
+                                                ]) }}
                                         @endif
                                     </div>
                                 </div>

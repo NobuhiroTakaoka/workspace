@@ -10,7 +10,7 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.Title') }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('index') }}">{{ __('messages.Title') }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ __('messages.Shop_Search') }}</li>
             </ol>
         </nav>
@@ -19,15 +19,21 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">{{ __('messages.Shop_Filter') }}
-                        {{ Form::open(['url' => '/search', 'method' => 'get']) }}
+                        {{ Form::open(['route' => 'search', 'method' => 'get']) }}
                         <div class="form-group row">
                             <div class="pr-3 pb-2">
                                 {{-- キーワード検索フォーム --}}
-                                {{ Form::text('keyword', $keyword, ['class' => 'form-control', 'placeholder' => __('messages.Keyword')]) }}
+                                {{ Form::text('keyword', $keyword, [
+                                    'class' => 'form-control',
+                                    'placeholder' => __('messages.Keyword')
+                                    ]) }}
                             </div>
                             <div class="pr-3 pb-2">
                                 {{-- 都道府県のプルダウンメニュー --}}
-                                {{ Form::select('preflist', App\Models\Prefectures::prefList(), $pref_id, ['placeholder' => '▼都道府県', 'class' => 'form-control', 'id' => 'preflist']) }}
+                                {{ Form::select('preflist', App\Models\Prefectures::prefList(), $pref_id, [
+                                    'placeholder' => '▼都道府県',
+                                    'class' => 'form-control', 'id' => 'preflist'
+                                    ]) }}
                             </div>
                             <div class="pr-3 pb-2">
                                 {{-- 市区町村のプルダウンメニュー --}}
@@ -47,7 +53,9 @@
                             <div class="col-md-10 row">
                             @foreach ($tags_category as $key => $tag_category)
                                 <div style="white-space: nowrap;" class="ml-2">
-                                    {{ Form::checkbox('tags[]', $key, in_array((String)$key, $params['tags'], true), ['id' => 'tags-' . $key]) }}
+                                    {{ Form::checkbox('tags[]', $key, in_array((String)$key, $params['tags'], true), [
+                                        'id' => 'tags-' . $key
+                                        ]) }}
                                     {{ Form::label('tags-' . $key, $tag_category) }}
                                 </div>
                             @endforeach
@@ -60,7 +68,9 @@
                             <div class="col-md-9 row">
                             @foreach ($shop_types as $key => $shop_type)
                                 <div style="white-space: nowrap;" class="ml-2">
-                                    {{ Form::checkbox('types[]', $key, in_array((String)$key, $params['types'], true), ['id' => 'types-' . $key]) }}
+                                    {{ Form::checkbox('types[]', $key, in_array((String)$key, $params['types'], true), [
+                                        'id' => 'types-' . $key
+                                        ]) }}
                                     {{ Form::label('types-' . $key, $shop_type) }}
                                 </div>
                             @endforeach
@@ -71,7 +81,7 @@
                         </div>
                         {{ Form::close() }}
                         
-                        {{ Form::open(['url' => route('shop.entry'), 'method' => 'get']) }}
+                        {{ Form::open(['route' => 'shop.entry', 'method' => 'get']) }}
                         <div class="float-right">
                             <div>
                                 {{ Form::submit(__('messages.Shop_Enter'), ['class' => 'btn btn-success']) }}
@@ -89,7 +99,6 @@
                         @foreach ($shops as $shop)
                             <div class="row">
                                 <div class="shops col-md-10 mx-auto mt-2">
-                                    {{-- <form action="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" method="GET"> --}}
                                     <div class="left-contents d-flex align-items-start float-left pr-3 mt-2 mb-2">
                                         @if ($shop->image_path)
                                             <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}" alt="shop-image" data-toggle="modal" data-target="#image-modal" style="cursor:pointer">
@@ -107,13 +116,6 @@
                                         @else
                                             <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
                                         @endif
-                                        {{-- <a class="text-decoration-none text-dark" href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}">
-                                            @if ($shop->image_path)
-                                                <img class="img-thumbnail" src="{{ asset('storage/image/' . $shop->image_path) }}">
-                                            @else
-                                                <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
-                                            @endif
-                                        </a> --}}
                                     </div>
 
                                     <div class="right-contents clearfix mt-2">
@@ -136,23 +138,7 @@
                                                 <span class="points lead font-weight-bold">-------点</span>
                                             @endif
                                         </div>
-                                        {{-- <div class="links text-center float-left mt-2">
-                                            @if ($shop->facebook || $shop->twitter)
-                                                <span class="text-secondary font-weight-bold">外部リンク</span><br />
-                                            @endif
-                                            @if ($shop->facebook)
-                                                <a href="{{ $shop->facebook }}">
-                                                    <img class="m-1" src="{{ asset('storage/' . 'facebook_logo.png') }}">
-                                                </a>
-                                            @endif
-                                            @if ($shop->twitter)
-                                                <a href="{{ $shop->twitter }}">
-                                                    <img class="m-1" src="{{ asset('storage/' . 'Twitter_logo.png') }}">
-                                                </a>
-                                            @endif
-                                        </div> --}}
                                     </div>
-                                    {{-- </form> --}}
                                 </div>
                             </div>
                         @endforeach
@@ -163,9 +149,18 @@
                         </div>
 
                         <div class="meet">
-                            表示件数：
-                            {{ Form::open(['url' => '/search', 'method' => 'get']) }}
-                                {{ Form::select('disp', ['10' => '10', '20' => '20', '50' => '50', '100' => '100'], $disp, ['class' => 'disp', 'id' => 'disp', 'onchange' => 'submit();']) }}
+                            <span>表示件数：</span>
+                            {{ Form::open(['route' => 'search', 'method' => 'get']) }}
+                                {{ Form::select('disp', [
+                                    '10' => '10',
+                                    '20' => '20',
+                                    '50' => '50',
+                                    '100' => '100'
+                                    ], $disp, [
+                                        'class' => 'disp',
+                                        'id' => 'disp',
+                                        'onchange' => 'submit();'
+                                        ]) }}
                                 {{ Form::hidden('keyword', $keyword) }}
                                 {{ Form::hidden('preflist', $pref_id) }}
                                 {{ Form::hidden('city', $city, ['id' => 'city_id']) }}

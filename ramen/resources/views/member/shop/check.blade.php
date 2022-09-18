@@ -16,9 +16,9 @@
                     <div class="card-body">
                     {{-- 更新の場合 --}}
                     @if ($chk_mode === 'edit')
-                        <form action="{{ url('/member/shop/update') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('update') }}" method="POST" enctype="multipart/form-data">
                     @else
-                        <form action="{{ url('/member/shop/create') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('create') }}" method="POST" enctype="multipart/form-data">
                     @endif
                             @csrf
 
@@ -122,8 +122,6 @@
 
                                 <div class="map_wrapper col-md-9 d-flex align-items-center">
                                     <div id="map" class="map" style="width: 550px; height: 460px;"></div>
-                                    {{-- <input id="lat" type="hidden" class="form-control" name="lat" value="{{ $form["lat"] }}">
-                                    <input id="long" type="hidden" class="form-control" name="long" value="{{ $form["long"] }}"> --}}
 
                                     <script>
                                         function initMap() {
@@ -155,7 +153,7 @@
                                                         animation: google.maps.Animation.DROP
                                                     });
             
-                                                }else{ 
+                                                } else { 
                                                     //住所が存在しない場合の処理
                                                     alert('住所が正しくないか存在しません。');
                                                     target.style.display='none';
@@ -163,7 +161,7 @@
                                             });
                                         }
                                     </script>
-                                    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY', 'default') }}&callback=initMap" async defer></script>            
+                                    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY', 'default') }}&callback=initMap" defer></script>            
                                 </div>
                             </div>
 

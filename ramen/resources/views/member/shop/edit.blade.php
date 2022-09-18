@@ -14,7 +14,7 @@
                     <div class="card-header">{{ __('messages.Shop_Edit') }}</div>
 
                     <div class="card-body">
-                        <form action="{{ url('/member/shop/check') }}" class="h-adr" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('check') }}" class="h-adr" method="POST" enctype="multipart/form-data">
                             @csrf
                             {{-- 店ID（表示しない） --}}
                             <div class="form-group row">                                
@@ -29,9 +29,9 @@
 
                                 <div class="col-md-6">
                                     @if (isset($form['shop_name']))
-                                        <input id="shop_name" type="text" class="form-control @error('shop_name') is-invalid @enderror" name="shop_name" value="{{ $form['shop_name'] }}" autofocus>
+                                        <input id="shop_name" type="text" class="form-control @error('shop_name') is-invalid @enderror" name="shop_name" value="{{ $form['shop_name'] }}">
                                     @else
-                                        <input id="shop_name" type="text" class="form-control @error('shop_name') is-invalid @enderror" name="shop_name" value="{{ $shop_detail->shop_name }}" autofocus>
+                                        <input id="shop_name" type="text" class="form-control @error('shop_name') is-invalid @enderror" name="shop_name" value="{{ $shop_detail->shop_name }}">
                                     @endif
 
                                     @error('shop_name')
@@ -165,9 +165,9 @@
                                 
                                 <div class="col-md-6">
                                     @if (isset($form['address4']))
-                                        <input id="address4" type="text" onblur="initMap()" class="form-control p-extended-address @error('address4') is-invalid @enderror" name="address4" value="{{ $form['address4'] }}" placeholder="{{ __('messages.After_Address2') }}">
+                                        <input id="address4" type="text" onblur="initMap()" class="form-control p-extended-address @error('address4') is-invalid @enderror" name="address4" value="{{ $form['address4'] }}" placeholder="{{ __('messages.After_Address2') }}" autofocus>
                                     @else
-                                        <input id="address4" type="text" onblur="initMap()" class="form-control p-extended-address @error('address4') is-invalid @enderror" name="address4" value="{{ $shop_detail->address4 }}" placeholder="{{ __('messages.After_Address2') }}">
+                                        <input id="address4" type="text" onblur="initMap()" class="form-control p-extended-address @error('address4') is-invalid @enderror" name="address4" value="{{ $shop_detail->address4 }}" placeholder="{{ __('messages.After_Address2') }}" autofocus>
                                     @endif
 
                                     @error('address4')
@@ -177,13 +177,6 @@
                                     @enderror
                                 </div>
                             </div>
-
-                            {{-- 地図表示 --}}
-                            {{-- <div class="map-container">
-                                <div class="map_wrapper">
-                                    <div id="map" class="map" style="width: 600px; height: 500px;"></div>
-                                </div>
-                            </div> --}}
 
                             {{-- 地図の緯度フォーム（表示しない） --}}
                             <div class="form-group row">                                
@@ -210,11 +203,11 @@
                             <script>
                                 function initMap() {
                                     console.log('initMap');
-                                    var address1 = document.getElementById('address1').value;  //住所１の入力内容を取得
-                                    var address2 = document.getElementById('address2').value;  //住所２の入力内容を取得
-                                    var address3 = document.getElementById('address3').value;  //住所３の入力内容を取得
-                                    var address4 = document.getElementById('address4').value;  //住所４の入力内容を取得
-                                    var address = address1 + address2 + address3 + address4;  //住所１～４を結合 
+                                    var address1 = document.getElementById('address1').value;  // 住所１の入力内容を取得
+                                    var address2 = document.getElementById('address2').value;  // 住所２の入力内容を取得
+                                    var address3 = document.getElementById('address3').value;  // 住所３の入力内容を取得
+                                    var address4 = document.getElementById('address4').value;  // 住所４の入力内容を取得
+                                    var address = address1 + address2 + address3 + address4;  // 住所１～４を結合 
 
                                     var geocoder = new google.maps.Geocoder();  
                                 
@@ -223,32 +216,17 @@
                                         if (status === 'OK' && results[0]){
                                             
                                             console.log(results[0].geometry.location);
-                                            var latlng = results[0].geometry.location;  //LatLngインスタンスを変数に格納
-                                            var lat = latlng.lat();  //メソッドで緯度を取得し、変数に格納
+                                            var latlng = results[0].geometry.location;  // LatLngインスタンスを変数に格納
+                                            var lat = latlng.lat();  // メソッドで緯度を取得し、変数に格納
                                             var long = latlng.lng();  // メソッドで経度を取得し、変数に格納
                                             document.getElementById('map_lat').value = lat ;
                                             document.getElementById('map_long').value = long ;
                                             
-                                            // var map = new google.maps.Map(target, {  
-                                            //     center: results[0].geometry.location,
-                                            //     zoom: 18
-                                            // });
-                                
-                                            // var marker = new google.maps.Marker({
-                                            //     position: results[0].geometry.location,
-                                            //     map: map,
-                                            //     animation: google.maps.Animation.DROP
-                                            // });
-
-                                        // }else{ 
-                                        //     // 住所が存在しない場合の処理
-                                        //     alert('住所が正しくないか存在しません。');
-                                        //     target.style.display='none';
                                         }
                                     });
                                 }
                             </script>
-                            <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY', 'default') }}&callback=initMap" async defer></script>
+                            <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY', 'default') }}&callback=initMap" defer></script>
 
                             {{-- 電話番号１フォーム --}}
                             <div class="form-group row">
@@ -585,18 +563,6 @@
                                         @endif
                                         {{ Form::checkbox('tags[]', $key, $tag_flag, ['id' => 'tags-' . $key]) }}    
 
-                                    {{-- @foreach ($shop_tags as $key => $shop_tag) --}}
-                                        {{-- @foreach ($shop_tags as $shop_tag)
-                                            @if ($key === $shop_tag->tag_id)
-                                                {{ Form::checkbox('tags[]', $key, true, ['id' => 'tags-' . $key]) }}
-                                                @php
-                                                    $tag_flag = 1;
-                                                @endphp
-                                            @endif
-                                        @endforeach --}}
-                                        {{-- @if ($tag_flag === 0)
-                                            {{ Form::checkbox('tags[]', $key, false, ['id' => 'tags-' . $key]) }}
-                                        @endif --}}
                                         {{ Form::label('tags-' . $key, $tag_category) }}
                                     @endforeach
                                 </div>
@@ -642,7 +608,6 @@
                                             </div>
                                         @endif
                                     @endif
-
                                 </div>
                             </div>
 

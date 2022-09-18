@@ -8,10 +8,10 @@
 
 @section('content')
     <div class="container">
-        <hr color="#c0c0c0">
+        {{-- <hr color="#c0c0c0"> --}}
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.Title') }}</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('index') }}">{{ __('messages.Title') }}</a></li>
               <li class="breadcrumb-item"><a href="{{ route('shop.detail', ['shop_id' => $shop_id]) }}">{{ $shop_name . ' ' . $branch }}</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ __('messages.Review_List') }}</li>
             </ol>
@@ -132,8 +132,23 @@
 
                             <div class="meet">
                                 表示件数：
-                                {{ Form::open(['url' => route('shop.review_list', ['shop_id' => $shop_id]), 'method' => 'get']) }}
-                                    {{ Form::select('disp', ['10' => '10', '20' => '20', '50' => '50', '100' => '100'], $disp, ['class' => 'disp', 'id' => 'disp', 'onchange' => 'submit();']) }} 
+                                {{ Form::open([
+                                    'route' => ['shop.review_list',
+                                    'shop_id' => $shop_id],
+                                    'method' => 'get'
+                                    ]) }}
+                                    {{ Form::select('disp', [
+                                        '10' => '10',
+                                        '20' => '20',
+                                        '50' => '50',
+                                        '100' => '100'
+                                        ], $disp, [
+                                            'class' => 'disp',
+                                            'id' => 'disp',
+                                            'onchange' => 'submit();'
+                                            ]) }}
+                                    {{ Form::hidden('shop_name', $shop_name) }}
+                                    {{ Form::hidden('branch', $branch) }}
                                 {{ Form::close() }}
                             </div>
                         </form>

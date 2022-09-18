@@ -34,7 +34,7 @@
         {{-- 画面上部に表示するナビゲーションバー --}}
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('index') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li><a class="nav-link" href="{{ url('/') }}">トップ</a></li>
+                        <li><a class="nav-link" href="{{ route('index') }}">トップ</a></li>
                         <li><a class="nav-link" href="{{ route('search') }}">検索</a></li>
                         <li><a class="nav-link" href="{{ route('ranking') }}">ランキング</a></li>
                         {{-- ログインしていなかったらログイン画面へのリンクタブを表示 --}}
@@ -125,7 +125,7 @@
                             let href = snsLinks.eq(i).attr('href');
                             // シェアページのURL上書き
                             href = href.replace("u=","u="+url)      // facebook
-                            href = href.replace("url=","url="+url)  // twitter,LINE,はてなブログ,ピンタレスト
+                            href = href.replace("url=","url="+url)  // twitter,LINE
                             snsLinks.eq(i).attr('href',href);
                         }
                     </script>

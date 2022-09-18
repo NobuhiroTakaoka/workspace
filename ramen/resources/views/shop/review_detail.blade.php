@@ -11,7 +11,7 @@
         <hr color="#c0c0c0">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.Title') }}</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('index') }}">{{ __('messages.Title') }}</a></li>
               <li class="breadcrumb-item"><a href="{{ route('shop.detail', ['shop_id' => $review_detail[0]->shop_id]) }}">{{ $review_detail[0]->shop_name . ' ' . $review_detail[0]->branch }}</a></li>
               <li class="breadcrumb-item"><a href="{{ route('shop.review_list', ['shop_id' => $review_detail[0]->shop_id, 'shop_name' => $review_detail[0]->shop_name, 'branch' => $review_detail[0]->branch]) }}">{{ __('messages.Review_List') }}</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ __('messages.Review_Detail') }}</li>
@@ -38,12 +38,6 @@
                             </div>
                             <div class="left-contents d-flex align-items-start float-left pr-3 mt-2">
                                 <div>
-                                    {{-- @if ($review_detail[0]->image_path)
-                                        <img class="img-thumbnail" src="{{ asset('storage/image/' . $review_detail[0]->image_path) }}">
-                                    @else
-                                        <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
-                                    @endif --}}
-
                                     @if ($review_detail[0]->image_path)
                                         <img src="{{ asset('storage/image/' . $review_detail[0]->image_path) }}" alt="review-image" class="img-thumbnail" data-toggle="modal" data-target="#image-modal" style="cursor:pointer">
 

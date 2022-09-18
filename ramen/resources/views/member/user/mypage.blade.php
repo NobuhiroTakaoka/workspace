@@ -16,38 +16,30 @@
                     <div class="card-body">
                         {{-- 各種メニュー --}}
                         <div class="float-right row mb-4 col-7">
-                            {{-- {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }} --}}
                             <div class="pr-3 pb-2">
-                                {{-- {{ Form::submit(__('messages.Top'), ['class' => 'btn btn-success']) }} --}}
                                 <a href="{{ route('mypage') }}" class="btn btn-success">{{ __('messages.Top') }}</a>
                             </div>
-                            {{-- {{ Form::close() }} --}}
-                            {{-- {{ Form::open(['url' => route('profile_public'), 'method' => 'get']) }} --}}
                             <div class="pr-3 pb-2">
-                                {{-- {{ Form::submit(__('messages.Public_Profile'), ['class' => 'btn btn-success']) }} --}}
                                 <a href="{{ route('profile_public') }}" class="btn btn-success">{{ __('messages.Public_Profile') }}</a>
                             </div>
-                            {{-- {{ Form::close() }} --}}
-                            {{-- {{ Form::open(['url' => route('profile_edit'), 'method' => 'get']) }} --}}
                             <div class="pr-3 pb-2">
-                                {{-- {{ Form::submit(__('messages.Profile_Edit'), ['class' => 'btn btn-success']) }} --}}
                                 <a href="{{ route('profile_edit') }}" class="btn btn-success">{{ __('messages.Profile_Edit') }}</a>
                             </div>
-                            {{-- {{ Form::close() }} --}}
                         </div>
                     
                         <div class="float-left pb-3">
-                            {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }}
+                            {{ Form::open(['route' => 'mypage', 'method' => 'get']) }}
                                 <div class="pr-3 pb-2">
-                                    {{-- {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }} --}}
                                     {{-- キーワード検索フォーム --}}
-                                    {{ Form::text('keyword', $keyword, ['class' => 'form-control', 'placeholder' => __('messages.Keyword')]) }}
-                                    {{-- {{ Form::close() }} --}}
+                                    {{ Form::text('keyword', $keyword, [
+                                        'class' => 'form-control',
+                                        'placeholder' => __('messages.Keyword')
+                                        ]) }}
                                 </div>
                                 <div class="pr-3 pb-2">
-                                    {{ Form::submit(__('messages.MyReview_Search'), ['class' => 'btn btn-primary']) }}
-                                    {{-- <a href="{{ route('mypage') }}" class="btn btn-primary">{{ __('messages.MyReview_Search') }}</a> --}}
-                                    {{-- <button type="submit" class="btn btn-primary" name="finput" value="true">{{ __('messages.MyReview_Search') }}</button> --}}
+                                    {{ Form::submit(__('messages.MyReview_Search'), [
+                                        'class' => 'btn btn-primary'
+                                        ]) }}
                                 </div>
                             {{ Form::close() }}
                         </div>
@@ -94,14 +86,22 @@
 
                         <div class="d-flex align-items-center justify-content-center mt-3">
                             {{-- ペジネーション結果の表示 --}}
-                            {{-- {{ $shops->links() }} --}}
                             {{ $my_reviews -> appends(['disp' => $disp]) -> links() }}
                         </div>
 
                         <div class="meet">
                             表示件数：
-                            {{ Form::open(['url' => route('mypage'), 'method' => 'get']) }}
-                                {{ Form::select('disp', ['10' => '10', '20' => '20', '50' => '50', '100' => '100'], $disp, ['class' => 'disp', 'id' => 'disp', 'onchange' => 'submit();']) }}
+                            {{ Form::open(['route' => 'mypage', 'method' => 'get']) }}
+                                {{ Form::select('disp', [
+                                    '10' => '10',
+                                    '20' => '20',
+                                    '50' => '50',
+                                    '100' => '100'],
+                                    $disp, [
+                                        'class' => 'disp',
+                                        'id' => 'disp',
+                                        'onchange' => 'submit();'
+                                        ]) }}
                                 {{ Form::hidden('keyword', $keyword) }}
                             {{ Form::close() }}
                         </div>

@@ -8,10 +8,10 @@
 
 @section('content')
     <div class="container">
-        <hr color="#c0c0c0">
+        {{-- <hr color="#c0c0c0"> --}}
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.Title') }}</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('index') }}">{{ __('messages.Title') }}</a></li>
               <li class="breadcrumb-item"><a href="{{ route('search') }}">{{ __('messages.Shop_Search') }}</a></li>
               <li class="breadcrumb-item active" aria-current="page">{{ __('messages.Shop_Detail') }}</li>
             </ol>
@@ -58,33 +58,6 @@
             </div>
         </div>
 
-        {{-- 住所２ --}}
-        {{-- <div class="form-group row">
-            <label for="address2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address2') }}</label>
-            
-            <div class="col-md-6 d-flex align-items-center">
-                <span>{{ $shop_detail->address2 }}</span>
-            </div>
-        </div> --}}
-
-        {{-- 住所３ --}}
-        {{-- <div class="form-group row">
-            <label for="address3" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address3') }}</label>
-            
-            <div class="col-md-6 d-flex align-items-center">
-                <span>{{ $shop_detail->address3 }}</span>
-            </div>
-        </div> --}}
-
-        {{-- 住所４ --}}
-        {{-- <div class="form-group row">
-            <label for="address4" class="col-md-3 col-form-label text-md-right">{{ __('messages.Address4') }}</label>
-            
-            <div class="col-md-6 d-flex align-items-center">
-                <span>{{ $shop_detail->address4 }}</span>
-            </div>
-        </div> --}}
-
         {{-- 地図の緯度（表示しない） --}}
         <div class="form-group row mx-5">                            
             <div class="col-md-6 d-flex align-items-center">
@@ -123,7 +96,7 @@
                         });
                     }
                 </script>
-                <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY', 'default') }}&callback=initMap" async defer></script>            
+                <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY', 'default') }}&callback=initMap" defer></script>            
             </div>
         </div>
 
@@ -139,15 +112,6 @@
             </div>
         </div>
 
-        {{-- 電話番号２ --}}
-        {{-- <div class="form-group row">
-            <label for="phone_number2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Phone_Number2') }}</label>
-            
-            <div class="col-md-3 d-flex align-items-center">
-                <span>{{ $shop_detail->phone_number2 }}</span>
-            </div>
-        </div> --}}
-
         {{-- 営業時間１ --}}
         <div class="form-group row rounded border border-warning mx-5">
             <label for="opening_hour" class="col-md-2 col-form-label text-md-right font-weight-bold">{{ __('messages.Opening_Hour') }}</label>
@@ -159,15 +123,6 @@
                 </div>
             </div>
         </div>
-
-        {{-- 営業時間２ --}}
-        {{-- <div class="form-group row">
-            <label for="opening_hour2" class="col-md-3 col-form-label text-md-right">{{ __('messages.Opening_Hour2') }}</label>
-            
-            <div class="col-md-5 d-flex align-items-center">
-                <span>{{ $shop_detail->opening_hour2 }}</span>
-            </div>
-        </div> --}}
 
         {{-- 定休日 --}}
         <div class="form-group row rounded border border-warning mx-5">

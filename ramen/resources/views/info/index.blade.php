@@ -48,14 +48,6 @@
                                         {{-- <div class="mt-2"> --}}
                                         <div class="left-contents d-flex align-items-start float-left pr-3 mt-2">
                                             <div>
-                                                {{-- <a class="review-img" href="{{ route('shop.review_detail', ['shop_id' => $review->shop_id, 'review_id' => $review->id]) }}">
-                                                    @if ($review->image_path)
-                                                        <img class="img-thumbnail" src="{{ asset('storage/image/' . $review->image_path) }}">
-                                                    @else
-                                                        <img class="img-thumbnail" src="{{ asset('storage/' . 'no_image.jpg') }}">                                                    
-                                                    @endif
-                                                </a> --}}
-                                                
                                                 @if ($review->image_path)
                                                     <img src="{{ asset('storage/image/' . $review->image_path) }}" alt="review-image" class="img-thumbnail" data-toggle="modal" data-target="#image-modal" style="cursor:pointer">
 

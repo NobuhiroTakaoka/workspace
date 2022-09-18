@@ -276,8 +276,6 @@
                         </div>
                     </div>
 
-                    
-
                     {{-- 次へボタン（確認画面へ） --}}
                     <div class="form-group row">
                         <div class="col-md-8 offset-md-4">

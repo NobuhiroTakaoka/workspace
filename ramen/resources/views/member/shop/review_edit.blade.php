@@ -25,9 +25,6 @@
                         <form action="{{ route('review_update', ['shop_id' => $shop_id, 'review_id' => $review_id]) }}" class="h-adr" method="POST" enctype="multipart/form-data">
                             @csrf
 
-                            {{-- <input id="shop_name" type="hidden" class="form-control" name="shop_name" value="{{ $form['shop_name'] }}">
-                            <input id="branch" type="hidden" class="form-control" name="branch" value="{{ $form['branch'] }}"> --}}
-
                             {{-- メニュー（タイトル） --}}
                             <div class="form-group row">
                                 <label for="menu_title" class="col-md-3 col-form-label text-md-right">{{ __('messages.Menu_Title') }}</label>
@@ -58,7 +55,7 @@
                                         ],
                                         $review_detail->category,
                                         $errors->has('category') ? ['id' => 'category', 'class' => 'form-control is-invalid']
-                                                                : ['id' => 'category', 'class' => 'form-control']
+                                                                 : ['id' => 'category', 'class' => 'form-control']
                                     ) }}
 
                                     @error('category')
